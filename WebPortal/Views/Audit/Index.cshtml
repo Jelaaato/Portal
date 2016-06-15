@@ -1,0 +1,123 @@
+﻿@using WebPortal.DataModels;
+@using WebPortal.Models;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<PortalAudit>
+@*@model IEnumerable<PortalAudit>*@
+@{
+    ViewBag.Title = "Audit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<title>@ViewBag.Title - Audit Trail</title>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+<div>
+    <div class="panel-success">
+        <div class="panel-heading">
+            <div class="panel-title">Audit Trail</div>
+        </div>
+        <div class="panel-body">
+                @*<div class="form-group">
+                    <select class="form-control" name="eventtype" style="cursor:pointer;">
+                        <option value="" disabled selected>Event Type</option>
+                        <option value="Login" style="cursor:pointer;">Login</option>
+                        <option value="View Results" style="cursor:pointer;">View Results</option>
+                    </select>
+                </div>*@
+                @using (Html.BeginForm("Index", "Audit", FormMethod.Get))
+                {
+                    <div class="form-inline">
+                        @Html.TextBox("searchuser", null, new { @placeholder = "UserName", @class = "form-control" })
+                        <div class="form-group">
+                            @Html.TextBox("datefrom", null, new { @placeholder = "Date From", @class = "form-control", @id = "DateFrom"})
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBox("dateto", null, new { @placeholder = "Date To", @class = "form-control", @id = "DateTo" })
+                        </div>
+                        <input type="submit" class="btn btn-sm btn-primary" value="Filter" />
+                    </div>
+                }
+ 
+            <br />
+            <table class="table table-striped">
+                <tr>
+                    <th>User Name</th>
+                    <th>Host Name</th>
+                    <th>IP Address</th>
+                    <th>Page Accessed</th>
+                    <th>Time Stamp</th>
+                    <th>Event Type</th>
+                </tr>
+                @if (Model.Count() == 0)
+                {
+                    <tr><td class="text-center">No Logs</td></tr>
+                }
+                else
+                {
+                    foreach (PortalAudit user in Model)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.Hostname</td>
+                            <td>@user.IPAddress</td>
+                            <td>@user.PageAccessed</td>
+                            <td>@user.TimeStamp</td>
+                            @if (user.PageAccessed == "/AHMC" || user.PageAccessed == "/ahmcportal/AHMC")
+                            {
+                             <td>Login</td>
+                            }
+                            else if (user.PageAccessed == "/Dashboard/Results" || user.PageAccessed == "ahmcportal/Dashboard/Results")
+                            { 
+                            <td>View Results</td>
+                            }
+                            else
+                            {
+                            <td>Visit Dashboard</td>
+                            }
+                        </tr>
+                    }
+                }
+            </table>
+            <br />
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, filter = ViewBag.Filter}))
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<script>
+    $(function () {
+        $('#DateFrom').daterangepicker({
+            singleDatePicker: true,
+            showDropdown: true
+        });
+        $('#DateTo').daterangepicker({
+            singleDatePicker: true,
+            showDropdown: true
+        });
+    });
+</script>
+@*Predefined DateRangePicker*@
+@*<script type="text/javascript">
+    $(function () {
+
+        function cb(start, end) {
+            $('#auditdaterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+        cb(moment().subtract(29, 'days'), moment());
+
+        $('#auditdaterange').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+    });
+</script>*@

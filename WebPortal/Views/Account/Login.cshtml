@@ -1,0 +1,88 @@
+﻿@model WebPortal.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@ViewBag.Title - AHMC Portal</title>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<script src="~/Scripts/html5shiv.min.js"></script>
+<script src="~/Scripts/respond.min.js"></script>
+<link href="~/Content/hover.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text">
+                    <br /><br />
+                    <img src="~/Images/Logo/ahmc_logo.png" />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 form-box">
+                    @*<div class="form-top">
+                        <div class="form-top-left">
+                            <h3 style="color: white;">AHMC Portal</h3>
+                            <p style="color: white;">Login with your Username and Password.</p>
+                            @Html.ValidationSummary()
+                        </div>
+                        <div class="form-top-right">
+                            <span style="color: white;margin-top:10px;" class="glyphicon glyphicon-lock"></span>
+                        </div>
+                    </div>*@
+                    <div class="form-bottom">
+                        @using (Html.BeginForm())
+                        {
+                            if (Session["patientlogin"] == null)
+                            {
+                                ViewBag.user = Session["emplogin"];
+                            }
+                            else if (Session["emplogin"] == null)
+                            {
+                                ViewBag.user = Session["patientlogin"];
+                            }
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken();
+                            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+                            <div class="form-group">
+                                @Html.TextBoxFor(a => a.UserName, new
+                           {
+                               @Value = ViewBag.user,
+                               @placeholder = "Number",
+                               @class = "input-size inputuser",
+                           })
+                            </div>
+                            
+                            <div class="form-group">
+                                @Html.PasswordFor(a => a.Password, new 
+                           { 
+                               @autofocus = "autofocus", 
+                               @placeholder = "Password...",
+                               @class = "input-size inputpass"
+                           })
+                            </div>
+                            
+                            <button type="submit" class="btn btn-login">Login</button>
+                            <br />
+                            <br />
+                            <div class="col-lg-6">
+                                @Html.ActionLink("Forgot your Password ?", "ForgotPassword", "Account", null, new { @style = "color:#9a9a9a;font-size:14px;" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

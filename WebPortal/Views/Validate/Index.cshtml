@@ -1,0 +1,77 @@
+﻿@model WebPortal.Models.CheckModel
+
+@{
+    ViewBag.Title = "Welcome";
+    Layout = null;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@ViewBag.Title - AHMC Portal</title>
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/hover.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/plugins/datepicker/datepicker3.css">
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text">
+                    <br /><br />
+                    <img src="~/Images/Logo/ahmc_logo.png" />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 form-box">
+                    <div class="form-bottom">
+                        @Html.ValidationSummary(false)
+                        @using (Html.BeginForm())
+                        {
+                            <div class="form-group">
+                                @Html.TextBoxFor(a => a.Birthday, new
+                                {
+                                    @id = "datepicker1",
+                                    @placeholder = "Birthday YYYY-MM-DD",
+                                    @class = "inputuser input-size"
+                                })
+                            </div>
+                            
+                            <button type="submit" class="btn btn-login">Proceed</button>
+
+                            <br />
+                            <br />
+
+                            @Html.ActionLink("Back to Menu", "Index", "Home", null, new { @style = "color:#9a9a9a;font-size:14px;" })
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Adminlte/AdminLTE_V2/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#datepicker1").datepicker({
+            autoclose : 'true',
+            format: 'yyyy-mm-dd'
+        });
+    });
+    function NumbersOnly(e) {
+        var evt = (e) ? e : window.event;
+        var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+</script>

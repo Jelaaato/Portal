@@ -1,0 +1,29 @@
+﻿@model WebPortal.Models.Users
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<title>@ViewBag.Title - AHMC Portal</title>
+<h2>Edit</h2>
+@Html.ValidationSummary(false)
+<div class="form-group">
+    <h4>UserName</h4>
+    <p class="form-control-static">@Model.UserName</p>
+</div>
+@using (Html.BeginForm())
+{ 
+    @Html.HiddenFor(a => a.Id)
+<div class="form-group">
+        <h4>Email</h4>
+    @Html.TextBoxFor(a => a.Email)
+</div>
+<div class="form-group">
+       <h4>Password</h4>
+       <input name="password" type= "password"/>
+</div>
+<button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

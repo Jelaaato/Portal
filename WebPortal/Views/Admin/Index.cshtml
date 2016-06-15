@@ -1,0 +1,58 @@
+﻿@using WebPortal.Models;
+@model IEnumerable<Users>
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<title>@ViewBag.Title - AHMC Portal</title>
+<div>
+    <div class="panel-success">
+        <div class="panel-heading">
+            <div class="panel-title">Users</div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th></th>
+                </tr>
+                @if (Model.Count() == 0)
+                { 
+                    <tr><td class="text-center">No User Accounts</td></tr>
+                }
+                else
+                {
+                    foreach (Users user in Model) { 
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+                        <td>
+                            <button type="button" data-toggle="modal" data-target="#deleteconfirmation" class="btn btn-danger btn-xs">Delete</button>
+                            <div class="modal fade" id="deleteconfirmation" role="dialog" tabindex="-1">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><span class="glyphicon glyphicon-remove"></span></button>
+                                            <h3 class="text-center">Are you sure?</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            @Html.ActionLink("Delete", "Delete", new { id = user.Id }, new { @class= "btn btn-block btn-danger"})
+                                            <br />
+                                            <a href="@Url.Action("Index")" class="btn btn-block btn-default">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+                }
+            </table>
+        </div>
+        
+    </div>
+</div>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

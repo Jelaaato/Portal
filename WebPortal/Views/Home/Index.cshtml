@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Choose to Continue";
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+<html class="full-cover">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/css3-mediaqueries.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    @Styles.Render("~/Content/css")
+    <script src="~/Scripts/respond.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+    }
+
+    <!--Options-->
+    <div class="full-cover">
+        <div class="row text-center">
+            <h1 class="colorwhite padding-top" style="padding-top:25px;font-family:'Roboto', sans-serif !important;">Please Choose to Continue</h1>
+        </div>
+        <center>
+            <div class="row images">
+                <div class="col-sm-4 col-lg-push-1">
+                    <a href="@Url.Action("RedirectPat", "Redirect")"><img src="~/Images/AHMCView_icons/patient.png" class="hvr-pulse" /></a>
+                </div>
+                <div class="col-sm-4">
+                    <a href="@Url.Action("Index", "UnderMaintenance")"><img src="~/Images/AHMCView_icons/doctor.png" class="hvr-pulse"></a>
+                </div>
+                <div class="col-sm-4 col-lg-pull-1">
+                    <a href="@Url.Action("RedirectEmp", "Redirect")"><img src="~/Images/AHMCView_icons/employee.png" class="hvr-pulse" /></a>
+                </div>
+            </div>
+        </center>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+
+</html>
+

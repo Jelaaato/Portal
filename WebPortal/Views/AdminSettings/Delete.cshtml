@@ -1,0 +1,36 @@
+﻿@model WebPortal.Models.PortalRetention
+@{
+    ViewBag.Title = "Edit Retention";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel-danger">
+    <div class="panel-heading">
+        <div class="panel-title">Are you sure you want to delete this?</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 form-box">
+                <center>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Module</th>
+                            <th>Retention Period</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => model.Module)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Retention_Period)
+                            </td>
+                        </tr>
+                    </table>
+                       @Html.ActionLink("Delete", "Delete", new { @class = "btn btn-danger btn-xs" })
+                       @*<input type="submit" value="Delete" class="btn btn-danger" />*@
+                       @Html.ActionLink("Back", "Index", new { @class = "btn btn-primary btn-xs" })                       
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

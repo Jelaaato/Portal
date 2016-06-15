@@ -1,0 +1,30 @@
+﻿@model WebPortal.Models.CreateModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@ViewBag.Title - AHMC Portal</title>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link href="~/Content/hover.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<h2>Create</h2>
+@Html.ValidationSummary(false)
+@using (Html.BeginForm()) { 
+<div class="form-group">
+    @Html.TextBoxFor(a => a.UserName)
+</div>
+@*<div class="form-group">
+    @Html.TextBoxFor(a => a.Email)
+</div>*@
+<div class="form-group">
+    @Html.PasswordFor(a => a.Password)
+</div>
+<div class="form-group">
+    @Html.PasswordFor(a => a.ConfirmPassword)
+</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

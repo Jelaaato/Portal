@@ -1,0 +1,62 @@
+﻿@{
+Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<WebPortal.Models.PortalRetention>
+<title>@ViewBag.Title - Settings</title>
+<div>
+    <div class="panel-success">
+        <div class="panel-heading">
+            <div class="panel-title">Settings</div>
+        </div>
+        <div class="panel-body">
+            <h5><b>Accessibility Period</b></h5>
+            <table class="table table-striped">
+                <tr>
+                    <th>Module</th>
+                    <th>Retention Period</th>
+                    <th></th>
+                </tr>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                    <td class="text-center">You haven't set anything yet.</td>
+                    </tr>
+                }
+                else
+                { 
+                    foreach (var rp in Model)
+                    {
+                        <tr>
+                            <td>@rp.Module</td>
+                            <td>@rp.Retention_Period days</td>
+                            <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = rp.ID }, new { @class = "btn btn-primary btn-xs" })
+                                    <button type="button" data-toggle="modal" data-target="#deleteconfirmation" class="btn btn-danger btn-xs">Delete</button>
+                                    <div class="modal fade" id="deleteconfirmation" role="dialog" tabindex="-1">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><span class="glyphicon glyphicon-remove"></span></button>
+                                                    <h3 class="text-center">Are you sure?</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @using (Html.BeginForm("Delete", "AdminSettings", new { id = rp.ID }, FormMethod.Post))
+                                                    {
+                                                        <button type="submit" class="btn btn-block btn-danger">Okay</button>
+                                                    }
+                                                    <br />
+                                                    <a href="@Url.Action("Index")" class="btn btn-block btn-default">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = rp.ID }, new { @class = "btn btn-danger btn-xs" })*@
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+            @Html.ActionLink("Add", "Add", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>

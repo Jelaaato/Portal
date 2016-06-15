@@ -1,0 +1,309 @@
+﻿.input-size {
+min-width : 100%;
+}
+
+.inputpass {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #f8f8f8;
+    border: 3px solid #ddd;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #888;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.laboratory {
+    background: url('../Images/Results_icons/Laboratory.png') no-repeat center center fixed;
+    background-size: cover;
+    width:100%;
+    height:300px;
+}
+
+.radiology {
+    background: url('../Images/Results_icons/radiology.png') no-repeat center center fixed;
+    background-size: cover;
+    width:100%;
+    height:300px;
+}
+
+.diagnosis {
+    background: url('../Images/Results_icons/diagnosis.png') no-repeat center center fixed;
+    background-size: cover;
+    width:100%;
+    height:300px;
+}
+
+.results_icons {
+width:200px;
+height: 200px;
+margin: 50px 0px 20px 20px;
+}
+
+.results_text {
+font-family: 'Roboto', sans-serif !important;
+font-size: 80px;
+font-weight:100;
+color:white;
+margin-top:110px;
+}
+
+.sidebar-main-text {
+font-size: 63px;
+}
+
+.sidebar-sub-text {
+font-size: 20px;
+}
+
+.jumbotron-margin-top {
+margin-top: 150px;
+}
+
+.inner-bg {
+    padding: 100px 0 170px 0;
+}
+
+.form-box {
+	margin-top: 50px;
+}
+
+.inputpass {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #f8f8f8;
+    border: 3px solid #ddd;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #888;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.inputpass:focus {
+    outline: 0;
+	background: #fff;
+    border: 3px solid #C4808A;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
+.input-size {
+min-width : 100%;
+}
+
+.input-size-mini {
+min-width : 75%;
+}
+
+.inputuser {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #f8f8f8;
+    border: 3px solid #ddd;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #888;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.inputuser:focus {
+    outline: 0;
+    background: #fff;
+    border: 3px solid #ccc;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+button.btn-login {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #71B898;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+button.btn-login:hover { opacity: 0.6; color: #fff; }
+
+button.btn-login:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+button.btn-login:focus { outline: 0; opacity: 0.6; background: #00524c; color: #fff; }
+
+button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opacity: 0.6; background: #de995e; color: #fff; }
+
+.btn-login {
+	display: inline-block;
+	height: 50px;
+	margin: 5px;
+	padding: 16px 20px 0 20px;
+	background: #71B898;
+	font-size: 16px;
+    font-weight: 300;
+    line-height: 16px;
+    color: #fff;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}
+.btn-login:hover, .btn-login:focus, .btn-login:active { outline: 0; opacity: 0.6; color: #fff; }
+
+.btn-login i {
+	padding-right: 5px;
+	vertical-align: middle;
+	font-size: 20px;
+	line-height: 20px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .main-sidebar {
+        width: 400px !important;
+        height: 100% !important;
+    }
+
+    .content-wrapper {
+        margin-left: 400px !important;
+    }
+
+    .sidebar-results-img {
+        width: 150px;
+        height: 212px;
+    }
+
+    .sidebar-main-text {
+        font-size: 50px;
+    }
+
+    .sidebar-sub-text {
+        font-size: 16px;
+    }
+
+    .laboratory {
+        height: 220px;
+    }
+
+    .radiology {
+        height: 220px;
+    }
+
+    .diagnosis {
+        height: 220px;
+    }
+
+    .results_icons {
+        width: 100px;
+        height: 100px;
+        margin: 50px 0px 15px 15px;
+    }
+
+    .results_text {
+        font-size: 50px;
+        font-weight: 100;
+        margin-top: 60px;
+    }
+    .jumbotron-margin-top {
+        margin-top: 100px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .main-sidebar {
+        width: 300px !important;
+        height: 100% !important;
+    }
+
+    .content-wrapper {
+        margin-left: 300px !important;
+    }
+
+    .sidebar-results-img {
+        width: 110px;
+        height: 172px;
+    }
+
+    .sidebar-main-text {
+        font-size: 40px;
+    }
+
+    .sidebar-sub-text {
+        font-size: 12px;
+    }
+
+    .laboratory {
+        height: 220px;
+    }
+
+    .radiology {
+        height: 220px;
+    }
+
+    .diagnosis {
+        height: 220px;
+    }
+
+    .results_icons {
+        width: 90px;
+        height: 90px;
+        margin: 60px 0px 15px 15px;
+    }
+
+    .results_text {
+        font-size: 30px;
+        font-weight: 100;
+        margin-top: 80px;
+    }
+     .jumbotron-margin-top {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .laboratory {
+        height: 220px;
+    }
+
+    .radiology {
+        height: 220px;
+    }
+
+    .diagnosis {
+        height: 220px;
+    }
+
+    .results_icons {
+        width: 80px;
+        height: 80px;
+        margin: 60px 0px 0px 0px;
+    }
+
+    .results_text {
+        font-size: 30px;
+        font-weight: 100;
+        margin-top: 80px;
+    }
+}

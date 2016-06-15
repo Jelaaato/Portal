@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PatientUserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="email">
+          <Key>
+            <PropertyRef Name="email_type_rcd" />
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="email_type_rcd" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="email_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="primary_flag" Type="bit" Nullable="false" />
+          <Property Name="lu_user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lu_updated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="patient_hospital_usage">
+          <Key>
+            <PropertyRef Name="hospital_code" />
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="hospital_code" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_record_owner_flag" Type="bit" Nullable="false" />
+          <Property Name="lu_user_id" Type="uniqueidentifier" />
+          <Property Name="lu_updated" Type="datetime" />
+          <Property Name="visible_patient_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_actual_visit_date_time" Type="datetime" />
+          <Property Name="reverse_visible_patient_id" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="occupation_type_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="occupation_status_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="primary_language_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="race_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="marital_status_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="religion_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="occupation_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="nationality_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="occupation_other" Type="nvarchar" MaxLength="150" />
+          <Property Name="student_type_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="sex_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="death_date_time" Type="datetime" />
+          <Property Name="birth_place" Type="nvarchar" MaxLength="50" />
+          <Property Name="multiple_birth_order_number" Type="smallint" />
+          <Property Name="birth_order_number" Type="smallint" />
+          <Property Name="military_status" Type="nvarchar" MaxLength="20" />
+          <Property Name="lu_user_id" Type="uniqueidentifier" />
+          <Property Name="lu_updated" Type="datetime" />
+          <Property Name="electronic_id" Type="varchar" MaxLength="20" />
+          <Property Name="photo_id" Type="uniqueidentifier" />
+          <Property Name="name_status_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="test_flag" Type="bit" Nullable="false" />
+          <Property Name="residence_country_rcd" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="functional_domain_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="father_birth_place" Type="nvarchar" MaxLength="50" />
+          <Property Name="number_of_children" Type="int" />
+          <Property Name="localization_print_culture_rcd" Type="varchar" MaxLength="10" />
+          <Property Name="residency_status_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="military_status_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="date_of_birth_estimated_flag" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="person_formatted_name_iview">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="display_name_l" Type="nvarchar" MaxLength="256" />
+          <Property Name="display_name_e" Type="nvarchar" MaxLength="256" />
+          <Property Name="legal_name_l" Type="nvarchar" MaxLength="256" />
+          <Property Name="legal_name_e" Type="nvarchar" MaxLength="256" />
+          <Property Name="list_name_l" Type="nvarchar" MaxLength="256" />
+          <Property Name="list_name_e" Type="nvarchar" MaxLength="256" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="nationality_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="sex_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="test_flag" Type="bit" Nullable="false" />
+          <Property Name="photo_id" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="R_456">
+          <End Role="person" Type="Self.person" Multiplicity="1" />
+          <End Role="email" Type="Self.email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="email">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PatientUserModelStoreContainer">
+          <EntitySet Name="email" EntityType="Self.email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patient_hospital_usage" EntityType="Self.patient_hospital_usage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="person" EntityType="Self.person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="person_formatted_name_iview" EntityType="Self.person_formatted_name_iview" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="R_456" Association="Self.R_456">
+            <End Role="person" EntitySet="person" />
+            <End Role="email" EntitySet="email" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PatientUserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="email">
+          <Key>
+            <PropertyRef Name="email_type_rcd" />
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="email_type_rcd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="primary_flag" Type="Boolean" Nullable="false" />
+          <Property Name="lu_user_id" Type="Guid" Nullable="false" />
+          <Property Name="lu_updated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="person" Relationship="Self.R_456" FromRole="email" ToRole="person" />
+        </EntityType>
+        <EntityType Name="patient_hospital_usage">
+          <Key>
+            <PropertyRef Name="hospital_code" />
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="hospital_code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_record_owner_flag" Type="Boolean" Nullable="false" />
+          <Property Name="lu_user_id" Type="Guid" />
+          <Property Name="lu_updated" Type="DateTime" Precision="3" />
+          <Property Name="visible_patient_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_actual_visit_date_time" Type="DateTime" Precision="3" />
+          <Property Name="reverse_visible_patient_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="occupation_type_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="occupation_status_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="primary_language_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="race_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marital_status_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="religion_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="occupation_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="nationality_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="occupation_other" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="student_type_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="sex_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="death_date_time" Type="DateTime" Precision="3" />
+          <Property Name="birth_place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="multiple_birth_order_number" Type="Int16" />
+          <Property Name="birth_order_number" Type="Int16" />
+          <Property Name="military_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="lu_user_id" Type="Guid" />
+          <Property Name="lu_updated" Type="DateTime" Precision="3" />
+          <Property Name="electronic_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="photo_id" Type="Guid" />
+          <Property Name="name_status_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="test_flag" Type="Boolean" Nullable="false" />
+          <Property Name="residence_country_rcd" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="functional_domain_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="father_birth_place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="number_of_children" Type="Int32" />
+          <Property Name="localization_print_culture_rcd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="residency_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="military_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_of_birth_estimated_flag" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="email" Relationship="Self.R_456" FromRole="person" ToRole="email" />
+        </EntityType>
+        <EntityType Name="person_formatted_name_iview">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="display_name_l" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="display_name_e" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="legal_name_l" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="legal_name_e" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="list_name_l" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="list_name_e" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="nationality_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sex_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="test_flag" Type="Boolean" Nullable="false" />
+          <Property Name="photo_id" Type="Guid" />
+        </EntityType>
+        <Association Name="R_456">
+          <End Role="person" Type="Self.person" Multiplicity="1" />
+          <End Role="email" Type="Self.email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="email">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PatientUserEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="email" EntityType="Self.email" />
+          <EntitySet Name="patient_hospital_usage" EntityType="Self.patient_hospital_usage" />
+          <EntitySet Name="person" EntityType="Self.person" />
+          <EntitySet Name="person_formatted_name_iview" EntityType="Self.person_formatted_name_iview" />
+          <AssociationSet Name="R_456" Association="Self.R_456">
+            <End Role="person" EntitySet="person" />
+            <End Role="email" EntitySet="email" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PatientUserModelStoreContainer" CdmEntityContainer="PatientUserEntities">
+          <EntitySetMapping Name="email">
+            <EntityTypeMapping TypeName="PatientUserModel.email">
+              <MappingFragment StoreEntitySet="email">
+                <ScalarProperty Name="email_type_rcd" ColumnName="email_type_rcd" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="primary_flag" ColumnName="primary_flag" />
+                <ScalarProperty Name="lu_user_id" ColumnName="lu_user_id" />
+                <ScalarProperty Name="lu_updated" ColumnName="lu_updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient_hospital_usage">
+            <EntityTypeMapping TypeName="PatientUserModel.patient_hospital_usage">
+              <MappingFragment StoreEntitySet="patient_hospital_usage">
+                <ScalarProperty Name="hospital_code" ColumnName="hospital_code" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="patient_record_owner_flag" ColumnName="patient_record_owner_flag" />
+                <ScalarProperty Name="lu_user_id" ColumnName="lu_user_id" />
+                <ScalarProperty Name="lu_updated" ColumnName="lu_updated" />
+                <ScalarProperty Name="visible_patient_id" ColumnName="visible_patient_id" />
+                <ScalarProperty Name="last_actual_visit_date_time" ColumnName="last_actual_visit_date_time" />
+                <ScalarProperty Name="reverse_visible_patient_id" ColumnName="reverse_visible_patient_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="person">
+            <EntityTypeMapping TypeName="PatientUserModel.person">
+              <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="occupation_type_rcd" ColumnName="occupation_type_rcd" />
+                <ScalarProperty Name="occupation_status_rcd" ColumnName="occupation_status_rcd" />
+                <ScalarProperty Name="primary_language_rcd" ColumnName="primary_language_rcd" />
+                <ScalarProperty Name="race_rcd" ColumnName="race_rcd" />
+                <ScalarProperty Name="marital_status_rcd" ColumnName="marital_status_rcd" />
+                <ScalarProperty Name="religion_rcd" ColumnName="religion_rcd" />
+                <ScalarProperty Name="occupation_rcd" ColumnName="occupation_rcd" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="nationality_rcd" ColumnName="nationality_rcd" />
+                <ScalarProperty Name="occupation_other" ColumnName="occupation_other" />
+                <ScalarProperty Name="student_type_rcd" ColumnName="student_type_rcd" />
+                <ScalarProperty Name="sex_rcd" ColumnName="sex_rcd" />
+                <ScalarProperty Name="death_date_time" ColumnName="death_date_time" />
+                <ScalarProperty Name="birth_place" ColumnName="birth_place" />
+                <ScalarProperty Name="multiple_birth_order_number" ColumnName="multiple_birth_order_number" />
+                <ScalarProperty Name="birth_order_number" ColumnName="birth_order_number" />
+                <ScalarProperty Name="military_status" ColumnName="military_status" />
+                <ScalarProperty Name="lu_user_id" ColumnName="lu_user_id" />
+                <ScalarProperty Name="lu_updated" ColumnName="lu_updated" />
+                <ScalarProperty Name="electronic_id" ColumnName="electronic_id" />
+                <ScalarProperty Name="photo_id" ColumnName="photo_id" />
+                <ScalarProperty Name="name_status_rcd" ColumnName="name_status_rcd" />
+                <ScalarProperty Name="test_flag" ColumnName="test_flag" />
+                <ScalarProperty Name="residence_country_rcd" ColumnName="residence_country_rcd" />
+                <ScalarProperty Name="functional_domain_rcd" ColumnName="functional_domain_rcd" />
+                <ScalarProperty Name="father_birth_place" ColumnName="father_birth_place" />
+                <ScalarProperty Name="number_of_children" ColumnName="number_of_children" />
+                <ScalarProperty Name="localization_print_culture_rcd" ColumnName="localization_print_culture_rcd" />
+                <ScalarProperty Name="residency_status_rcd" ColumnName="residency_status_rcd" />
+                <ScalarProperty Name="military_status_rcd" ColumnName="military_status_rcd" />
+                <ScalarProperty Name="date_of_birth_estimated_flag" ColumnName="date_of_birth_estimated_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="person_formatted_name_iview">
+            <EntityTypeMapping TypeName="PatientUserModel.person_formatted_name_iview">
+              <MappingFragment StoreEntitySet="person_formatted_name_iview">
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="display_name_l" ColumnName="display_name_l" />
+                <ScalarProperty Name="display_name_e" ColumnName="display_name_e" />
+                <ScalarProperty Name="legal_name_l" ColumnName="legal_name_l" />
+                <ScalarProperty Name="legal_name_e" ColumnName="legal_name_e" />
+                <ScalarProperty Name="list_name_l" ColumnName="list_name_l" />
+                <ScalarProperty Name="list_name_e" ColumnName="list_name_e" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="nationality_rcd" ColumnName="nationality_rcd" />
+                <ScalarProperty Name="sex_rcd" ColumnName="sex_rcd" />
+                <ScalarProperty Name="test_flag" ColumnName="test_flag" />
+                <ScalarProperty Name="photo_id" ColumnName="photo_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

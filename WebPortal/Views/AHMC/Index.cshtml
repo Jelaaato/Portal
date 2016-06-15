@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.CurrentUser = Session["displaycurrentuser"].ToString();
+    ViewBag.Title = "Home";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AHMC Portal</title>
+    @TempData["Message"]
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link href="~/Content/hover.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+    
+    <div class="visible-xs visible-sm">
+        <img src="~/Images/Backgrounds_Banners/building_facade.jpg" class="image-mobile"/>
+    </div>
+    
+    <!--Video-->
+    <div class="video-container hidden-sm hidden-xs">
+        <video class="videosize embed-responsive-item" autoplay="autoplay" loop="loop" id="asianvid">
+            <source src="~/Videos/asianhospitalaspectratio.mp4" type="video/mp4" />
+        </video>
+    </div>
+    
+        <!--Overlay-->
+        <div class="overlay">
+            <div class="headertext hidden-xs">
+                Global Expertise. Filipino Heart.
+            </div>
+        </div>
+
+    <!--Navigation Bar-->
+    <nav id="nav" class="navbar modifiednav" data-spy="affix" data-offset-top="10" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="glyphicon glyphicon-chevron-down collapseicon"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="~/Images/Logo/ahmc_portal_logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="font-style">Welcome, @ViewBag.CurrentUser</a></li>
+                    <li><a href="@Url.Action("Logout", "Account")" class="font-style">Log Out</a></li>
+                    <li class="dropdown">
+                        <a href="#menu" class="font-style">Menu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Menu-->
+    <center>
+        @if (User.IsInRole("Patient"))
+        {
+            <div class="menu-wrapper" id="menu">
+                <div style="margin-top:6%;">
+                    <div class="col-sm-4 col-lg-push-1"><a href="@Url.Action("Index", "Dashboard")"><img src="~/Images/PatientHomePage/homepage_results.png" class="menu-icon" /></a></div>
+                    <div class="col-sm-4"><img src="~/Images/PatientHomePage/homepage_reports.png" class="menu-icon" /></div>
+                    <div class="col-sm-4 col-lg-pull-1"><img src="~/Images/PatientHomePage/homepage_others.png" class="menu-icon" /></div>
+                </div>
+            </div>
+        }
+        else if (User.IsInRole("Administrator"))
+        {
+            <div class="menu-wrapper" id="menu">
+                <div style="margin-top:6%;">
+                    <div class="col-sm-3"><a href="@Url.Action("Index", "Role")"><img src="~/Images/Admin_icons/Admins_add_users.png" class="menu-icon-admin" /></a></div>
+                    <div class="col-sm-3"><a href="@Url.Action("Index", "Audit")"><img src="~/Images/Admin_icons/Admins_audit_trail.png" class="menu-icon-admin" /></a></div>
+                    <div class="col-sm-3"><a href="@Url.Action("Index", "Admin")"><img src="~/Images/Admin_icons/Admins_delete_users.png" class="menu-icon-admin" /></a></div>
+                    <div class="col-sm-3"><a href="@Url.Action("Index", "AdminSettings")"><img src="~/Images/Admin_icons/Admins_settings.png" class="menu-icon-admin" /></a></div>
+                </div>
+            </div>
+        }
+        else if (User.IsInRole("Employee"))
+        {
+            <div class="menu-wrapper" id="menu">
+                <div style="margin-top:6%;">
+                    <div class="col-sm-4 col-lg-push-1"><a href="#"><img src="~/Images/Employee_icons/Doctors_Entry.png" class="menu-icon" /></a></div>
+                </div>
+            </div>
+        }
+    </center>
+
+    <!--Image Banner-->
+    <div class="banner-wrapper hidden-xs">
+        <img src="~/Images/backgrounds_Banners/banner.jpg" class="banner-image" />
+    </div>
+
+    <!--Footer-->
+            <div class="customfooter">
+                <center>
+                    <div style="margin-top:2%;">
+                        <div class="col-md-4 col-lg-push-1 margin-top-footer">
+                            <h4>About</h4>
+                            <p>Asian Hospital and Medical Center is a tertiary hospital<br />accredited by the Joint Commission International (JCI),<br />the world’s most prestigious accrediting body for <br /> health care organizations.</p>
+                        </div>
+                        <div class="col-md-4 margin-top-footer">
+                            <h4>Get in Touch</h4>
+                            <p><img src="~/Images/Footer_icons/contact_footer.png" width="8" height="18" />&nbsp;&nbsp;&nbsp;( +632 ) 771 - 9000</p>
+                            <p><img src="~/Images/Footer_icons/home_footer.png" width="15" height="12" style="text-align:justify;text-justify:inter-word" />&nbsp;&nbsp;www.asianhospital.com</p>
+                            <p><img src="~/Images/Footer_icons/mail_footer.png" width="15" height="10" style="text-align:justify;text-justify:inter-word" />&nbsp;&nbsp;info@asianhospital.com</p>
+                        </div>
+                        <div class="col-md-4 col-lg-pull-1 margin-top-footer">
+                            <h4>Quick Links</h4>
+                            <p><a href="https://www.facebook.com/AsianHospitalPH" target="_blank"><img src="~/Images/Social_icons/facebook.png" width="50" height="50" /></a>&nbsp;&nbsp;<a href="https://www.instagram.com/AsianHospitalPH" target="_blank"><img src="~/Images/Social_icons/instagram.png" width="50" height="50" /></a>&nbsp;&nbsp;<a href="https://www.twitter.com/AsianHospitalPH" target="_blank"><img src="~/Images/Social_icons/twiiter.png" width="50" height="50" /></a></p>
+                        </div>
+                    </div>
+                </center>
+            </div>
+</body>
+
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+<!--Smooth Scroll-->
+<script type="text/javascript">
+    $("#nav ul li a[href^='#']").on('click', function (e) {
+        e.preventDefault();
+        var hash = this.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 500, function () {
+            window.location.hash = hash;
+        })
+    });
+</script>
+

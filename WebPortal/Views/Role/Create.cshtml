@@ -1,0 +1,31 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Add Role";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="panel-success">
+    <div class="panel-heading">
+        <div class="panel-title">Edit Retention Setting</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 form-box">
+                <center>
+                    <h4>@ViewBag.Error</h4>
+                    <br />
+                    @Html.ValidationSummary(false)
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <input name="name" value="@Model" class="input-size-mini inputuser" placeholder="Role Name"/>
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-primary">Add Role</button>
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                    }
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

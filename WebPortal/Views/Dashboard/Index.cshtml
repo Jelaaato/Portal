@@ -1,0 +1,173 @@
+﻿@model WebPortal.Models.ResultModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AHMC Portal</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/dist/css/AdminLTE.css">
+    <link href="~/Content/hover.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/dist/css/skins/skin-green-light.min.css">
+    <link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/plugins/iCheck/skins/flat/blue.css">
+    <link href="~/Content/AdminLteCustomCss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+</head>
+
+<body class="skin-green-light">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <div class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><img src="~/Images/Logo/logo.png" width="30" height="30" /></span>
+                <!-- logo for regular state and mobile devices -->
+                <a href="@Url.Action("Index","AHMC")"><span class="logo-lg"><img src="~/Images/Logo/ahmc_portal_logo.png" width="200" height="23" /></span></a>
+            </div>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less-->
+                        <li class="dropdown user user-menu">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Images/User_Icons/patient.png" class="user-image" alt="User Image">
+                                <span>@Session["displaycurrentuser"]</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                        <li><a href="@Url.Action("Logout", "Account")" class="font-style">Log Out</a></li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar hidden-xs">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <center>
+                    <div class="jumbotron jumbotron-margin-top" style="background-color:#F9FAFC">
+                        <img src="~/Images/Results_icons/results_nobox.png" class="sidebar-results-img"/>
+                        <div class="sidebar-main-text">Results</div>
+                        <br />
+                        <div class="sidebar-sub-text">Access your laboratory results 24 hours after the test.</div>
+                        <div class="sidebar-sub-text">Set the period of accessibility of your results in settings.</div>
+                    </div>
+                </center>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @*<section class="content-header">
+                <a href="#" id="lab" onclick="hide(lab)">Laboratory</a>
+            </section>*@
+            <!-- Main content -->
+            <section class="content">
+                <!-- Main row -->
+                <div class="row">
+                    <a href="@Url.Action("Laboratory", "Results")">
+                        <div class="col-lg-12 col-md-12 col-xs-12 laboratory">
+                            <center><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><img src="~/Images/Results_icons/laboratory_icon.png" class="results_icons" /></div></center>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="results_text">Laboratory</div></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a href="@Url.Action("Radiology", "Results")">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radiology">
+                            <center><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><img src="~/Images/Results_icons/radiology_icon.png" class="results_icons" /></div></center>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="results_text">Radiology</div></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a href="@Url.Action("Diagnosis", "Results")">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 diagnosis">
+                            <center><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><img src="~/Images/Results_icons/diagnosis_icon.png" class="results_icons" /></div></center>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="results_text">Diagnosis</div></div>
+                        </div>
+                    </a>
+                </div>
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
+        <aside class="control-sidebar control-sidebar-light">
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li>
+                    <a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-user"></i></a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Security</h3>
+                    <div><h5><a href="@Url.Action("ChangePassword", "Account")" data-toggle="modal">Change your Password</a></h5></div>
+                    <h3 class="control-sidebar-heading"></h3>
+                    <ul class="control-sidebar-menu"></ul>
+                </div><!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <script src="~/Adminlte/AdminLTE_V2/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <script src="~/Adminlte/AdminLTE_V2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/Adminlte/AdminLTE_V2/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Adminlte/AdminLTE_V2/dist/js/app.min.js"></script>
+    <script src="~/Adminlte/AdminLTE_V2/dist/js/demo.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <script>
+    document.getElementById("ShowLab").onclick = function () { ViewResults() };
+    function ViewResults() {
+        $("#Results").load("@Url.Action("Laboratory", "Results")");
+    }
+    </script>
+
+    <script>
+        $(function () {
+            $('#DateFrom').daterangepicker({
+                singleDatePicker: true,
+                showDropdown: true,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+            $('#DateTo').daterangepicker({
+                singleDatePicker: true,
+                showDropdown: true,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
