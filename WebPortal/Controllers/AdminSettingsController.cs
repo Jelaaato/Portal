@@ -25,8 +25,9 @@ namespace WebPortal.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(ResultModel model)
         {
                 if ((model.retentionperiod <= 0) || (model.retentionperiod > 30))
@@ -65,8 +66,9 @@ namespace WebPortal.Controllers
             return View(portalRetention);
         }
 
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(PortalRetention model, Guid id)
         {
             if ((model.Retention_Period <= 0) || (model.Retention_Period > 30))
@@ -88,8 +90,9 @@ namespace WebPortal.Controllers
         //    return View(
         //}
 
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid? id)
         {
             PortalRetention portalretention = db.PortalRetention.Find(id);

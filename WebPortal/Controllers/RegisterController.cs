@@ -31,6 +31,7 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterPat(CreateModel model)
         {
             if (ModelState.IsValid)
@@ -114,6 +115,7 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterEmp(CreateModel model)
         {
             if (ModelState.IsValid)

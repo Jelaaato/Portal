@@ -82,6 +82,7 @@ namespace WebPortal.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(string id, string email, string password, string name)
         {
             Users user = await UserManager.FindByIdAsync(id);

@@ -35,6 +35,7 @@
                         @Html.ValidationSummary(false)
                         @using (Html.BeginForm())
                         {
+                            @Html.AntiForgeryToken()
                             <div class="form-group">
                                 @Html.TextBoxFor(a => a.UserName, new 
                            { 

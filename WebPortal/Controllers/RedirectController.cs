@@ -37,6 +37,7 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RedirectPat(CheckModel model)
         {
             bool successful = false;
@@ -78,6 +79,7 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RedirectEmp(CheckModel model)
         {
             bool successful = false;

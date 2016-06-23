@@ -15,6 +15,7 @@
                     @Html.ValidationSummary(false)
                     @using (Html.BeginForm())
                     {
+                        @Html.AntiForgeryToken()
                         @ViewBag.Error
                         <div class="form-group">
                             @Html.TextBoxFor(a => a.module, new { @class = "input-size-mini inputuser", @placeholder = "Module Name" })

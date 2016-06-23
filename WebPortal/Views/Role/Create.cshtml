@@ -17,6 +17,7 @@
                     @Html.ValidationSummary(false)
                     @using (Html.BeginForm())
                     {
+                        @Html.AntiForgeryToken()
                         <div class="form-group">
                             <input name="name" value="@Model" class="input-size-mini inputuser" placeholder="Role Name"/>
                         </div>

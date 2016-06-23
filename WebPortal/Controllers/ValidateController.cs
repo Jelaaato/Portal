@@ -27,6 +27,7 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(CheckModel model)
         {
             //Users user = new Users { UserName = model.UserName };
@@ -88,6 +89,7 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult PasswordChecker(ResultModel model, string id)
         {
             var user = UserManager.Find(User.Identity.Name, model.password);

@@ -40,6 +40,7 @@
                         </div>
                     </div>*@
                     <div class="form-bottom">
+                        @Html.ValidationSummary(false)
                         @using (Html.BeginForm())
                         {
                             if (Session["patientlogin"] == null)
@@ -50,7 +51,6 @@
                             {
                                 ViewBag.user = Session["patientlogin"];
                             }
-                            @Html.ValidationSummary(false)
                             @Html.AntiForgeryToken();
                             <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
                             <div class="form-group">

@@ -13,6 +13,7 @@
 </div>
 @using (Html.BeginForm())
 { 
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(a => a.Id)
 <div class="form-group">
         <h4>Email</h4>

@@ -63,8 +63,9 @@ namespace WebPortal.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
             if (!ModelState.IsValid)

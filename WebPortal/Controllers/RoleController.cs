@@ -29,6 +29,7 @@ namespace WebPortal.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Required] string name)
         {
             if (ModelState.IsValid)
@@ -61,8 +62,9 @@ namespace WebPortal.Controllers
             });
         }
 
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ModifyRoleModel model)
         {
             IdentityResult result;
@@ -91,6 +93,7 @@ namespace WebPortal.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(string id)
         {
             roles role = await RoleManager.FindByIdAsync(id);
