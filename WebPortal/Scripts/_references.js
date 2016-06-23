@@ -42,3 +42,4 @@
 /// <reference path="../adminlte/adminlte_v2/bootstrap/js/npm.js" />
 /// <reference path="../adminlte/adminlte_v2/dist/js/app.js" />
 /// <reference path="../adminlte/adminlte_v2/dist/js/demo.js" />
+/// <reference path="jsfiles/allownumbersonly.js" />

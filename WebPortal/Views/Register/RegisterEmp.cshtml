@@ -44,7 +44,8 @@
                                    @Value = Session["empregister"],
                                    @placeholder = "Employee Number...",
                                    @class = "input-size inputuser",
-                                   @readonly = "readonly"
+                                   @readonly = "readonly",
+                                   autocomplete = "off"
                                })
                             </div>
 
@@ -53,7 +54,8 @@
                                     {
                                         @autofocus = "autofocus",
                                         @placeholder = "Email Address",
-                                        @class = "input-size inputuser"
+                                        @class = "input-size inputuser",
+                                        autocomplete = "off"
                                     })
                             </div>
 
@@ -61,7 +63,8 @@
                                 @Html.PasswordFor(a => a.Password, new
                                {
                                    @placeholder = "Password",
-                                   @class = "input-size inputpass"
+                                   @class = "input-size inputpass",
+                                   autocomplete = "off"
                                })
                             </div>
 
@@ -69,7 +72,8 @@
                                 @Html.PasswordFor(a => a.ConfirmPassword, new
                                {
                                    @placeholder = "Confirm Password",
-                                   @class = "input-size inputpass"
+                                   @class = "input-size inputpass",
+                                   autocomplete = "off"
                                })
                             </div>
                             <button type="submit" class="btn btn-login" onclick="location.href='@Url.Action("Continue", "Account")'">Continue</button>

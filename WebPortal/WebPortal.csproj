@@ -462,6 +462,7 @@
     <Content Include="Scripts\jquery.sparkline.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\JSFiles\AllowNumbersOnly.js" />
     <Content Include="Scripts\morris.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -1621,7 +1622,6 @@
     <Content Include="Views\Results\Radiology.cshtml" />
     <Content Include="Views\Results\Diagnosis.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Results\UpdateRetention.cshtml" />
     <Content Include="Views\AdminSettings\Index.cshtml" />
     <Content Include="Views\AdminSettings\Add.cshtml" />
     <Content Include="Views\AdminSettings\Edit.cshtml" />
