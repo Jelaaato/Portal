@@ -43,14 +43,19 @@
                         @Html.ValidationSummary(false)
                         @using (Html.BeginForm())
                         {
-                            if (Session["patientlogin"] == null)
-                            {
-                                ViewBag.user = Session["emplogin"];
-                            }
-                            else if (Session["emplogin"] == null)
+                            if (Session["patientlogin"] != null)
                             {
                                 ViewBag.user = Session["patientlogin"];
                             }
+                            else if (Session["emplogin"] != null)
+                            {
+                                ViewBag.user = Session["emplogin"];
+                            }
+                            else if (Session["doclogin"] != null)
+                            {
+                                ViewBag.user = Session["doclogin"];
+                            }
+                            
                             @Html.AntiForgeryToken();
                             <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
                             <div class="form-group">

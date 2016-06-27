@@ -17,7 +17,7 @@ namespace WebPortal.Controllers
     {
         SampleIdentityDb db = new SampleIdentityDb();
         PatientUserEntities patientdb = new PatientUserEntities();
-        EmployeeUserEntities empdb = new EmployeeUserEntities();
+        EmployeeandDoctorEntities empdocdb = new EmployeeandDoctorEntities();
 
             
         [AllowAnonymous]
@@ -57,11 +57,11 @@ namespace WebPortal.Controllers
                     ModelState.AddModelError("", "Birthday and Hospital Number did not match.");
                 }
             }
-            else if (usertype == "Employee")
+            else if (usertype == "Employee" || usertype == "Doctor")
             {
                 var empregister = Session["empregister"].ToString();
-                var query = (from e in empdb.employee
-                             join ei in empdb.employee_info_view
+                var query = (from e in empdocdb.employee
+                             join ei in empdocdb.employee_info_view
                              on e.employee_id equals ei.person_id
                              select new
                              {
@@ -80,6 +80,7 @@ namespace WebPortal.Controllers
                     ModelState.AddModelError("", "Birthday and Employee Number did not match.");
                 }
             }
+            
             return View(model);
         }
 

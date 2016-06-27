@@ -93,7 +93,6 @@ namespace WebPortal.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(string id)
         {
             roles role = await RoleManager.FindByIdAsync(id);

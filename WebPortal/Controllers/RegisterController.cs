@@ -83,28 +83,34 @@ namespace WebPortal.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> RegisterDoc(CreateModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Users user = new Users { UserName = model.UserName };
-        //        if (patientuser.User_Doctor.Any(a => a.employee_nr == user.UserName))
-        //        {
-        //            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-        //            if (result.Succeeded)
-        //            {
-        //                TempData["registeruser"] = model.UserName.ToString();
-        //                return RedirectToAction("Index");
-        //            }
-        //            else
-        //            {
-        //                ModelState.AddModelError("", "No user found.");
-        //            }
-        //        }
-        //    }
-        //    return View(model);
-        //}
+        [HttpPost]
+        public async Task<ActionResult> RegisterDoc(CreateModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Users user = new Users { UserName = model.UserName, Email = model.Email };
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    Session["docregister"] = model.UserName;
+
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Register", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your Account",
+                        "Good Day!<br/><br/><p>Thank you for signing up.<br/><br/>Please <a href=\"" + callbackUrl + "\">confirm your account </a>to complete the registration process.</p><br/><br/>Thank you very much.");
+
+                    var currentuser = UserManager.FindByName(user.UserName);
+                    UserManager.AddToRole(currentuser.Id, "Doctor");
+
+                    return View("EmailSent");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View(model);
+        }
 
 
         //Register Employee

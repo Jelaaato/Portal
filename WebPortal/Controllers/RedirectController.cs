@@ -17,7 +17,7 @@ namespace WebPortal.Controllers
     {
         SampleIdentityDb db = new SampleIdentityDb();
         PatientUserEntities patientdb = new PatientUserEntities();
-        EmployeeUserEntities empdb = new EmployeeUserEntities();
+        EmployeeandDoctorEntities empdocdb = new EmployeeandDoctorEntities();
 
         [AllowAnonymous]
         public ActionResult RedirectPat()
@@ -98,7 +98,7 @@ namespace WebPortal.Controllers
                             return RedirectToAction("Login", "Account");
                         }
 
-                        else if (empdb.employee.Any(a => a.employee_nr.ToString() == user.UserName))
+                        else if (empdocdb.employee.Any(a => a.employee_nr.ToString() == user.UserName))
                         {
                             TempData["UserType"] = "Employee";
                             Session["empregister"] = model.UserName.ToString();
@@ -120,6 +120,58 @@ namespace WebPortal.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RedirectDoc(CheckModel model)
+        {
+            bool successful = false;
+            int retry = 0;
+            while (!successful && retry < 3)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        Users user = new Users { UserName = model.UserName };
+                        var query = (from e in empdocdb.employee
+                                     join ev in empdocdb.employment_nl_view on e.employee_id equals ev.employee_id
+                                     join jt in empdocdb.job_type on ev.job_type_code equals jt.job_type_code
+                                     select new
+                                     {
+                                         emp_nr = e.employee_nr,
+                                         jcc = jt.job_category_code
+                                     }).Where(a => a.jcc == "DOC" && a.emp_nr.ToString() == user.UserName).FirstOrDefault();
+
+                        if (db.Users.Any(a => a.UserName == model.UserName))
+                        {
+                            Session["doclogin"] = model.UserName.ToString();
+                            return RedirectToAction("Login", "Account");
+                        }
+
+                        else if (query != null)
+                        {
+                            if (empdocdb.employee.Any(a => a.employee_nr == query.emp_nr))
+                            {
+                                TempData["UserType"] = "Doctor";
+                                Session["docregister"] = model.UserName.ToString();
+                                return RedirectToAction("Index", "Validate");
+                            }
+                        }
+
+                        else
+                        {
+                            successful = true;
+                            ModelState.AddModelError("", "Invalid employee number.");
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    retry++;
+                }
+            }
+            return View(model);
+        }
        
         // Helpers
 

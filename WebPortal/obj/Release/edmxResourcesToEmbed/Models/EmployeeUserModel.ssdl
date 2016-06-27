@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeUserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="company_code" Type="varchar" MaxLength="3" />
+    <Property Name="hire_date" Type="datetime" />
+    <Property Name="employee_nr" Type="int" Nullable="false" />
+    <Property Name="alternate_code" Type="varchar" MaxLength="20" />
+    <Property Name="termination_date" Type="datetime" />
+    <Property Name="special_privileges" Type="nvarchar" MaxLength="200" />
+    <Property Name="confidential_comments" Type="nvarchar" MaxLength="200" />
+    <Property Name="old_employee_id" Type="nvarchar" MaxLength="20" />
+    <Property Name="lu_user_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="lu_updated" Type="datetime" Nullable="false" />
+    <Property Name="pin" Type="nvarchar" MaxLength="20" />
+    <Property Name="bank_account_id" Type="uniqueidentifier" />
+    <Property Name="comment_e" Type="nvarchar" MaxLength="1700" />
+    <Property Name="comment_l" Type="nvarchar" MaxLength="1700" />
+    <Property Name="admitting_privilege_flag" Type="bit" Nullable="false" />
+    <Property Name="request_patient_record_flag" Type="bit" Nullable="false" />
+    <Property Name="employee_termination_reason_rcd" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="employee_formatted_name_iview">
+    <Key>
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_nr" Type="int" />
+    <Property Name="display_name_l" Type="nvarchar" MaxLength="256" />
+    <Property Name="display_name_e" Type="nvarchar" MaxLength="256" />
+    <Property Name="legal_name_l" Type="nvarchar" MaxLength="256" />
+    <Property Name="legal_name_e" Type="nvarchar" MaxLength="256" />
+    <Property Name="list_name_l" Type="nvarchar" MaxLength="256" />
+    <Property Name="list_name_e" Type="nvarchar" MaxLength="256" />
+    <Property Name="photo_id" Type="uniqueidentifier" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OrionSnapshot2minutes.dbo.employee_info_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="employee_info_view">
+    <Key>
+      <PropertyRef Name="employee_nr" />
+      <PropertyRef Name="admitting_privilege_flag" />
+      <PropertyRef Name="request_patient_record_flag" />
+      <PropertyRef Name="person_id" />
+      <PropertyRef Name="sex_rcd" />
+      <PropertyRef Name="race_rcd" />
+      <PropertyRef Name="primary_language_rcd" />
+    </Key>
+    <Property Name="employee_nr" Type="int" Nullable="false" />
+    <Property Name="hire_date" Type="datetime" />
+    <Property Name="alternate_code" Type="varchar" MaxLength="20" />
+    <Property Name="termination_date" Type="datetime" />
+    <Property Name="special_privileges" Type="nvarchar" MaxLength="200" />
+    <Property Name="old_employee_id" Type="nvarchar" MaxLength="20" />
+    <Property Name="admitting_privilege_flag" Type="bit" Nullable="false" />
+    <Property Name="request_patient_record_flag" Type="bit" Nullable="false" />
+    <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="date_of_birth" Type="datetime" />
+    <Property Name="date_of_death" Type="datetime" />
+    <Property Name="sex_rcd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="first_name_e" Type="nvarchar" MaxLength="150" />
+    <Property Name="middle_name_e" Type="nvarchar" MaxLength="150" />
+    <Property Name="last_name_e" Type="nvarchar" MaxLength="150" />
+    <Property Name="common_name_e" Type="nvarchar" MaxLength="150" />
+    <Property Name="title_e" Type="nvarchar" MaxLength="150" />
+    <Property Name="suffix_e" Type="nvarchar" MaxLength="150" />
+    <Property Name="first_name_l" Type="nvarchar" MaxLength="150" />
+    <Property Name="middle_name_l" Type="nvarchar" MaxLength="150" />
+    <Property Name="last_name_l" Type="nvarchar" MaxLength="150" />
+    <Property Name="common_name_l" Type="nvarchar" MaxLength="150" />
+    <Property Name="title_l" Type="nvarchar" MaxLength="150" />
+    <Property Name="suffix_l" Type="nvarchar" MaxLength="150" />
+    <Property Name="display_name_format" Type="varchar" MaxLength="1000" />
+    <Property Name="list_name_format" Type="varchar" MaxLength="1000" />
+    <Property Name="race_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="primary_language_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="EmployeeUserModelStoreContainer">
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee_formatted_name_iview" EntityType="Self.employee_formatted_name_iview" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee_info_view" EntityType="Self.employee_info_view" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [employee_info_view].[employee_nr] AS [employee_nr], 
+    [employee_info_view].[hire_date] AS [hire_date], 
+    [employee_info_view].[alternate_code] AS [alternate_code], 
+    [employee_info_view].[termination_date] AS [termination_date], 
+    [employee_info_view].[special_privileges] AS [special_privileges], 
+    [employee_info_view].[old_employee_id] AS [old_employee_id], 
+    [employee_info_view].[admitting_privilege_flag] AS [admitting_privilege_flag], 
+    [employee_info_view].[request_patient_record_flag] AS [request_patient_record_flag], 
+    [employee_info_view].[person_id] AS [person_id], 
+    [employee_info_view].[date_of_birth] AS [date_of_birth], 
+    [employee_info_view].[date_of_death] AS [date_of_death], 
+    [employee_info_view].[sex_rcd] AS [sex_rcd], 
+    [employee_info_view].[first_name_e] AS [first_name_e], 
+    [employee_info_view].[middle_name_e] AS [middle_name_e], 
+    [employee_info_view].[last_name_e] AS [last_name_e], 
+    [employee_info_view].[common_name_e] AS [common_name_e], 
+    [employee_info_view].[title_e] AS [title_e], 
+    [employee_info_view].[suffix_e] AS [suffix_e], 
+    [employee_info_view].[first_name_l] AS [first_name_l], 
+    [employee_info_view].[middle_name_l] AS [middle_name_l], 
+    [employee_info_view].[last_name_l] AS [last_name_l], 
+    [employee_info_view].[common_name_l] AS [common_name_l], 
+    [employee_info_view].[title_l] AS [title_l], 
+    [employee_info_view].[suffix_l] AS [suffix_l], 
+    [employee_info_view].[display_name_format] AS [display_name_format], 
+    [employee_info_view].[list_name_format] AS [list_name_format], 
+    [employee_info_view].[race_rcd] AS [race_rcd], 
+    [employee_info_view].[primary_language_rcd] AS [primary_language_rcd]
+    FROM [dbo].[employee_info_view] AS [employee_info_view]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

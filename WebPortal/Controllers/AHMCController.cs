@@ -19,7 +19,7 @@ namespace WebPortal.Controllers
         public ActionResult Index()
         {
             PatientUserEntities patientdb = new PatientUserEntities();
-            EmployeeUserEntities empdb = new EmployeeUserEntities();
+            EmployeeandDoctorEntities empdocdb = new EmployeeandDoctorEntities();
             var currentuser = User.Identity.GetUserName().ToString();
 
             bool returnvalue = false;
@@ -56,8 +56,8 @@ namespace WebPortal.Controllers
                         }
                         else
                         {
-                            var displaycurrentuser = (from en in empdb.employee_formatted_name_iview
-                                                      join e in empdb.employee
+                            var displaycurrentuser = (from en in empdocdb.employee_formatted_name_iview_nl_view
+                                                      join e in empdocdb.employee
                                                       on en.person_id equals e.employee_id
                                                       select new
                                                       {

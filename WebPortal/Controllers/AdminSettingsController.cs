@@ -92,7 +92,6 @@ namespace WebPortal.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid? id)
         {
             PortalRetention portalretention = db.PortalRetention.Find(id);

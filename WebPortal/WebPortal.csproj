@@ -260,28 +260,34 @@
       <DependentUpon>PatientUserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\employee.cs">
-      <DependentUpon>EmployeeUserModel.tt</DependentUpon>
+      <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeUserModel.Context.cs">
+    <Compile Include="Models\EmployeeandDoctorUserModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EmployeeUserModel.Context.tt</DependentUpon>
+      <DependentUpon>EmployeeandDoctorUserModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeUserModel.cs">
+    <Compile Include="Models\EmployeeandDoctorUserModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EmployeeUserModel.tt</DependentUpon>
+      <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeUserModel.Designer.cs">
+    <Compile Include="Models\EmployeeandDoctorUserModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EmployeeUserModel.edmx</DependentUpon>
+      <DependentUpon>EmployeeandDoctorUserModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\employee_formatted_name_iview.cs">
-      <DependentUpon>EmployeeUserModel.tt</DependentUpon>
+    <Compile Include="Models\employee_formatted_name_iview_nl_view.cs">
+      <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\employee_info_view.cs">
-      <DependentUpon>EmployeeUserModel.tt</DependentUpon>
+      <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\employment_nl_view.cs">
+      <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\job_type.cs">
+      <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PatientUserModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -783,23 +789,6 @@
       <DependentUpon>PatientUserModel.edmx</DependentUpon>
       <LastGenOutput>PatientUserModel.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\EmployeeUserModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EmployeeUserModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EmployeeUserModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EmployeeUserModel.edmx</DependentUpon>
-      <LastGenOutput>EmployeeUserModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\EmployeeUserModel.edmx.diagram">
-      <DependentUpon>EmployeeUserModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EmployeeUserModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EmployeeUserModel.edmx</DependentUpon>
-      <LastGenOutput>EmployeeUserModel.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="Models\RetentionModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RetentionModel.Designer.cs</LastGenOutput>
@@ -816,6 +805,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RetentionModel.edmx</DependentUpon>
       <LastGenOutput>RetentionModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\EmployeeandDoctorUserModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EmployeeandDoctorUserModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EmployeeandDoctorUserModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmployeeandDoctorUserModel.edmx</DependentUpon>
+      <LastGenOutput>EmployeeandDoctorUserModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EmployeeandDoctorUserModel.edmx.diagram">
+      <DependentUpon>EmployeeandDoctorUserModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\EmployeeandDoctorUserModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmployeeandDoctorUserModel.edmx</DependentUpon>
+      <LastGenOutput>EmployeeandDoctorUserModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\PortalPublish1.pubxml" />
     <None Include="Properties\PublishProfiles\PublishWebPortal.pubxml" />

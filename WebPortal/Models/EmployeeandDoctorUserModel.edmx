@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmployeeandDoctorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="company_code" Type="varchar" MaxLength="3" />
+          <Property Name="hire_date" Type="datetime" />
+          <Property Name="employee_nr" Type="int" Nullable="false" />
+          <Property Name="alternate_code" Type="varchar" MaxLength="20" />
+          <Property Name="termination_date" Type="datetime" />
+          <Property Name="special_privileges" Type="nvarchar" MaxLength="200" />
+          <Property Name="confidential_comments" Type="nvarchar" MaxLength="200" />
+          <Property Name="old_employee_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="lu_user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lu_updated" Type="datetime" Nullable="false" />
+          <Property Name="pin" Type="nvarchar" MaxLength="20" />
+          <Property Name="bank_account_id" Type="uniqueidentifier" />
+          <Property Name="comment_e" Type="nvarchar" MaxLength="1700" />
+          <Property Name="comment_l" Type="nvarchar" MaxLength="1700" />
+          <Property Name="admitting_privilege_flag" Type="bit" Nullable="false" />
+          <Property Name="request_patient_record_flag" Type="bit" Nullable="false" />
+          <Property Name="employee_termination_reason_rcd" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="job_type">
+          <Key>
+            <PropertyRef Name="job_type_code" />
+          </Key>
+          <Property Name="job_type_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="name_l" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="name_e" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="job_category_code" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="minimum_benefit_package" Type="int" />
+          <Property Name="maximum_benefit_package" Type="int" />
+          <Property Name="average_cost_per_month" Type="money" />
+          <Property Name="lu_user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lu_updated" Type="datetime" Nullable="false" />
+          <Property Name="active_flag" Type="bit" Nullable="false" />
+          <Property Name="seq_num" Type="smallint" />
+          <Property Name="standard_work_day_minutes" Type="int" />
+          <Property Name="days_off_per_month" Type="int" />
+          <Property Name="clinical_staff_role_rcd" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OrionSnapshot2minutes.dbo.employee_formatted_name_iview_nl_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="employee_formatted_name_iview_nl_view">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="employee_nr" Type="int" />
+          <Property Name="display_name_l" Type="nvarchar" MaxLength="256" />
+          <Property Name="display_name_e" Type="nvarchar" MaxLength="256" />
+          <Property Name="legal_name_l" Type="nvarchar" MaxLength="256" />
+          <Property Name="legal_name_e" Type="nvarchar" MaxLength="256" />
+          <Property Name="list_name_l" Type="nvarchar" MaxLength="256" />
+          <Property Name="list_name_e" Type="nvarchar" MaxLength="256" />
+          <Property Name="photo_id" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OrionSnapshot2minutes.dbo.employee_info_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="employee_info_view">
+          <Key>
+            <PropertyRef Name="employee_nr" />
+            <PropertyRef Name="admitting_privilege_flag" />
+            <PropertyRef Name="request_patient_record_flag" />
+            <PropertyRef Name="person_id" />
+            <PropertyRef Name="sex_rcd" />
+            <PropertyRef Name="race_rcd" />
+            <PropertyRef Name="primary_language_rcd" />
+          </Key>
+          <Property Name="employee_nr" Type="int" Nullable="false" />
+          <Property Name="hire_date" Type="datetime" />
+          <Property Name="alternate_code" Type="varchar" MaxLength="20" />
+          <Property Name="termination_date" Type="datetime" />
+          <Property Name="special_privileges" Type="nvarchar" MaxLength="200" />
+          <Property Name="old_employee_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="admitting_privilege_flag" Type="bit" Nullable="false" />
+          <Property Name="request_patient_record_flag" Type="bit" Nullable="false" />
+          <Property Name="person_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="date_of_death" Type="datetime" />
+          <Property Name="sex_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="first_name_e" Type="nvarchar" MaxLength="150" />
+          <Property Name="middle_name_e" Type="nvarchar" MaxLength="150" />
+          <Property Name="last_name_e" Type="nvarchar" MaxLength="150" />
+          <Property Name="common_name_e" Type="nvarchar" MaxLength="150" />
+          <Property Name="title_e" Type="nvarchar" MaxLength="150" />
+          <Property Name="suffix_e" Type="nvarchar" MaxLength="150" />
+          <Property Name="first_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="middle_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="last_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="common_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="title_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="suffix_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="display_name_format" Type="varchar" MaxLength="1000" />
+          <Property Name="list_name_format" Type="varchar" MaxLength="1000" />
+          <Property Name="race_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="primary_language_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OrionSnapshot2minutes.dbo.employment_nl_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="employment_nl_view">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="effective_from_date" />
+            <PropertyRef Name="company_code" />
+            <PropertyRef Name="job_type_code" />
+            <PropertyRef Name="job_type_level_nr" />
+            <PropertyRef Name="employee_status_rcd" />
+            <PropertyRef Name="employee_type_rcd" />
+            <PropertyRef Name="job_title_code" />
+            <PropertyRef Name="lu_user_id" />
+            <PropertyRef Name="lu_updated" />
+            <PropertyRef Name="costcentre_id" />
+            <PropertyRef Name="job_grade_nr" />
+            <PropertyRef Name="job_grade_level_nr" />
+            <PropertyRef Name="work_hours_per_week_rcd" />
+            <PropertyRef Name="position_id" />
+            <PropertyRef Name="position_status_rcd" />
+            <PropertyRef Name="work_percentage" />
+            <PropertyRef Name="employment_reason_rcd" />
+            <PropertyRef Name="work_place_id" />
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="effective_from_date" Type="datetime" Nullable="false" />
+          <Property Name="company_code" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="professional_staff_cat_rcd" Type="char" MaxLength="1" />
+          <Property Name="clocking_status_code" Type="char" MaxLength="1" />
+          <Property Name="job_type_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="job_type_level_nr" Type="int" Nullable="false" />
+          <Property Name="employee_status_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="employee_type_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="job_title_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="effective_until_date" Type="datetime" />
+          <Property Name="comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="lu_user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lu_updated" Type="datetime" Nullable="false" />
+          <Property Name="costcentre_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="job_grade_nr" Type="smallint" Nullable="false" />
+          <Property Name="job_grade_level_nr" Type="smallint" Nullable="false" />
+          <Property Name="admitting_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="doctor_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="work_hours_per_week_rcd" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="position_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="position_status_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="work_percentage" Type="int" Nullable="false" />
+          <Property Name="employment_reason_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="work_place_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="department_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EmployeeandDoctorModelStoreContainer">
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="job_type" EntityType="Self.job_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee_formatted_name_iview_nl_view" EntityType="Self.employee_formatted_name_iview_nl_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [employee_formatted_name_iview_nl_view].[person_id] AS [person_id], 
+    [employee_formatted_name_iview_nl_view].[employee_nr] AS [employee_nr], 
+    [employee_formatted_name_iview_nl_view].[display_name_l] AS [display_name_l], 
+    [employee_formatted_name_iview_nl_view].[display_name_e] AS [display_name_e], 
+    [employee_formatted_name_iview_nl_view].[legal_name_l] AS [legal_name_l], 
+    [employee_formatted_name_iview_nl_view].[legal_name_e] AS [legal_name_e], 
+    [employee_formatted_name_iview_nl_view].[list_name_l] AS [list_name_l], 
+    [employee_formatted_name_iview_nl_view].[list_name_e] AS [list_name_e], 
+    [employee_formatted_name_iview_nl_view].[photo_id] AS [photo_id]
+    FROM [dbo].[employee_formatted_name_iview_nl_view] AS [employee_formatted_name_iview_nl_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="employee_info_view" EntityType="Self.employee_info_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [employee_info_view].[employee_nr] AS [employee_nr], 
+    [employee_info_view].[hire_date] AS [hire_date], 
+    [employee_info_view].[alternate_code] AS [alternate_code], 
+    [employee_info_view].[termination_date] AS [termination_date], 
+    [employee_info_view].[special_privileges] AS [special_privileges], 
+    [employee_info_view].[old_employee_id] AS [old_employee_id], 
+    [employee_info_view].[admitting_privilege_flag] AS [admitting_privilege_flag], 
+    [employee_info_view].[request_patient_record_flag] AS [request_patient_record_flag], 
+    [employee_info_view].[person_id] AS [person_id], 
+    [employee_info_view].[date_of_birth] AS [date_of_birth], 
+    [employee_info_view].[date_of_death] AS [date_of_death], 
+    [employee_info_view].[sex_rcd] AS [sex_rcd], 
+    [employee_info_view].[first_name_e] AS [first_name_e], 
+    [employee_info_view].[middle_name_e] AS [middle_name_e], 
+    [employee_info_view].[last_name_e] AS [last_name_e], 
+    [employee_info_view].[common_name_e] AS [common_name_e], 
+    [employee_info_view].[title_e] AS [title_e], 
+    [employee_info_view].[suffix_e] AS [suffix_e], 
+    [employee_info_view].[first_name_l] AS [first_name_l], 
+    [employee_info_view].[middle_name_l] AS [middle_name_l], 
+    [employee_info_view].[last_name_l] AS [last_name_l], 
+    [employee_info_view].[common_name_l] AS [common_name_l], 
+    [employee_info_view].[title_l] AS [title_l], 
+    [employee_info_view].[suffix_l] AS [suffix_l], 
+    [employee_info_view].[display_name_format] AS [display_name_format], 
+    [employee_info_view].[list_name_format] AS [list_name_format], 
+    [employee_info_view].[race_rcd] AS [race_rcd], 
+    [employee_info_view].[primary_language_rcd] AS [primary_language_rcd]
+    FROM [dbo].[employee_info_view] AS [employee_info_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="employment_nl_view" EntityType="Self.employment_nl_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [employment_nl_view].[employee_id] AS [employee_id], 
+    [employment_nl_view].[effective_from_date] AS [effective_from_date], 
+    [employment_nl_view].[company_code] AS [company_code], 
+    [employment_nl_view].[professional_staff_cat_rcd] AS [professional_staff_cat_rcd], 
+    [employment_nl_view].[clocking_status_code] AS [clocking_status_code], 
+    [employment_nl_view].[job_type_code] AS [job_type_code], 
+    [employment_nl_view].[job_type_level_nr] AS [job_type_level_nr], 
+    [employment_nl_view].[employee_status_rcd] AS [employee_status_rcd], 
+    [employment_nl_view].[employee_type_rcd] AS [employee_type_rcd], 
+    [employment_nl_view].[job_title_code] AS [job_title_code], 
+    [employment_nl_view].[effective_until_date] AS [effective_until_date], 
+    [employment_nl_view].[comments] AS [comments], 
+    [employment_nl_view].[lu_user_id] AS [lu_user_id], 
+    [employment_nl_view].[lu_updated] AS [lu_updated], 
+    [employment_nl_view].[costcentre_id] AS [costcentre_id], 
+    [employment_nl_view].[job_grade_nr] AS [job_grade_nr], 
+    [employment_nl_view].[job_grade_level_nr] AS [job_grade_level_nr], 
+    [employment_nl_view].[admitting_status_rcd] AS [admitting_status_rcd], 
+    [employment_nl_view].[doctor_status_rcd] AS [doctor_status_rcd], 
+    [employment_nl_view].[work_hours_per_week_rcd] AS [work_hours_per_week_rcd], 
+    [employment_nl_view].[position_id] AS [position_id], 
+    [employment_nl_view].[position_status_rcd] AS [position_status_rcd], 
+    [employment_nl_view].[work_percentage] AS [work_percentage], 
+    [employment_nl_view].[employment_reason_rcd] AS [employment_reason_rcd], 
+    [employment_nl_view].[work_place_id] AS [work_place_id], 
+    [employment_nl_view].[department_id] AS [department_id]
+    FROM [dbo].[employment_nl_view] AS [employment_nl_view]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeeandDoctorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Guid" Nullable="false" />
+          <Property Name="company_code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="hire_date" Type="DateTime" Precision="3" />
+          <Property Name="employee_nr" Type="Int32" Nullable="false" />
+          <Property Name="alternate_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="termination_date" Type="DateTime" Precision="3" />
+          <Property Name="special_privileges" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="confidential_comments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="old_employee_id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="lu_user_id" Type="Guid" Nullable="false" />
+          <Property Name="lu_updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bank_account_id" Type="Guid" />
+          <Property Name="comment_e" Type="String" MaxLength="1700" FixedLength="false" Unicode="true" />
+          <Property Name="comment_l" Type="String" MaxLength="1700" FixedLength="false" Unicode="true" />
+          <Property Name="admitting_privilege_flag" Type="Boolean" Nullable="false" />
+          <Property Name="request_patient_record_flag" Type="Boolean" Nullable="false" />
+          <Property Name="employee_termination_reason_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="job_type">
+          <Key>
+            <PropertyRef Name="job_type_code" />
+          </Key>
+          <Property Name="job_type_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="job_category_code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="minimum_benefit_package" Type="Int32" />
+          <Property Name="maximum_benefit_package" Type="Int32" />
+          <Property Name="average_cost_per_month" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="lu_user_id" Type="Guid" Nullable="false" />
+          <Property Name="lu_updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="active_flag" Type="Boolean" Nullable="false" />
+          <Property Name="seq_num" Type="Int16" />
+          <Property Name="standard_work_day_minutes" Type="Int32" />
+          <Property Name="days_off_per_month" Type="Int32" />
+          <Property Name="clinical_staff_role_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="employee_formatted_name_iview_nl_view">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="employee_nr" Type="Int32" />
+          <Property Name="display_name_l" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="display_name_e" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="legal_name_l" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="legal_name_e" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="list_name_l" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="list_name_e" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="photo_id" Type="Guid" />
+        </EntityType>
+        <EntityType Name="employee_info_view">
+          <Key>
+            <PropertyRef Name="employee_nr" />
+            <PropertyRef Name="admitting_privilege_flag" />
+            <PropertyRef Name="request_patient_record_flag" />
+            <PropertyRef Name="person_id" />
+            <PropertyRef Name="sex_rcd" />
+            <PropertyRef Name="race_rcd" />
+            <PropertyRef Name="primary_language_rcd" />
+          </Key>
+          <Property Name="employee_nr" Type="Int32" Nullable="false" />
+          <Property Name="hire_date" Type="DateTime" Precision="3" />
+          <Property Name="alternate_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="termination_date" Type="DateTime" Precision="3" />
+          <Property Name="special_privileges" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="old_employee_id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="admitting_privilege_flag" Type="Boolean" Nullable="false" />
+          <Property Name="request_patient_record_flag" Type="Boolean" Nullable="false" />
+          <Property Name="person_id" Type="Guid" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="date_of_death" Type="DateTime" Precision="3" />
+          <Property Name="sex_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="first_name_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="middle_name_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="last_name_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="common_name_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="title_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="suffix_e" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="first_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="middle_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="last_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="common_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="title_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="suffix_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="display_name_format" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="list_name_format" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="race_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="primary_language_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employment_nl_view">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="effective_from_date" />
+            <PropertyRef Name="company_code" />
+            <PropertyRef Name="job_type_code" />
+            <PropertyRef Name="job_type_level_nr" />
+            <PropertyRef Name="employee_status_rcd" />
+            <PropertyRef Name="employee_type_rcd" />
+            <PropertyRef Name="job_title_code" />
+            <PropertyRef Name="lu_user_id" />
+            <PropertyRef Name="lu_updated" />
+            <PropertyRef Name="costcentre_id" />
+            <PropertyRef Name="job_grade_nr" />
+            <PropertyRef Name="job_grade_level_nr" />
+            <PropertyRef Name="work_hours_per_week_rcd" />
+            <PropertyRef Name="position_id" />
+            <PropertyRef Name="position_status_rcd" />
+            <PropertyRef Name="work_percentage" />
+            <PropertyRef Name="employment_reason_rcd" />
+            <PropertyRef Name="work_place_id" />
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="employee_id" Type="Guid" Nullable="false" />
+          <Property Name="effective_from_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="company_code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="professional_staff_cat_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="clocking_status_code" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="job_type_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="job_type_level_nr" Type="Int32" Nullable="false" />
+          <Property Name="employee_status_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="employee_type_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="job_title_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="effective_until_date" Type="DateTime" Precision="3" />
+          <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="lu_user_id" Type="Guid" Nullable="false" />
+          <Property Name="lu_updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="costcentre_id" Type="Guid" Nullable="false" />
+          <Property Name="job_grade_nr" Type="Int16" Nullable="false" />
+          <Property Name="job_grade_level_nr" Type="Int16" Nullable="false" />
+          <Property Name="admitting_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="work_hours_per_week_rcd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="position_id" Type="Guid" Nullable="false" />
+          <Property Name="position_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="work_percentage" Type="Int32" Nullable="false" />
+          <Property Name="employment_reason_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="work_place_id" Type="Guid" Nullable="false" />
+          <Property Name="department_id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EmployeeandDoctorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="employee" EntityType="Self.employee" />
+          <EntitySet Name="job_type" EntityType="Self.job_type" />
+          <EntitySet Name="employee_formatted_name_iview_nl_view" EntityType="Self.employee_formatted_name_iview_nl_view" />
+          <EntitySet Name="employee_info_view" EntityType="Self.employee_info_view" />
+          <EntitySet Name="employment_nl_view" EntityType="Self.employment_nl_view" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeeandDoctorModelStoreContainer" CdmEntityContainer="EmployeeandDoctorEntities">
+          <EntitySetMapping Name="employee">
+            <EntityTypeMapping TypeName="EmployeeandDoctorModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="company_code" ColumnName="company_code" />
+                <ScalarProperty Name="hire_date" ColumnName="hire_date" />
+                <ScalarProperty Name="employee_nr" ColumnName="employee_nr" />
+                <ScalarProperty Name="alternate_code" ColumnName="alternate_code" />
+                <ScalarProperty Name="termination_date" ColumnName="termination_date" />
+                <ScalarProperty Name="special_privileges" ColumnName="special_privileges" />
+                <ScalarProperty Name="confidential_comments" ColumnName="confidential_comments" />
+                <ScalarProperty Name="old_employee_id" ColumnName="old_employee_id" />
+                <ScalarProperty Name="lu_user_id" ColumnName="lu_user_id" />
+                <ScalarProperty Name="lu_updated" ColumnName="lu_updated" />
+                <ScalarProperty Name="pin" ColumnName="pin" />
+                <ScalarProperty Name="bank_account_id" ColumnName="bank_account_id" />
+                <ScalarProperty Name="comment_e" ColumnName="comment_e" />
+                <ScalarProperty Name="comment_l" ColumnName="comment_l" />
+                <ScalarProperty Name="admitting_privilege_flag" ColumnName="admitting_privilege_flag" />
+                <ScalarProperty Name="request_patient_record_flag" ColumnName="request_patient_record_flag" />
+                <ScalarProperty Name="employee_termination_reason_rcd" ColumnName="employee_termination_reason_rcd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_type">
+            <EntityTypeMapping TypeName="EmployeeandDoctorModel.job_type">
+              <MappingFragment StoreEntitySet="job_type">
+                <ScalarProperty Name="job_type_code" ColumnName="job_type_code" />
+                <ScalarProperty Name="name_l" ColumnName="name_l" />
+                <ScalarProperty Name="name_e" ColumnName="name_e" />
+                <ScalarProperty Name="job_category_code" ColumnName="job_category_code" />
+                <ScalarProperty Name="minimum_benefit_package" ColumnName="minimum_benefit_package" />
+                <ScalarProperty Name="maximum_benefit_package" ColumnName="maximum_benefit_package" />
+                <ScalarProperty Name="average_cost_per_month" ColumnName="average_cost_per_month" />
+                <ScalarProperty Name="lu_user_id" ColumnName="lu_user_id" />
+                <ScalarProperty Name="lu_updated" ColumnName="lu_updated" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="seq_num" ColumnName="seq_num" />
+                <ScalarProperty Name="standard_work_day_minutes" ColumnName="standard_work_day_minutes" />
+                <ScalarProperty Name="days_off_per_month" ColumnName="days_off_per_month" />
+                <ScalarProperty Name="clinical_staff_role_rcd" ColumnName="clinical_staff_role_rcd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_formatted_name_iview_nl_view">
+            <EntityTypeMapping TypeName="EmployeeandDoctorModel.employee_formatted_name_iview_nl_view">
+              <MappingFragment StoreEntitySet="employee_formatted_name_iview_nl_view">
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="employee_nr" ColumnName="employee_nr" />
+                <ScalarProperty Name="display_name_l" ColumnName="display_name_l" />
+                <ScalarProperty Name="display_name_e" ColumnName="display_name_e" />
+                <ScalarProperty Name="legal_name_l" ColumnName="legal_name_l" />
+                <ScalarProperty Name="legal_name_e" ColumnName="legal_name_e" />
+                <ScalarProperty Name="list_name_l" ColumnName="list_name_l" />
+                <ScalarProperty Name="list_name_e" ColumnName="list_name_e" />
+                <ScalarProperty Name="photo_id" ColumnName="photo_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_info_view">
+            <EntityTypeMapping TypeName="EmployeeandDoctorModel.employee_info_view">
+              <MappingFragment StoreEntitySet="employee_info_view">
+                <ScalarProperty Name="employee_nr" ColumnName="employee_nr" />
+                <ScalarProperty Name="hire_date" ColumnName="hire_date" />
+                <ScalarProperty Name="alternate_code" ColumnName="alternate_code" />
+                <ScalarProperty Name="termination_date" ColumnName="termination_date" />
+                <ScalarProperty Name="special_privileges" ColumnName="special_privileges" />
+                <ScalarProperty Name="old_employee_id" ColumnName="old_employee_id" />
+                <ScalarProperty Name="admitting_privilege_flag" ColumnName="admitting_privilege_flag" />
+                <ScalarProperty Name="request_patient_record_flag" ColumnName="request_patient_record_flag" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="date_of_death" ColumnName="date_of_death" />
+                <ScalarProperty Name="sex_rcd" ColumnName="sex_rcd" />
+                <ScalarProperty Name="first_name_e" ColumnName="first_name_e" />
+                <ScalarProperty Name="middle_name_e" ColumnName="middle_name_e" />
+                <ScalarProperty Name="last_name_e" ColumnName="last_name_e" />
+                <ScalarProperty Name="common_name_e" ColumnName="common_name_e" />
+                <ScalarProperty Name="title_e" ColumnName="title_e" />
+                <ScalarProperty Name="suffix_e" ColumnName="suffix_e" />
+                <ScalarProperty Name="first_name_l" ColumnName="first_name_l" />
+                <ScalarProperty Name="middle_name_l" ColumnName="middle_name_l" />
+                <ScalarProperty Name="last_name_l" ColumnName="last_name_l" />
+                <ScalarProperty Name="common_name_l" ColumnName="common_name_l" />
+                <ScalarProperty Name="title_l" ColumnName="title_l" />
+                <ScalarProperty Name="suffix_l" ColumnName="suffix_l" />
+                <ScalarProperty Name="display_name_format" ColumnName="display_name_format" />
+                <ScalarProperty Name="list_name_format" ColumnName="list_name_format" />
+                <ScalarProperty Name="race_rcd" ColumnName="race_rcd" />
+                <ScalarProperty Name="primary_language_rcd" ColumnName="primary_language_rcd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employment_nl_view">
+            <EntityTypeMapping TypeName="EmployeeandDoctorModel.employment_nl_view">
+              <MappingFragment StoreEntitySet="employment_nl_view">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="effective_from_date" ColumnName="effective_from_date" />
+                <ScalarProperty Name="company_code" ColumnName="company_code" />
+                <ScalarProperty Name="professional_staff_cat_rcd" ColumnName="professional_staff_cat_rcd" />
+                <ScalarProperty Name="clocking_status_code" ColumnName="clocking_status_code" />
+                <ScalarProperty Name="job_type_code" ColumnName="job_type_code" />
+                <ScalarProperty Name="job_type_level_nr" ColumnName="job_type_level_nr" />
+                <ScalarProperty Name="employee_status_rcd" ColumnName="employee_status_rcd" />
+                <ScalarProperty Name="employee_type_rcd" ColumnName="employee_type_rcd" />
+                <ScalarProperty Name="job_title_code" ColumnName="job_title_code" />
+                <ScalarProperty Name="effective_until_date" ColumnName="effective_until_date" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="lu_user_id" ColumnName="lu_user_id" />
+                <ScalarProperty Name="lu_updated" ColumnName="lu_updated" />
+                <ScalarProperty Name="costcentre_id" ColumnName="costcentre_id" />
+                <ScalarProperty Name="job_grade_nr" ColumnName="job_grade_nr" />
+                <ScalarProperty Name="job_grade_level_nr" ColumnName="job_grade_level_nr" />
+                <ScalarProperty Name="admitting_status_rcd" ColumnName="admitting_status_rcd" />
+                <ScalarProperty Name="doctor_status_rcd" ColumnName="doctor_status_rcd" />
+                <ScalarProperty Name="work_hours_per_week_rcd" ColumnName="work_hours_per_week_rcd" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="position_status_rcd" ColumnName="position_status_rcd" />
+                <ScalarProperty Name="work_percentage" ColumnName="work_percentage" />
+                <ScalarProperty Name="employment_reason_rcd" ColumnName="employment_reason_rcd" />
+                <ScalarProperty Name="work_place_id" ColumnName="work_place_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
