@@ -72,7 +72,7 @@ namespace WebPortal.Controllers
                             return RedirectToAction("Index", "Validate");
                         }
 
-                        else if (email == null)
+                        else if ((patientdb.patient_hospital_usage.Any(a => a.visible_patient_id == user.UserName)) && (email == null))
                         {
                             successful = true;
                             ModelState.AddModelError("", "You don't have any email registered in Orion");
