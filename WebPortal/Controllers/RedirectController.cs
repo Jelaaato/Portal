@@ -46,6 +46,14 @@ namespace WebPortal.Controllers
             {
                 try
                 {
+                    var email = (from e in patientdb.email
+                                 join ph in patientdb.patient_hospital_usage on e.person_id equals ph.patient_id
+                                 select new
+                                 {
+                                     hn = ph.visible_patient_id,
+                                     em = e.email_address
+                                 }).Where(a => a.hn == model.UserName).FirstOrDefault();
+
                     if (ModelState.IsValid)
                     {
                         Users user = new Users { UserName = model.UserName };
@@ -56,11 +64,18 @@ namespace WebPortal.Controllers
                             return RedirectToAction("Login", "Account");
                         }
 
-                        else if (patientdb.patient_hospital_usage.Any(a => a.visible_patient_id == user.UserName))
+                        else if ((patientdb.patient_hospital_usage.Any(a => a.visible_patient_id == user.UserName)) && (email != null))
                         {
                             TempData["UserType"] = "Patient";
+                            Session["patientemail"] = email.em.ToString();
                             Session["patientregister"] = model.UserName.ToString();
                             return RedirectToAction("Index", "Validate");
+                        }
+
+                        else if (email == null)
+                        {
+                            successful = true;
+                            ModelState.AddModelError("", "You don't have any email registered in Orion");
                         }
 
                         else

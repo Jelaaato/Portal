@@ -34,20 +34,19 @@ namespace WebPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterPat(CreateModel model)
         {
-            var email = (from e in patientuser.email
-                         join ph in patientuser.patient_hospital_usage on e.person_id equals ph.patient_id
-                         select new
-                         {
-                             hn = ph.visible_patient_id,
-                             em = e.email_address
-                         }).Where(a => a.hn == model.UserName).FirstOrDefault();
+            //var email = (from e in patientuser.email
+            //             join ph in patientuser.patient_hospital_usage on e.person_id equals ph.patient_id
+            //             select new
+            //             {
+            //                 hn = ph.visible_patient_id,
+            //                 em = e.email_address
+            //             }).Where(a => a.hn == model.UserName).FirstOrDefault();
 
             if (ModelState.IsValid)
             {
-                if (email != null)
-                {
-                    Users user = new Users { UserName = model.UserName, Email = email.em };
-                    if (db.Users.Any(a => a.Email == email.em))
+                    var email = Session["patientemail"].ToString();
+                    Users user = new Users { UserName = model.UserName, Email = email };
+                    if (db.Users.Any(a => a.Email == email))
                     {
                         ModelState.AddModelError("", "Email is already in use.");
                     }
@@ -72,11 +71,6 @@ namespace WebPortal.Controllers
                             AddErrorsFromResult(result);
                         }
                     }
-                }
-                else
-                {
-                    ModelState.AddModelError("","You don't have any email registered in Orion");
-                }
              }
                 return View(model);
         }

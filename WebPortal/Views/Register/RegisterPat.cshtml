@@ -36,10 +36,7 @@
                         @using (Html.BeginForm())
                         { 
                             @Html.AntiForgeryToken()
-                                @TempData["info"]
-                                <br />
-                                <br />
-                                <div class="form-group">
+                               <div class="form-group">
                                     @Html.TextBoxFor(a => a.UserName, new 
                                { 
                                    @Value = Session["patientregister"], 
