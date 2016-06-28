@@ -21,7 +21,7 @@ namespace WebPortal.Controllers
     {
         public SampleIdentityDb db = new SampleIdentityDb();
         public PatientUserEntities patientuser = new PatientUserEntities();
-
+      
         //Register Patient
         [AllowAnonymous]
         public ActionResult RegisterPat()
@@ -34,34 +34,49 @@ namespace WebPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterPat(CreateModel model)
         {
+            var email = (from e in patientuser.email
+                         join ph in patientuser.patient_hospital_usage on e.person_id equals ph.patient_id
+                         select new
+                         {
+                             hn = ph.visible_patient_id,
+                             em = e.email_address
+                         }).Where(a => a.hn == model.UserName).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
-                Users user = new Users { UserName = model.UserName, Email = model.Email};
-                if (db.Users.Any(a => a.Email == model.Email))
+                if (email != null)
                 {
-                    ModelState.AddModelError("", "Email is already in use.");
-                }
-                else
-                {
-                    IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
+                    Users user = new Users { UserName = model.UserName, Email = email.em };
+                    if (db.Users.Any(a => a.Email == email.em))
                     {
-                        Session["patientregister"] = model.UserName;
-                        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        var callbackUrl = Url.Action("ConfirmEmail", "Register", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        await UserManager.SendEmailAsync(user.Id, "Confirm your Account",
-                            "Good Day!<br/><br/><p>Thank you for signing up.<br/><br/>Please <a href=\"" + callbackUrl + "\">confirm your account </a>to complete the registration process.</p><br/><br/>Thank you very much.");
-
-                        var currentuser = UserManager.FindByName(user.UserName);
-                        UserManager.AddToRole(currentuser.Id, "Patient");
-
-                        return View("EmailSent");
+                        ModelState.AddModelError("", "Email is already in use.");
                     }
                     else
                     {
-                        AddErrorsFromResult(result);
+                        IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                        if (result.Succeeded)
+                        {
+                            Session["patientregister"] = model.UserName;
+                            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                            var callbackUrl = Url.Action("ConfirmEmail", "Register", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                            await UserManager.SendEmailAsync(user.Id, "Confirm your Account",
+                                "Good Day!<br/><br/><p>Thank you for signing up.<br/><br/>Please <a href=\"" + callbackUrl + "\">confirm your account </a>to complete the registration process.</p><br/><br/>Thank you very much.");
+
+                            var currentuser = UserManager.FindByName(user.UserName);
+                            UserManager.AddToRole(currentuser.Id, "Patient");
+
+                            return View("EmailSent");
+                        }
+                        else
+                        {
+                            AddErrorsFromResult(result);
+                        }
                     }
-                } 
+                }
+                else
+                {
+                    ModelState.AddModelError("","You don't have any email registered in Orion");
+                }
              }
                 return View(model);
         }
