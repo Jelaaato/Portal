@@ -24,15 +24,14 @@ namespace WebPortal.Controllers
       
         //Register Patient
         [AllowAnonymous]
-        public ActionResult RegisterPat()
+        public ActionResult Patient()
         {
-            //ViewBag.username = TempData["registeruser"];
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterPat(CreateModel model)
+        public async Task<ActionResult> Patient(CreateModel model)
         {
             //var email = (from e in patientuser.email
             //             join ph in patientuser.patient_hospital_usage on e.person_id equals ph.patient_id
@@ -75,25 +74,14 @@ namespace WebPortal.Controllers
                 return View(model);
         }
 
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
-            {
-                return View("Error");
-            }
-
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
-
         //Register Doctor
-        public ActionResult RegisterDoc()
+        public ActionResult Doctor()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> RegisterDoc(CreateModel model)
+        public async Task<ActionResult> Doctor(CreateModel model)
         {
             if (ModelState.IsValid)
             {
@@ -124,14 +112,14 @@ namespace WebPortal.Controllers
 
         //Register Employee
 
-        public ActionResult RegisterEmp()
+        public ActionResult Employee()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterEmp(CreateModel model)
+        public async Task<ActionResult> Employee(CreateModel model)
         {
             if (ModelState.IsValid)
             {
@@ -159,7 +147,16 @@ namespace WebPortal.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
 
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
 
 
         private void AddErrorsFromResult(IdentityResult result)

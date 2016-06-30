@@ -1,0 +1,64 @@
+﻿@model WebPortal.Models.CheckModel
+
+@{
+    ViewBag.Title = "Welcome";
+    Layout = null;
+}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@ViewBag.Title - AHMC Portal</title>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/hover.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<script src="~/Scripts/html5shiv.min.js"></script>
+<script src="~/Scripts/respond.js"></script>
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text">
+                    <br /><br />
+                    <img src="~/Images/Logo/ahmc_logo.png" />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 form-box">
+                    <div class="form-bottom">
+                        @Html.ValidationSummary(false)
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                @Html.TextBoxFor(a => a.UserName, new
+                           {
+                               @placeholder = "Employee Number...",
+                               @class = "input-size inputuser",
+                               @id = "numberonly",
+                               autocomplete = "off"
+                           })
+                            </div>
+                            <button type="submit" class="btn btn-login">Proceed</button>
+
+                            <br />
+                            <br />
+
+                            @Html.ActionLink("Back to Menu", "Index", "Home", null, new { @style = "color:#9a9a9a;font-size:14px;" })
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/JSFiles/AllowNumbersOnly.js"></script>
+

@@ -10,6 +10,8 @@ namespace WebPortal.Models
     public class CheckModel
     {
         public string UserName { get; set; }
+
+        [Required]
         public DateTime Birthday { get; set; }
     }
 

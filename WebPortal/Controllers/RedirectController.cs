@@ -20,25 +20,25 @@ namespace WebPortal.Controllers
         EmployeeandDoctorEntities empdocdb = new EmployeeandDoctorEntities();
 
         [AllowAnonymous]
-        public ActionResult RedirectPat()
+        public ActionResult Patient()
         {
             return View();
         }
 
-        public ActionResult RedirectDoc()
+        public ActionResult Doctor()
         {
             return View();
         }
 
         [AllowAnonymous]
-        public ActionResult RedirectEmp()
+        public ActionResult Employee()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RedirectPat(CheckModel model)
+        public ActionResult Patient(CheckModel model)
         {
             bool successful = false;
             int retry = 0;
@@ -66,7 +66,7 @@ namespace WebPortal.Controllers
 
                         else if ((patientdb.patient_hospital_usage.Any(a => a.visible_patient_id == user.UserName)) && (email != null))
                         {
-                            TempData["UserType"] = "Patient";
+                            Session["UserType"] = "Patient";
                             Session["patientemail"] = email.em.ToString();
                             Session["patientregister"] = model.UserName.ToString();
                             return RedirectToAction("Index", "Validate");
@@ -95,7 +95,7 @@ namespace WebPortal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RedirectEmp(CheckModel model)
+        public ActionResult Employee(CheckModel model)
         {
             bool successful = false;
             int retry = 0;
@@ -115,7 +115,7 @@ namespace WebPortal.Controllers
 
                         else if (empdocdb.employee.Any(a => a.employee_nr.ToString() == user.UserName))
                         {
-                            TempData["UserType"] = "Employee";
+                            Session["UserType"] = "Employee";
                             Session["empregister"] = model.UserName.ToString();
                             return RedirectToAction("Index", "Validate");
                         }
@@ -137,7 +137,7 @@ namespace WebPortal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RedirectDoc(CheckModel model)
+        public ActionResult Doctor(CheckModel model)
         {
             bool successful = false;
             int retry = 0;
@@ -167,7 +167,7 @@ namespace WebPortal.Controllers
                         {
                             if (empdocdb.employee.Any(a => a.employee_nr == query.emp_nr))
                             {
-                                TempData["UserType"] = "Doctor";
+                                Session["UserType"] = "Doctor";
                                 Session["docregister"] = model.UserName.ToString();
                                 return RedirectToAction("Index", "Validate");
                             }
