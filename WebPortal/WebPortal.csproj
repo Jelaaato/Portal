@@ -364,6 +364,7 @@
     <Content Include="Adminlte\AdminLTE_V2\dist\js\app.js" />
     <Content Include="Adminlte\AdminLTE_V2\dist\js\app.min.js" />
     <Content Include="Adminlte\AdminLTE_V2\dist\js\demo.js" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\bootstrap3-wysihtml5.css" />
@@ -463,6 +464,7 @@
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\css3-mediaqueries.js" />
+    <Content Include="Scripts\custom-bootstrap-datepicker.js" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\demo.js" />
@@ -694,6 +696,7 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="Content\datepicker.less" />
     <None Include="Properties\PublishProfiles\PortalPublish1.pubxml" />
     <None Include="Properties\PublishProfiles\PublishWebPortal.pubxml" />
     <None Include="Properties\PublishProfiles\WebPortal.pubxml" />

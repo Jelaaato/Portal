@@ -108,3 +108,4 @@
 /// <reference path="../adminlte/adminlte_v2/dist/js/app.js" />
 /// <reference path="../adminlte/adminlte_v2/dist/js/demo.js" />
 /// <reference path="bootstrap3-wysihtml5.all.min.js" />
+/// <reference path="custom-bootstrap-datepicker.js" />
