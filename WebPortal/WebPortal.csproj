@@ -229,10 +229,10 @@
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Controllers\AHMCController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
@@ -289,6 +289,22 @@
     <Compile Include="Models\job_type.cs">
       <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OPSmodel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPSmodel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OPSmodel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPSmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OPSmodel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OPSmodel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OPSViewModel.cs" />
     <Compile Include="Models\PatientUserModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -348,6 +364,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetentionModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\webportal_patient_allergies.cs">
+      <DependentUpon>OPSmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webportal_patient_diagnosis.cs">
+      <DependentUpon>OPSmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webportal_patient_medication.cs">
+      <DependentUpon>OPSmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webportal_patient_prev_hospitalization.cs">
+      <DependentUpon>OPSmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webportal_patient_prev_surgeries.cs">
+      <DependentUpon>OPSmodel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +396,11 @@
     <Content Include="Adminlte\AdminLTE_V2\dist\js\app.min.js" />
     <Content Include="Adminlte\AdminLTE_V2\dist\js\demo.js" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="Images\Admin_icons\Admins_add_users_nobox.png" />
+    <Content Include="Images\Admin_icons\Admins_audit_trail_nobox.png" />
+    <Content Include="Images\Admin_icons\Admins_delete_users_nobox.png" />
+    <Content Include="Images\Admin_icons\Admins_settings_nobox.png" />
+    <Content Include="Images\Reports\reports_nobox.png" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\bootstrap3-wysihtml5.css" />
@@ -697,6 +733,23 @@
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Content\datepicker.less" />
+    <EntityDeploy Include="Models\OPSmodel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OPSmodel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OPSmodel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OPSmodel.edmx</DependentUpon>
+      <LastGenOutput>OPSmodel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OPSmodel.edmx.diagram">
+      <DependentUpon>OPSmodel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OPSmodel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OPSmodel.edmx</DependentUpon>
+      <LastGenOutput>OPSmodel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\PortalPublish1.pubxml" />
     <None Include="Properties\PublishProfiles\PublishWebPortal.pubxml" />
     <None Include="Properties\PublishProfiles\WebPortal.pubxml" />
@@ -1464,7 +1517,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\AHMC\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -1475,7 +1527,6 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Claim\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Register\Patient.cshtml" />
     <Content Include="Views\Register\Doctor.cshtml" />
     <Content Include="Views\Register\Employee.cshtml" />
@@ -1504,6 +1555,16 @@
     <Content Include="Views\AdminSettings\Edit.cshtml" />
     <Content Include="Views\Validate\PasswordChecker.cshtml" />
     <Content Include="Views\AdminSettings\Delete.cshtml" />
+    <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\_patallergy.cshtml" />
+    <Content Include="Views\Reports\_patdiag.cshtml" />
+    <Content Include="Views\Reports\_patmedic.cshtml" />
+    <Content Include="Views\Reports\_prevhosp.cshtml" />
+    <Content Include="Views\Reports\_prevsurg.cshtml" />
+    <Content Include="Views\Reports\OutpatientMedicalCareProfile.cshtml" />
+    <Content Include="Views\Shared\_PatientLayout.cshtml" />
+    <Content Include="Views\Results\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

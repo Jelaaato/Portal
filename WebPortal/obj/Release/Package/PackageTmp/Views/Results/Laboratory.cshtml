@@ -1,0 +1,224 @@
+﻿@model WebPortal.Models.ResultModel
+@using WebPortal.Models;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AHMC Portal</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/dist/css/AdminLTE.css">
+    <link href="~/Content/hover.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Adminlte/AdminLTE_V2/dist/css/skins/skin-green-light.min.css">
+    <link href="~/Content/AdminLteCustomCss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Content/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+</head>
+
+<body class="skin-green-light">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <div class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><img src="~/Images/Logo/logo.png" width="30" height="30" /></span>
+                <!-- logo for regular state and mobile devices -->
+                <a href="@Url.Action("Index","AHMC")"><span class="logo-lg"><img src="~/Images/Logo/ahmc_portal_logo.png" width="200" height="23" /></span></a>
+            </div>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less-->
+                        <li class="dropdown user user-menu">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Images/User_Icons/patient.png" class="user-image" alt="User Image">
+                                <span>@Session["displaycurrentuser"]</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                        <li><a href="@Url.Action("Logout", "Account")" class="font-style">Log Out</a></li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar hidden-xs">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <center>
+                    <div class="jumbotron jumbotron-margin-top" style="background-color:#F9FAFC">
+                        <a href="@Url.Action("Index","Dashboard")" data-toggle="tooltip" data-placement="top" title="Back to Menu"><img src="~/Images/Results_icons/results_nobox.png" class="sidebar-results-img" /></a>
+                        <div class="sidebar-main-text">Results</div>
+                        <br />
+                        <div class="sidebar-sub-text">Access your laboratory results 24 hours after the test.</div>
+                        <div class="sidebar-sub-text">Set the period of accessibility of your results in settings.</div>
+                    </div>
+                </center>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @*<section class="content-header">
+                    <a href="#" id="lab" onclick="hide(lab)">Laboratory</a>
+                </section>*@
+            <!-- Main content -->
+            <section class="content">
+                <!-- Main row -->
+                <div class="panel-default">
+                    <center><img src="~/Images/Results_icons/laboratory_text.png" style="width:100%;height:50%;" /></center>
+                    <br />
+                    <br />
+                    @*@if (Model.retentionperiod != null)
+                    { 
+                        <div class="alert alert-info">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Your online results are accessible within <b>@Model.retentionperiod days</b>.&nbsp;&nbsp;<a href="@Url.Action("UpdateRetention","Results")" data-toggle="modal">Change</a>
+                        </div>
+                    }*@
+                    <div class="panel-body">
+                        @if (Model.PDFFile.Count() == 0)
+                        {
+                            <center><h3><i>"No results available yet."</i></h3></center>
+                        }
+                        else
+                        {
+                            <table class="table table-bordered table-hover">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Accession No.</th>
+                                    <th>Date and Time</th>
+                                    <th></th>
+                                </tr>
+                                @foreach (FileInfo res in Model.PDFFile)
+                                {
+                                <tr>
+                                    <td>@res.Name.Splitter('_', 2)  @res.Name.Splitter('_', 1)</td>
+                                    <td>@res.Name.Splitter('_', 0)</td>
+                                    <td>@res.CreationTime</td>
+                                    <td></td>
+                                    <td>
+                                        <a href="@Url.Action("PasswordChecker", "Validate", new { id = @res.Name.Splitter('_', 0) })">View Result</a>
+                                        <div class="modal fade" id="labresult@(res.Name.Splitter('_', 0))" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><span class="glyphicon glyphicon-remove"></span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <embed src="~/PDFResults/@res.Name" width="850" height="1000" type="application/pdf" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        }
+                        <script>
+                                        @if (Model.IsValidated == true)
+                                        {
+                                            @:$(document).ready(function () { $('#labresult@(Model.fileid)').modal('show'); })
+                                        }
+                        </script>
+                           
+                     
+                      
+                    </div>
+                </div>
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
+        <aside class="control-sidebar control-sidebar-light">
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li>
+                    <a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-user"></i></a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Security</h3>
+                    <div><h5><a href="@Url.Action("ChangePassword","Account")" data-toggle="modal">Change your Password</a></h5></div>
+                    @*<div><h5><a href="#ChangeEmail" data-toggle="modal">Change your Email</a></h5></div>*@
+                    @*<h3 class="control-sidebar-heading">Accessibility Period</h3>
+                    <div><h5>Your online results will be accessible within @Model.retentionperiod days. <a href="@Url.Action("UpdateRetention","Results")" data-toggle="modal">Change.</a></h5></div>*@
+                    <ul class="control-sidebar-menu"></ul><!-- /.control-sidebar-menu -->
+                </div><!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+    <div class="modal fade" id="ChangeEmail" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Change your E-mail</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3 form-box">
+                            <center>
+                                @using (Html.BeginForm("ChangeEmail", "Account", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.PasswordFor(m => m.Email, new { @placeholder = "New E-mail Address", @class = "input-size inputuser" })
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Send Link</button>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                }
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Adminlte/AdminLTE_V2/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <script src="~/Adminlte/AdminLTE_V2/dist/js/app.min.js"></script>
+    <script src="~/Adminlte/AdminLTE_V2/dist/js/demo.js"></script>
+    <script src="~/Scripts/bootstrap3-wysihtml5.all.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+﻿@model WebPortal.Models.OPSViewModel
+
+<ul class="list-group row">
+
+    @foreach (var item in Model.patient_prev_surgeries)
+    {
+        <li class="list-group-item col-xs-12">
+            <h6>@Html.DisplayFor(model => item.previous_surgeries)</h6>
+        </li>
+
+    }
+</ul>
+
+<br />
+<br />
+

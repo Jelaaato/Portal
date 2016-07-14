@@ -1,0 +1,19 @@
+﻿@model WebPortal.Models.OPSViewModel
+
+<ul class="list-group row">
+    <li class="list-group-item col-xs-4"><h5>Allergen</h5></li>
+    <li class="list-group-item col-xs-4"><h5>Allergy Status</h5></li>
+    <li class="list-group-item col-xs-4"><h5>Adverse Reaction</h5></li>
+
+
+    @foreach (var item in Model.patient_allergies)
+    {
+
+        <li class="list-group-item col-xs-4 col-lg-4"><h6>@Html.DisplayFor(modelItem => item.allergen)</h6></li>
+
+        <li class="list-group-item col-xs-4 col-lg-4"><h6>@Html.DisplayFor(modelItem => item.allergy_status)</h6></li>
+
+        <li class="list-group-item col-xs-4 col-lg-4"><h6>@Html.DisplayFor(modelItem => item.adverse_reaction)</h6></li>
+
+    }
+</ul>

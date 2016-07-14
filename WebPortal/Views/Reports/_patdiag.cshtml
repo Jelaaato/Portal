@@ -1,0 +1,37 @@
+﻿@*@model WebPortal.Models.OPSViewModel
+
+<ul class="list-group row">
+
+
+    <li class="list-group-item col-xs-5"><h5>Diagnosis</h5></li>
+    <li class="list-group-item col-xs-2"><h5>Date Recorded</h5>
+    <li class="list-group-item col-xs-1"><h5>Code</h5></li>
+    <li class="list-group-item col-xs-2"><h5>Coding System</h5></li>
+    <li class="list-group-item col-xs-2"><h5>Coding Type</h5></li>
+
+
+    @foreach (var item in Model)
+    {
+
+        <li class="list-group-item col-xs-5">
+            <h6>@Html.DisplayFor(model => item.diagnosis)</h6>
+        </li>
+
+        <li class="list-group-item col-xs-2">
+            <h6> @Html.DisplayFor(model => item.recorded_at_date_time)</h6>
+        </li>
+
+        <li class="list-group-item col-xs-1">
+            <h6>@Html.DisplayFor(model => item.code)</h6>
+        </li>
+
+        <li class="list-group-item col-xs-2">
+            <h6>@Html.DisplayFor(model => item.coding_system_rcd)</h6>
+        </li>
+
+        <li class="list-group-item col-xs-2">
+            <h6> @Html.DisplayFor(model => item.coding_type)</h6>
+        </li>
+
+    }
+</ul>*@

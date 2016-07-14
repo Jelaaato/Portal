@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OPSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_allergies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="webportal_patient_allergies">
+          <Key>
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="patient_adverse_reaction_cause_id" />
+            <PropertyRef Name="adverse_reaction_cause_type" />
+            <PropertyRef Name="patient_adverse_reaction_cause_status_rcd" />
+            <PropertyRef Name="patient_adverse_reaction_cause_status" />
+          </Key>
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_adverse_reaction_cause_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="adverse_reaction_cause_type_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="adverse_reaction_cause_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="adverse_reaction_cause_rid" Type="uniqueidentifier" />
+          <Property Name="adverse_reaction_cause_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="adverse_reaction_cause_free_text" Type="nvarchar" MaxLength="150" />
+          <Property Name="adverse_reaction_cause" Type="nvarchar" MaxLength="150" />
+          <Property Name="patient_adverse_reaction_cause_status_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="patient_adverse_reaction_cause_status" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="allergen" Type="nvarchar" MaxLength="60" />
+          <Property Name="allergy_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="allergy_status" Type="nvarchar" MaxLength="150" />
+          <Property Name="adverse_reaction_rid" Type="uniqueidentifier" />
+          <Property Name="adverse_reaction_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="adverse_reaction_free_text" Type="nvarchar" MaxLength="512" />
+          <Property Name="adverse_reaction" Type="nvarchar" MaxLength="150" />
+          <Property Name="life_threatening_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="life_threatening_status" Type="nvarchar" MaxLength="60" />
+          <Property Name="dose_related_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="dose_related_status" Type="nvarchar" MaxLength="60" />
+          <Property Name="avoid_in_future_flag" Type="bit" />
+          <Property Name="patient_adverse_reaction_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="patient_adverse_reaction_status" Type="nvarchar" MaxLength="150" />
+          <Property Name="active_flag" Type="bit" />
+          <Property Name="allergic_reaction_flag" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_diagnosis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="webportal_patient_diagnosis">
+          <Key>
+            <PropertyRef Name="patient_medical_coding_id" />
+            <PropertyRef Name="patient_visit_id" />
+            <PropertyRef Name="diagnosis_type_rcd" />
+            <PropertyRef Name="diagnosis_type" />
+            <PropertyRef Name="coding_system_type_rcd" />
+            <PropertyRef Name="coding_system_type" />
+            <PropertyRef Name="coding_type" />
+            <PropertyRef Name="primary_flag" />
+            <PropertyRef Name="current_visit_diagnosis_flag" />
+            <PropertyRef Name="active_flag" />
+          </Key>
+          <Property Name="patient_medical_coding_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_visit_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="diagnosis_type_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="diagnosis_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="coding_system_type_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="coding_system_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="coding_type_rcd" Type="varchar" MaxLength="40" />
+          <Property Name="coding_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="coding_system_rcd" Type="varchar" MaxLength="40" />
+          <Property Name="code" Type="varchar" MaxLength="40" />
+          <Property Name="coding_name" Type="nvarchar(max)" />
+          <Property Name="coding_free_text" Type="nvarchar" MaxLength="3500" />
+          <Property Name="diagnosis" Type="nvarchar(max)" />
+          <Property Name="diagnosis_comment" Type="nvarchar" MaxLength="1500" />
+          <Property Name="coding_status_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="coding_status" Type="nvarchar" MaxLength="150" />
+          <Property Name="recorded_at_date_time" Type="datetime" />
+          <Property Name="inactive_date_time" Type="datetime" />
+          <Property Name="primary_flag" Type="bit" Nullable="false" />
+          <Property Name="current_visit_diagnosis_flag" Type="bit" Nullable="false" />
+          <Property Name="active_flag" Type="bit" Nullable="false" />
+          <Property Name="rank" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_medication' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="webportal_patient_medication">
+          <Key>
+            <PropertyRef Name="note_id" />
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="scope_type_rid" />
+            <PropertyRef Name="scope_type" />
+            <PropertyRef Name="note_date" />
+            <PropertyRef Name="active_flag" />
+          </Key>
+          <Property Name="note_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="scope_type_rid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="scope_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="details" Type="nvarchar(max)" />
+          <Property Name="reason_type_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="note_date" Type="datetime" Nullable="false" />
+          <Property Name="active_flag" Type="bit" Nullable="false" />
+          <Property Name="inactivate_date_time" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_hospitalization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="webportal_patient_prev_hospitalization">
+          <Key>
+            <PropertyRef Name="patient_visit_id" />
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="hospital_nr" />
+            <PropertyRef Name="gender_rcd" />
+            <PropertyRef Name="visit_code" />
+            <PropertyRef Name="visit_type_rcd" />
+            <PropertyRef Name="visit_type" />
+            <PropertyRef Name="charge_type_rcd" />
+            <PropertyRef Name="charge_type" />
+            <PropertyRef Name="primary_service_rcd" />
+            <PropertyRef Name="primary_service" />
+            <PropertyRef Name="created_by" />
+          </Key>
+          <Property Name="patient_visit_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="hospital_nr" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="first_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="middle_name_l" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="age" Type="int" />
+          <Property Name="gender_rcd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="150" />
+          <Property Name="visit_start_date_time" Type="datetime" />
+          <Property Name="visit_end_date_time" Type="datetime" />
+          <Property Name="cancelled_date_time" Type="datetime" />
+          <Property Name="visit_code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="visit_type_rcd" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="visit_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="charge_type_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="charge_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="primary_service_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="primary_service" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="created_by" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="webportal_patient_prev_surgeries">
+          <Key>
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="hospital_nr" />
+            <PropertyRef Name="nationality_rcd" />
+            <PropertyRef Name="nationality" />
+            <PropertyRef Name="residence_country_rcd" />
+            <PropertyRef Name="residence_country" />
+            <PropertyRef Name="religion_rcd" />
+            <PropertyRef Name="religion" />
+            <PropertyRef Name="ethnic_group" />
+            <PropertyRef Name="race_rcd" />
+            <PropertyRef Name="race" />
+          </Key>
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="hospital_nr" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="patient_name" Type="nvarchar" MaxLength="256" />
+          <Property Name="date_of_birth" Type="datetime" />
+          <Property Name="nationality_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="nationality" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="residence_country_rcd" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="residence_country" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="religion_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="religion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ethnic_group_rcd" Type="varchar" MaxLength="3" />
+          <Property Name="ethnic_group" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="race_rcd" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="race" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="previous_surgeries" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="OPSModelStoreContainer">
+          <EntitySet Name="webportal_patient_allergies" EntityType="Self.webportal_patient_allergies" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [webportal_patient_allergies].[patient_id] AS [patient_id], 
+    [webportal_patient_allergies].[patient_adverse_reaction_cause_id] AS [patient_adverse_reaction_cause_id], 
+    [webportal_patient_allergies].[adverse_reaction_cause_type_rcd] AS [adverse_reaction_cause_type_rcd], 
+    [webportal_patient_allergies].[adverse_reaction_cause_type] AS [adverse_reaction_cause_type], 
+    [webportal_patient_allergies].[adverse_reaction_cause_rid] AS [adverse_reaction_cause_rid], 
+    [webportal_patient_allergies].[adverse_reaction_cause_name] AS [adverse_reaction_cause_name], 
+    [webportal_patient_allergies].[adverse_reaction_cause_free_text] AS [adverse_reaction_cause_free_text], 
+    [webportal_patient_allergies].[adverse_reaction_cause] AS [adverse_reaction_cause], 
+    [webportal_patient_allergies].[patient_adverse_reaction_cause_status_rcd] AS [patient_adverse_reaction_cause_status_rcd], 
+    [webportal_patient_allergies].[patient_adverse_reaction_cause_status] AS [patient_adverse_reaction_cause_status], 
+    [webportal_patient_allergies].[allergen] AS [allergen], 
+    [webportal_patient_allergies].[allergy_status_rcd] AS [allergy_status_rcd], 
+    [webportal_patient_allergies].[allergy_status] AS [allergy_status], 
+    [webportal_patient_allergies].[adverse_reaction_rid] AS [adverse_reaction_rid], 
+    [webportal_patient_allergies].[adverse_reaction_name] AS [adverse_reaction_name], 
+    [webportal_patient_allergies].[adverse_reaction_free_text] AS [adverse_reaction_free_text], 
+    [webportal_patient_allergies].[adverse_reaction] AS [adverse_reaction], 
+    [webportal_patient_allergies].[life_threatening_status_rcd] AS [life_threatening_status_rcd], 
+    [webportal_patient_allergies].[life_threatening_status] AS [life_threatening_status], 
+    [webportal_patient_allergies].[dose_related_status_rcd] AS [dose_related_status_rcd], 
+    [webportal_patient_allergies].[dose_related_status] AS [dose_related_status], 
+    [webportal_patient_allergies].[avoid_in_future_flag] AS [avoid_in_future_flag], 
+    [webportal_patient_allergies].[patient_adverse_reaction_status_rcd] AS [patient_adverse_reaction_status_rcd], 
+    [webportal_patient_allergies].[patient_adverse_reaction_status] AS [patient_adverse_reaction_status], 
+    [webportal_patient_allergies].[active_flag] AS [active_flag], 
+    [webportal_patient_allergies].[allergic_reaction_flag] AS [allergic_reaction_flag]
+    FROM [dbo].[webportal_patient_allergies] AS [webportal_patient_allergies]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webportal_patient_diagnosis" EntityType="Self.webportal_patient_diagnosis" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [webportal_patient_diagnosis].[patient_medical_coding_id] AS [patient_medical_coding_id], 
+    [webportal_patient_diagnosis].[patient_visit_id] AS [patient_visit_id], 
+    [webportal_patient_diagnosis].[diagnosis_type_rcd] AS [diagnosis_type_rcd], 
+    [webportal_patient_diagnosis].[diagnosis_type] AS [diagnosis_type], 
+    [webportal_patient_diagnosis].[coding_system_type_rcd] AS [coding_system_type_rcd], 
+    [webportal_patient_diagnosis].[coding_system_type] AS [coding_system_type], 
+    [webportal_patient_diagnosis].[coding_type_rcd] AS [coding_type_rcd], 
+    [webportal_patient_diagnosis].[coding_type] AS [coding_type], 
+    [webportal_patient_diagnosis].[coding_system_rcd] AS [coding_system_rcd], 
+    [webportal_patient_diagnosis].[code] AS [code], 
+    [webportal_patient_diagnosis].[coding_name] AS [coding_name], 
+    [webportal_patient_diagnosis].[coding_free_text] AS [coding_free_text], 
+    [webportal_patient_diagnosis].[diagnosis] AS [diagnosis], 
+    [webportal_patient_diagnosis].[diagnosis_comment] AS [diagnosis_comment], 
+    [webportal_patient_diagnosis].[coding_status_rcd] AS [coding_status_rcd], 
+    [webportal_patient_diagnosis].[coding_status] AS [coding_status], 
+    [webportal_patient_diagnosis].[recorded_at_date_time] AS [recorded_at_date_time], 
+    [webportal_patient_diagnosis].[inactive_date_time] AS [inactive_date_time], 
+    [webportal_patient_diagnosis].[primary_flag] AS [primary_flag], 
+    [webportal_patient_diagnosis].[current_visit_diagnosis_flag] AS [current_visit_diagnosis_flag], 
+    [webportal_patient_diagnosis].[active_flag] AS [active_flag], 
+    [webportal_patient_diagnosis].[rank] AS [rank]
+    FROM [dbo].[webportal_patient_diagnosis] AS [webportal_patient_diagnosis]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webportal_patient_medication" EntityType="Self.webportal_patient_medication" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [webportal_patient_medication].[note_id] AS [note_id], 
+    [webportal_patient_medication].[patient_id] AS [patient_id], 
+    [webportal_patient_medication].[scope_type_rid] AS [scope_type_rid], 
+    [webportal_patient_medication].[scope_type] AS [scope_type], 
+    [webportal_patient_medication].[details] AS [details], 
+    [webportal_patient_medication].[reason_type_rcd] AS [reason_type_rcd], 
+    [webportal_patient_medication].[note_date] AS [note_date], 
+    [webportal_patient_medication].[active_flag] AS [active_flag], 
+    [webportal_patient_medication].[inactivate_date_time] AS [inactivate_date_time]
+    FROM [dbo].[webportal_patient_medication] AS [webportal_patient_medication]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webportal_patient_prev_hospitalization" EntityType="Self.webportal_patient_prev_hospitalization" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [webportal_patient_prev_hospitalization].[patient_visit_id] AS [patient_visit_id], 
+    [webportal_patient_prev_hospitalization].[patient_id] AS [patient_id], 
+    [webportal_patient_prev_hospitalization].[hospital_nr] AS [hospital_nr], 
+    [webportal_patient_prev_hospitalization].[last_name_l] AS [last_name_l], 
+    [webportal_patient_prev_hospitalization].[first_name_l] AS [first_name_l], 
+    [webportal_patient_prev_hospitalization].[middle_name_l] AS [middle_name_l], 
+    [webportal_patient_prev_hospitalization].[date_of_birth] AS [date_of_birth], 
+    [webportal_patient_prev_hospitalization].[age] AS [age], 
+    [webportal_patient_prev_hospitalization].[gender_rcd] AS [gender_rcd], 
+    [webportal_patient_prev_hospitalization].[gender] AS [gender], 
+    [webportal_patient_prev_hospitalization].[visit_start_date_time] AS [visit_start_date_time], 
+    [webportal_patient_prev_hospitalization].[visit_end_date_time] AS [visit_end_date_time], 
+    [webportal_patient_prev_hospitalization].[cancelled_date_time] AS [cancelled_date_time], 
+    [webportal_patient_prev_hospitalization].[visit_code] AS [visit_code], 
+    [webportal_patient_prev_hospitalization].[visit_type_rcd] AS [visit_type_rcd], 
+    [webportal_patient_prev_hospitalization].[visit_type] AS [visit_type], 
+    [webportal_patient_prev_hospitalization].[charge_type_rcd] AS [charge_type_rcd], 
+    [webportal_patient_prev_hospitalization].[charge_type] AS [charge_type], 
+    [webportal_patient_prev_hospitalization].[primary_service_rcd] AS [primary_service_rcd], 
+    [webportal_patient_prev_hospitalization].[primary_service] AS [primary_service], 
+    [webportal_patient_prev_hospitalization].[created_by] AS [created_by]
+    FROM [dbo].[webportal_patient_prev_hospitalization] AS [webportal_patient_prev_hospitalization]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webportal_patient_prev_surgeries" EntityType="Self.webportal_patient_prev_surgeries" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [webportal_patient_prev_surgeries].[patient_id] AS [patient_id], 
+    [webportal_patient_prev_surgeries].[hospital_nr] AS [hospital_nr], 
+    [webportal_patient_prev_surgeries].[patient_name] AS [patient_name], 
+    [webportal_patient_prev_surgeries].[date_of_birth] AS [date_of_birth], 
+    [webportal_patient_prev_surgeries].[nationality_rcd] AS [nationality_rcd], 
+    [webportal_patient_prev_surgeries].[nationality] AS [nationality], 
+    [webportal_patient_prev_surgeries].[residence_country_rcd] AS [residence_country_rcd], 
+    [webportal_patient_prev_surgeries].[residence_country] AS [residence_country], 
+    [webportal_patient_prev_surgeries].[religion_rcd] AS [religion_rcd], 
+    [webportal_patient_prev_surgeries].[religion] AS [religion], 
+    [webportal_patient_prev_surgeries].[ethnic_group_rcd] AS [ethnic_group_rcd], 
+    [webportal_patient_prev_surgeries].[ethnic_group] AS [ethnic_group], 
+    [webportal_patient_prev_surgeries].[race_rcd] AS [race_rcd], 
+    [webportal_patient_prev_surgeries].[race] AS [race], 
+    [webportal_patient_prev_surgeries].[previous_surgeries] AS [previous_surgeries]
+    FROM [dbo].[webportal_patient_prev_surgeries] AS [webportal_patient_prev_surgeries]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OPSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="webportal_patient_allergies">
+          <Key>
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="patient_adverse_reaction_cause_id" />
+            <PropertyRef Name="adverse_reaction_cause_type" />
+            <PropertyRef Name="patient_adverse_reaction_cause_status_rcd" />
+            <PropertyRef Name="patient_adverse_reaction_cause_status" />
+          </Key>
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_adverse_reaction_cause_id" Type="Guid" Nullable="false" />
+          <Property Name="adverse_reaction_cause_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="adverse_reaction_cause_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="adverse_reaction_cause_rid" Type="Guid" />
+          <Property Name="adverse_reaction_cause_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction_cause_free_text" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction_cause" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="patient_adverse_reaction_cause_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patient_adverse_reaction_cause_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="allergen" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="allergy_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="allergy_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction_rid" Type="Guid" />
+          <Property Name="adverse_reaction_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction_free_text" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="life_threatening_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="life_threatening_status" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="dose_related_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="dose_related_status" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="avoid_in_future_flag" Type="Boolean" />
+          <Property Name="patient_adverse_reaction_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="patient_adverse_reaction_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="active_flag" Type="Boolean" />
+          <Property Name="allergic_reaction_flag" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="webportal_patient_diagnosis">
+          <Key>
+            <PropertyRef Name="patient_medical_coding_id" />
+            <PropertyRef Name="patient_visit_id" />
+            <PropertyRef Name="diagnosis_type_rcd" />
+            <PropertyRef Name="diagnosis_type" />
+            <PropertyRef Name="coding_system_type_rcd" />
+            <PropertyRef Name="coding_system_type" />
+            <PropertyRef Name="coding_type" />
+            <PropertyRef Name="primary_flag" />
+            <PropertyRef Name="current_visit_diagnosis_flag" />
+            <PropertyRef Name="active_flag" />
+          </Key>
+          <Property Name="patient_medical_coding_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_visit_id" Type="Guid" Nullable="false" />
+          <Property Name="diagnosis_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="diagnosis_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coding_system_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="coding_system_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coding_type_rcd" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="coding_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coding_system_rcd" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="coding_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="coding_free_text" Type="String" MaxLength="3500" FixedLength="false" Unicode="true" />
+          <Property Name="diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="diagnosis_comment" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="coding_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="coding_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="recorded_at_date_time" Type="DateTime" Precision="3" />
+          <Property Name="inactive_date_time" Type="DateTime" Precision="3" />
+          <Property Name="primary_flag" Type="Boolean" Nullable="false" />
+          <Property Name="current_visit_diagnosis_flag" Type="Boolean" Nullable="false" />
+          <Property Name="active_flag" Type="Boolean" Nullable="false" />
+          <Property Name="rank" Type="Int64" />
+        </EntityType>
+        <EntityType Name="webportal_patient_medication">
+          <Key>
+            <PropertyRef Name="note_id" />
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="scope_type_rid" />
+            <PropertyRef Name="scope_type" />
+            <PropertyRef Name="note_date" />
+            <PropertyRef Name="active_flag" />
+          </Key>
+          <Property Name="note_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="scope_type_rid" Type="Guid" Nullable="false" />
+          <Property Name="scope_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reason_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="note_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="active_flag" Type="Boolean" Nullable="false" />
+          <Property Name="inactivate_date_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webportal_patient_prev_hospitalization">
+          <Key>
+            <PropertyRef Name="patient_visit_id" />
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="hospital_nr" />
+            <PropertyRef Name="gender_rcd" />
+            <PropertyRef Name="visit_code" />
+            <PropertyRef Name="visit_type_rcd" />
+            <PropertyRef Name="visit_type" />
+            <PropertyRef Name="charge_type_rcd" />
+            <PropertyRef Name="charge_type" />
+            <PropertyRef Name="primary_service_rcd" />
+            <PropertyRef Name="primary_service" />
+            <PropertyRef Name="created_by" />
+          </Key>
+          <Property Name="patient_visit_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="hospital_nr" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="first_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="middle_name_l" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="gender_rcd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="visit_start_date_time" Type="DateTime" Precision="3" />
+          <Property Name="visit_end_date_time" Type="DateTime" Precision="3" />
+          <Property Name="cancelled_date_time" Type="DateTime" Precision="3" />
+          <Property Name="visit_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="visit_type_rcd" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="visit_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="charge_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="charge_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="primary_service_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="primary_service" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_by" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webportal_patient_prev_surgeries">
+          <Key>
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="hospital_nr" />
+            <PropertyRef Name="nationality_rcd" />
+            <PropertyRef Name="nationality" />
+            <PropertyRef Name="residence_country_rcd" />
+            <PropertyRef Name="residence_country" />
+            <PropertyRef Name="religion_rcd" />
+            <PropertyRef Name="religion" />
+            <PropertyRef Name="ethnic_group" />
+            <PropertyRef Name="race_rcd" />
+            <PropertyRef Name="race" />
+          </Key>
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="hospital_nr" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patient_name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="3" />
+          <Property Name="nationality_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nationality" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="residence_country_rcd" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="residence_country" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="religion_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="religion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ethnic_group_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ethnic_group" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="race_rcd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="race" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="previous_surgeries" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="OPSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="webportal_patient_allergies" EntityType="Self.webportal_patient_allergies" />
+          <EntitySet Name="webportal_patient_diagnosis" EntityType="Self.webportal_patient_diagnosis" />
+          <EntitySet Name="webportal_patient_medication" EntityType="Self.webportal_patient_medication" />
+          <EntitySet Name="webportal_patient_prev_hospitalization" EntityType="Self.webportal_patient_prev_hospitalization" />
+          <EntitySet Name="webportal_patient_prev_surgeries" EntityType="Self.webportal_patient_prev_surgeries" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OPSModelStoreContainer" CdmEntityContainer="OPSEntities">
+          <EntitySetMapping Name="webportal_patient_allergies">
+            <EntityTypeMapping TypeName="OPSModel.webportal_patient_allergies">
+              <MappingFragment StoreEntitySet="webportal_patient_allergies">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="patient_adverse_reaction_cause_id" ColumnName="patient_adverse_reaction_cause_id" />
+                <ScalarProperty Name="adverse_reaction_cause_type_rcd" ColumnName="adverse_reaction_cause_type_rcd" />
+                <ScalarProperty Name="adverse_reaction_cause_type" ColumnName="adverse_reaction_cause_type" />
+                <ScalarProperty Name="adverse_reaction_cause_rid" ColumnName="adverse_reaction_cause_rid" />
+                <ScalarProperty Name="adverse_reaction_cause_name" ColumnName="adverse_reaction_cause_name" />
+                <ScalarProperty Name="adverse_reaction_cause_free_text" ColumnName="adverse_reaction_cause_free_text" />
+                <ScalarProperty Name="adverse_reaction_cause" ColumnName="adverse_reaction_cause" />
+                <ScalarProperty Name="patient_adverse_reaction_cause_status_rcd" ColumnName="patient_adverse_reaction_cause_status_rcd" />
+                <ScalarProperty Name="patient_adverse_reaction_cause_status" ColumnName="patient_adverse_reaction_cause_status" />
+                <ScalarProperty Name="allergen" ColumnName="allergen" />
+                <ScalarProperty Name="allergy_status_rcd" ColumnName="allergy_status_rcd" />
+                <ScalarProperty Name="allergy_status" ColumnName="allergy_status" />
+                <ScalarProperty Name="adverse_reaction_rid" ColumnName="adverse_reaction_rid" />
+                <ScalarProperty Name="adverse_reaction_name" ColumnName="adverse_reaction_name" />
+                <ScalarProperty Name="adverse_reaction_free_text" ColumnName="adverse_reaction_free_text" />
+                <ScalarProperty Name="adverse_reaction" ColumnName="adverse_reaction" />
+                <ScalarProperty Name="life_threatening_status_rcd" ColumnName="life_threatening_status_rcd" />
+                <ScalarProperty Name="life_threatening_status" ColumnName="life_threatening_status" />
+                <ScalarProperty Name="dose_related_status_rcd" ColumnName="dose_related_status_rcd" />
+                <ScalarProperty Name="dose_related_status" ColumnName="dose_related_status" />
+                <ScalarProperty Name="avoid_in_future_flag" ColumnName="avoid_in_future_flag" />
+                <ScalarProperty Name="patient_adverse_reaction_status_rcd" ColumnName="patient_adverse_reaction_status_rcd" />
+                <ScalarProperty Name="patient_adverse_reaction_status" ColumnName="patient_adverse_reaction_status" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="allergic_reaction_flag" ColumnName="allergic_reaction_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webportal_patient_diagnosis">
+            <EntityTypeMapping TypeName="OPSModel.webportal_patient_diagnosis">
+              <MappingFragment StoreEntitySet="webportal_patient_diagnosis">
+                <ScalarProperty Name="patient_medical_coding_id" ColumnName="patient_medical_coding_id" />
+                <ScalarProperty Name="patient_visit_id" ColumnName="patient_visit_id" />
+                <ScalarProperty Name="diagnosis_type_rcd" ColumnName="diagnosis_type_rcd" />
+                <ScalarProperty Name="diagnosis_type" ColumnName="diagnosis_type" />
+                <ScalarProperty Name="coding_system_type_rcd" ColumnName="coding_system_type_rcd" />
+                <ScalarProperty Name="coding_system_type" ColumnName="coding_system_type" />
+                <ScalarProperty Name="coding_type_rcd" ColumnName="coding_type_rcd" />
+                <ScalarProperty Name="coding_type" ColumnName="coding_type" />
+                <ScalarProperty Name="coding_system_rcd" ColumnName="coding_system_rcd" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="coding_name" ColumnName="coding_name" />
+                <ScalarProperty Name="coding_free_text" ColumnName="coding_free_text" />
+                <ScalarProperty Name="diagnosis" ColumnName="diagnosis" />
+                <ScalarProperty Name="diagnosis_comment" ColumnName="diagnosis_comment" />
+                <ScalarProperty Name="coding_status_rcd" ColumnName="coding_status_rcd" />
+                <ScalarProperty Name="coding_status" ColumnName="coding_status" />
+                <ScalarProperty Name="recorded_at_date_time" ColumnName="recorded_at_date_time" />
+                <ScalarProperty Name="inactive_date_time" ColumnName="inactive_date_time" />
+                <ScalarProperty Name="primary_flag" ColumnName="primary_flag" />
+                <ScalarProperty Name="current_visit_diagnosis_flag" ColumnName="current_visit_diagnosis_flag" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="rank" ColumnName="rank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webportal_patient_medication">
+            <EntityTypeMapping TypeName="OPSModel.webportal_patient_medication">
+              <MappingFragment StoreEntitySet="webportal_patient_medication">
+                <ScalarProperty Name="note_id" ColumnName="note_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="scope_type_rid" ColumnName="scope_type_rid" />
+                <ScalarProperty Name="scope_type" ColumnName="scope_type" />
+                <ScalarProperty Name="details" ColumnName="details" />
+                <ScalarProperty Name="reason_type_rcd" ColumnName="reason_type_rcd" />
+                <ScalarProperty Name="note_date" ColumnName="note_date" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="inactivate_date_time" ColumnName="inactivate_date_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webportal_patient_prev_hospitalization">
+            <EntityTypeMapping TypeName="OPSModel.webportal_patient_prev_hospitalization">
+              <MappingFragment StoreEntitySet="webportal_patient_prev_hospitalization">
+                <ScalarProperty Name="patient_visit_id" ColumnName="patient_visit_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="hospital_nr" ColumnName="hospital_nr" />
+                <ScalarProperty Name="last_name_l" ColumnName="last_name_l" />
+                <ScalarProperty Name="first_name_l" ColumnName="first_name_l" />
+                <ScalarProperty Name="middle_name_l" ColumnName="middle_name_l" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="gender_rcd" ColumnName="gender_rcd" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="visit_start_date_time" ColumnName="visit_start_date_time" />
+                <ScalarProperty Name="visit_end_date_time" ColumnName="visit_end_date_time" />
+                <ScalarProperty Name="cancelled_date_time" ColumnName="cancelled_date_time" />
+                <ScalarProperty Name="visit_code" ColumnName="visit_code" />
+                <ScalarProperty Name="visit_type_rcd" ColumnName="visit_type_rcd" />
+                <ScalarProperty Name="visit_type" ColumnName="visit_type" />
+                <ScalarProperty Name="charge_type_rcd" ColumnName="charge_type_rcd" />
+                <ScalarProperty Name="charge_type" ColumnName="charge_type" />
+                <ScalarProperty Name="primary_service_rcd" ColumnName="primary_service_rcd" />
+                <ScalarProperty Name="primary_service" ColumnName="primary_service" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webportal_patient_prev_surgeries">
+            <EntityTypeMapping TypeName="OPSModel.webportal_patient_prev_surgeries">
+              <MappingFragment StoreEntitySet="webportal_patient_prev_surgeries">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="hospital_nr" ColumnName="hospital_nr" />
+                <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="nationality_rcd" ColumnName="nationality_rcd" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="residence_country_rcd" ColumnName="residence_country_rcd" />
+                <ScalarProperty Name="residence_country" ColumnName="residence_country" />
+                <ScalarProperty Name="religion_rcd" ColumnName="religion_rcd" />
+                <ScalarProperty Name="religion" ColumnName="religion" />
+                <ScalarProperty Name="ethnic_group_rcd" ColumnName="ethnic_group_rcd" />
+                <ScalarProperty Name="ethnic_group" ColumnName="ethnic_group" />
+                <ScalarProperty Name="race_rcd" ColumnName="race_rcd" />
+                <ScalarProperty Name="race" ColumnName="race" />
+                <ScalarProperty Name="previous_surgeries" ColumnName="previous_surgeries" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

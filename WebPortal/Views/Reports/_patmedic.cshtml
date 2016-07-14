@@ -1,0 +1,21 @@
+﻿@model WebPortal.Models.OPSViewModel
+
+<ul class="list-group row">
+
+
+    <li class="list-group-item col-xs-6"><h5>Date</h5></li>
+    <li class="list-group-item col-xs-6"><h5>Details</h5></li>
+
+    @foreach (var item in Model.patient_medication)
+    {
+        <li class="list-group-item col-xs-6">
+            <h6>@Html.DisplayFor(model => item.note_date)</h6>
+        </li>
+        <li class="list-group-item col-xs-6">
+            <h6>@Html.DisplayFor(model => item.details)</h6>
+        </li>
+
+    }
+</ul>
+<br />
+<br />

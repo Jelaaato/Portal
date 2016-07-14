@@ -19,6 +19,12 @@ namespace WebPortal.Controllers
         private RetentionEntities db = new RetentionEntities();
 
         [Authorize]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize]
         public ActionResult Laboratory(string fileid, bool? isvalidated)
         {
             ResultModel rmodel = new ResultModel();
