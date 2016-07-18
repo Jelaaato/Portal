@@ -90,15 +90,14 @@
             <div class="menu-wrapper" id="menu">
                 <div style="margin-top:6%;">
                     <div class="col-sm-4 col-lg-push-1"><a href="@Url.Action("Index","Reports")"><img src="~/Images/PatientHomePage/homepage_reports.png" class="menu-icon" /></a></div>
-                    <div class="col-sm-4 col-lg-push-1"><a href="@Url.Action("Index","Sample")"><img src="~/Images/PatientHomePage/homepage_reports.png" class="menu-icon" /></a></div>
                 </div>
             </div>
         }
-        else
+        else if (User.IsInRole("Doctor"))
         {
             <div class="menu-wrapper" id="menu">
                 <div style="margin-top:6%;">
-                    @*<div class="col-sm-4 col-lg-push-1"><a href="#"><img src="~/Images/Employee_icons/Doctors_Entry.png" class="menu-icon" /></a></div>*@
+                    <div class="col-sm-4 col-lg-push-1"><a href="@Url.Action("Index","Results")"><img src="~/Images/PatientHomePage/homepage_results.png" class="menu-icon" /></a></div>
                 </div>
             </div>
         }

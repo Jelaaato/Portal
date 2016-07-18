@@ -1,4 +1,4 @@
-﻿
+﻿@model WebPortal.Models.OPSViewModel
 @{
     ViewBag.Title = "OutpatientMedicalCareProfile";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
@@ -37,5 +37,67 @@
                 </form>
             </div>
         </div>
+    </div>
+    <ul class="nav nav-tabs" id="tabs">
+        <li class="active"><a class="bold" href="#allergy" data-toggle="tab">Patient's Allergy</a></li>
+        <li><a class="bold" href="#medic" data-toggle="tab">Patient's Medication</a></li>
+        @*<li><a class="bold" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>*@
+        <li><a class="bold" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
+        <li><a class="bold" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
+    </ul>
+    <div class="tab-content col-xs-12">
+
+        <div class="tab-pane fade in active" id="allergy">
+                @if (Model.patient_allergies.Count() != 0)
+                {
+                    @Html.Partial("_patallergy", Model)
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
+            <div class="tab-pane fade in" id="medic">
+                @if (Model.patient_medication.Count() != 0)
+                {
+                    @Html.Partial("_patmedic", Model)
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
+            @*<div class="tab-pane fade" id="diag">
+                @if (Model.patient_visit_diagnosis.Count() != 0)
+                {
+                    @Html.Partial("_patdiag", Model)
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>*@
+
+            <div class="tab-pane fade" id="surg">
+                @if (Model.patient_prev_surgeries.Count() != 0)
+                {
+                    @Html.Partial("_prevsurg", Model)
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
+            <div class="tab-pane fade" id="hosp">
+                @if (Model.patient_prev_hospitalization.Count() != 0)
+                {
+                    @Html.Partial("_prevhosp", Model)
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+
+            </div>
     </div>
 </div>

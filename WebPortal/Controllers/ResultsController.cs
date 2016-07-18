@@ -29,10 +29,10 @@ namespace WebPortal.Controllers
         {
             ResultModel rmodel = new ResultModel();
             var currentuser = User.Identity.GetUserName().ToString();
+
             string samplecurrentuser = User.Identity.GetUserName().ToString();
             string path = Server.MapPath("~/PDFResults/");
             DirectoryInfo dir = new DirectoryInfo(path);
-
             int period = db.PortalRetention.Where(a => a.Module == "Results").Select(a => a.Retention_Period).First();
             DateTime minDate = DateTime.Today.AddDays(period);
             rmodel.PDFFile = dir.GetFiles("*.pdf*").Where(a => a.Name.Contains(samplecurrentuser) && (a.CreationTime > minDate));

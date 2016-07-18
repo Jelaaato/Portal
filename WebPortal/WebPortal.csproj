@@ -349,6 +349,7 @@
     <Compile Include="Models\PortalRetention.cs">
       <DependentUpon>RetentionModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReportsModel.cs" />
     <Compile Include="Models\RetentionModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
