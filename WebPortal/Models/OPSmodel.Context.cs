@@ -13,18 +13,11 @@ namespace WebPortal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OPSEntities : DbContext
+    public partial class OPSModelEntities : DbContext
     {
-        public OPSEntities()
-            : base("name=OPSEntities")
+        public OPSModelEntities()
+            : base("name=OPSModelEntities")
         {
-            this.SetCommandTimeOut(300);
-        }
-
-        public void SetCommandTimeOut(int timeout)
-        {
-            var objContext = (this as IObjectContextAdapter).ObjectContext;
-            objContext.CommandTimeout = timeout;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

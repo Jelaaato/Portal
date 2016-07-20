@@ -1,4 +1,4 @@
-﻿@*@model WebPortal.Models.OPSViewModel
+﻿@model WebPortal.Models.OPSViewModel
 
 <ul class="list-group row">
 
@@ -10,7 +10,7 @@
     <li class="list-group-item col-xs-2"><h5>Coding Type</h5></li>
 
 
-    @foreach (var item in Model)
+    @foreach(var item in Model.patient_diagnosis)
     {
 
         <li class="list-group-item col-xs-5">
@@ -34,4 +34,4 @@
         </li>
 
     }
-</ul>*@
+</ul>

@@ -14,14 +14,9 @@ namespace WebPortal.Models
     
     public partial class webportal_patient_medication
     {
-        public System.Guid note_id { get; set; }
         public System.Guid patient_id { get; set; }
         public System.Guid scope_type_rid { get; set; }
-        public string scope_type { get; set; }
         public string details { get; set; }
-        public string reason_type_rcd { get; set; }
         public System.DateTime note_date { get; set; }
-        public bool active_flag { get; set; }
-        public Nullable<System.DateTime> inactivate_date_time { get; set; }
     }
 }

@@ -14,27 +14,13 @@ namespace WebPortal.Models
     
     public partial class webportal_patient_diagnosis
     {
-        public System.Guid patient_medical_coding_id { get; set; }
-        public System.Guid patient_visit_id { get; set; }
-        public string diagnosis_type_rcd { get; set; }
-        public string diagnosis_type { get; set; }
-        public string coding_system_type_rcd { get; set; }
-        public string coding_system_type { get; set; }
+        public System.Guid patient_id { get; set; }
         public string coding_type_rcd { get; set; }
         public string coding_type { get; set; }
         public string coding_system_rcd { get; set; }
         public string code { get; set; }
-        public string coding_name { get; set; }
-        public string coding_free_text { get; set; }
         public string diagnosis { get; set; }
-        public string diagnosis_comment { get; set; }
-        public string coding_status_rcd { get; set; }
-        public string coding_status { get; set; }
         public Nullable<System.DateTime> recorded_at_date_time { get; set; }
-        public Nullable<System.DateTime> inactive_date_time { get; set; }
-        public bool primary_flag { get; set; }
-        public bool current_visit_diagnosis_flag { get; set; }
         public bool active_flag { get; set; }
-        public Nullable<long> rank { get; set; }
     }
 }

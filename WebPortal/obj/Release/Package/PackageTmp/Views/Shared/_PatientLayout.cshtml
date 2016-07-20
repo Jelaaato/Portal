@@ -1,9 +1,4 @@
-﻿@model WebPortal.Models.ResultModel
-
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -65,51 +60,15 @@
         <aside class="main-sidebar hidden-xs">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                <center>
-                    <div class="jumbotron jumbotron-margin-top" style="background-color:#F9FAFC">
-                        <img src="~/Images/Results_icons/results_nobox.png" class="sidebar-results-img"/>
-                        <div class="sidebar-main-text">Results</div>
-                        <br />
-                        <div class="sidebar-sub-text">Access your laboratory results 24 hours after the test.</div>
-                        <div class="sidebar-sub-text">Set the period of accessibility of your results in settings.</div>
-                    </div>
-                </center>
+                @RenderSection("results", required:false)
             </section>
             <!-- /.sidebar -->
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            @*<section class="content-header">
-                <a href="#" id="lab" onclick="hide(lab)">Laboratory</a>
-            </section>*@
             <!-- Main content -->
             <section class="content">
-                <!-- Main row -->
-                <div class="row">
-                    <a href="@Url.Action("Laboratory", "Results")">
-                        <div class="col-lg-12 col-md-12 col-xs-12 laboratory">
-                            <center><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><img src="~/Images/Results_icons/laboratory_icon.png" class="results_icons" /></div></center>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="results_text">Laboratory</div></div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <a href="@Url.Action("Radiology", "Results")">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radiology">
-                            <center><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><img src="~/Images/Results_icons/radiology_icon.png" class="results_icons" /></div></center>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="results_text">Radiology</div></div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <a href="@Url.Action("Diagnosis", "Results")">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 diagnosis">
-                            <center><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><img src="~/Images/Results_icons/diagnosis_icon.png" class="results_icons" /></div></center>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="results_text">Diagnosis</div></div>
-                        </div>
-                    </a>
-                </div>
+                @RenderBody()
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
         <aside class="control-sidebar control-sidebar-light">
@@ -143,7 +102,7 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
-    <script>
+    @*<script>
     document.getElementById("ShowLab").onclick = function () { ViewResults() };
     function ViewResults() {
         $("#Results").load("@Url.Action("Laboratory", "Results")");
@@ -167,6 +126,6 @@
                 }
             });
         });
-    </script>
+    </script>*@
 </body>
 </html>

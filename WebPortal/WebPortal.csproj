@@ -289,20 +289,20 @@
     <Compile Include="Models\job_type.cs">
       <DependentUpon>EmployeeandDoctorUserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OPSmodel.Context.cs">
+    <Compile Include="Models\OPSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OPSmodel.Context.tt</DependentUpon>
+      <DependentUpon>OPSModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OPSmodel.cs">
+    <Compile Include="Models\OPSModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OPSmodel.tt</DependentUpon>
+      <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OPSmodel.Designer.cs">
+    <Compile Include="Models\OPSModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OPSmodel.edmx</DependentUpon>
+      <DependentUpon>OPSModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\OPSViewModel.cs" />
     <Compile Include="Models\PatientUserModel.Context.cs">
@@ -366,19 +366,19 @@
       <DependentUpon>RetentionModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\webportal_patient_allergies.cs">
-      <DependentUpon>OPSmodel.tt</DependentUpon>
+      <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webportal_patient_diagnosis.cs">
-      <DependentUpon>OPSmodel.tt</DependentUpon>
+      <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webportal_patient_medication.cs">
-      <DependentUpon>OPSmodel.tt</DependentUpon>
+      <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webportal_patient_prev_hospitalization.cs">
-      <DependentUpon>OPSmodel.tt</DependentUpon>
+      <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webportal_patient_prev_surgeries.cs">
-      <DependentUpon>OPSmodel.tt</DependentUpon>
+      <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -401,7 +401,7 @@
     <Content Include="Images\Admin_icons\Admins_audit_trail_nobox.png" />
     <Content Include="Images\Admin_icons\Admins_delete_users_nobox.png" />
     <Content Include="Images\Admin_icons\Admins_settings_nobox.png" />
-    <Content Include="Images\Reports\reports_nobox.png" />
+    <Content Include="Images\Reports_icons\reports_nobox.png" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\bootstrap3-wysihtml5.css" />
@@ -734,22 +734,22 @@
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Content\datepicker.less" />
-    <EntityDeploy Include="Models\OPSmodel.edmx">
+    <EntityDeploy Include="Models\OPSModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OPSmodel.Designer.cs</LastGenOutput>
+      <LastGenOutput>OPSModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\OPSmodel.Context.tt">
+    <Content Include="Models\OPSModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OPSmodel.edmx</DependentUpon>
-      <LastGenOutput>OPSmodel.Context.cs</LastGenOutput>
+      <DependentUpon>OPSModel.edmx</DependentUpon>
+      <LastGenOutput>OPSModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\OPSmodel.edmx.diagram">
-      <DependentUpon>OPSmodel.edmx</DependentUpon>
+    <Content Include="Models\OPSModel.edmx.diagram">
+      <DependentUpon>OPSModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\OPSmodel.tt">
+    <Content Include="Models\OPSModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OPSmodel.edmx</DependentUpon>
-      <LastGenOutput>OPSmodel.cs</LastGenOutput>
+      <DependentUpon>OPSModel.edmx</DependentUpon>
+      <LastGenOutput>OPSModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\PortalPublish1.pubxml" />
     <None Include="Properties\PublishProfiles\PublishWebPortal.pubxml" />

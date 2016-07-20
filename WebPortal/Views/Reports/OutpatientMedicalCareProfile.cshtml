@@ -8,7 +8,7 @@
     <section>
         <center>
             <div class="jumbotron jumbotron-margin-top" style="background-color:#F9FAFC">
-                <img src="~/Images/Reports/reports_nobox.png" width="197" height="259" class="sidebar-results-img" />
+                <img src="~/Images/Reports_icons/reports_nobox.png" width="197" height="259" class="sidebar-results-img" />
                 <div class="sidebar-main-text">Reports</div>
                 <br />
             </div>
@@ -25,79 +25,80 @@
             </div>
             <div class="col-xs-4 col-xs-push-2">
                 <br />
-                <form class="form">
-                    @using (Html.BeginForm("Index", "Reports", FormMethod.Get))
+                @*<form class="form">*@
+                    @using (Html.BeginForm("OutpatientMedicalCareProfile", "Reports", FormMethod.Post))
                     {  <div class=" form-group">
                         @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Enter Hospital Number", @class = "form-control" })
                     </div>
                         <div class="form-group">
-                            <input class="btn btn-success" type="submit" value="Search" id="btnclick" />
+                            <input class="btn btn-success" type="submit" value="Search"/>
                         </div>
                     }
-                </form>
+                @*</form>*@
             </div>
         </div>
     </div>
     <ul class="nav nav-tabs" id="tabs">
         <li class="active"><a class="bold" href="#allergy" data-toggle="tab">Patient's Allergy</a></li>
         <li><a class="bold" href="#medic" data-toggle="tab">Patient's Medication</a></li>
-        @*<li><a class="bold" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>*@
+        <li><a class="bold" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>
         <li><a class="bold" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
         <li><a class="bold" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
     </ul>
     <div class="tab-content col-xs-12">
 
         <div class="tab-pane fade in active" id="allergy">
-                @if (Model.patient_allergies.Count() != 0)
-                {
-                    @Html.Partial("_patallergy", Model)
-                }
-                else
-                {
-                    <h4 style="padding:5px;">No records found.</h4>
-                }
-            </div>
-            <div class="tab-pane fade in" id="medic">
-                @if (Model.patient_medication.Count() != 0)
-                {
-                    @Html.Partial("_patmedic", Model)
-                }
-                else
-                {
-                    <h4 style="padding:5px;">No records found.</h4>
-                }
-            </div>
-            @*<div class="tab-pane fade" id="diag">
-                @if (Model.patient_visit_diagnosis.Count() != 0)
-                {
-                    @Html.Partial("_patdiag", Model)
-                }
-                else
-                {
-                    <h4 style="padding:5px;">No records found.</h4>
-                }
-            </div>*@
+            @if (ViewBag.Successful == "true")
+            {
+                @Html.Partial("_patallergy", Model)
+            }
+            else
+            {
+                <h4 style="padding:5px;">No records found.</h4>
+            }
+        </div>
+        <div class="tab-pane fade in" id="medic">
+            @if (ViewBag.Successful == "true")
+            {
+                @Html.Partial("_patmedic", Model)
+            }
+            else
+            {
+                <h4 style="padding:5px;">No records found.</h4>
+            }
+        </div>
+        <div class="tab-pane fade" id="diag">
+            @if (ViewBag.Successful == "true")
+            {
+                @Html.Partial("_patdiag", Model)
+            }
+            else
+            {
+                <h4 style="padding:5px;">No records found.</h4>
+            }
+        </div>
 
-            <div class="tab-pane fade" id="surg">
-                @if (Model.patient_prev_surgeries.Count() != 0)
-                {
-                    @Html.Partial("_prevsurg", Model)
-                }
-                else
-                {
-                    <h4 style="padding:5px;">No records found.</h4>
-                }
-            </div>
-            <div class="tab-pane fade" id="hosp">
-                @if (Model.patient_prev_hospitalization.Count() != 0)
-                {
-                    @Html.Partial("_prevhosp", Model)
-                }
-                else
-                {
-                    <h4 style="padding:5px;">No records found.</h4>
-                }
+        <div class="tab-pane fade" id="surg">
+            @if (ViewBag.Successful == "true")
+            {
+                @Html.Partial("_prevsurg", Model)
+            }
+            else
+            {
+                <h4 style="padding:5px;">No records found.</h4>
+            }
+        </div>
+        <div class="tab-pane fade" id="hosp">
+            @if (ViewBag.Successful == "true")
+            {
+                @Html.Partial("_prevhosp", Model)
+            }
+            else
+            {
+                <h4 style="padding:5px;">No records found.</h4>
+            }
 
-            </div>
+        </div>
     </div>
 </div>
+

@@ -9,6 +9,7 @@ namespace WebPortal.Controllers
     public class HomeController : Controller
     {
         // GET: loginform
+        [OutputCache(Duration = 3600)]
         [AllowAnonymous]
         public ActionResult Index(string returnUrl)
         {
