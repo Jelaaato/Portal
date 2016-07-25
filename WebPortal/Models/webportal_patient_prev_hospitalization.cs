@@ -18,7 +18,6 @@ namespace WebPortal.Models
         public Nullable<System.DateTime> visit_start_date_time { get; set; }
         public Nullable<System.DateTime> visit_end_date_time { get; set; }
         public string visit_type { get; set; }
-        public string charge_type { get; set; }
         public string primary_service { get; set; }
     }
 }

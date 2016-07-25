@@ -6,22 +6,20 @@
     <edmx:StorageModels>
       <Schema Namespace="OPSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_allergies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'HISViews.dbo.webportal_patient_allergies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="webportal_patient_allergies">
           <Key>
             <PropertyRef Name="patient_id" />
           </Key>
           <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="allergen" Type="nvarchar" MaxLength="60" />
-          <Property Name="allergy_status_rcd" Type="varchar" MaxLength="5" />
           <Property Name="allergy_status" Type="nvarchar" MaxLength="150" />
-          <Property Name="adverse_reaction_rid" Type="uniqueidentifier" />
           <Property Name="adverse_reaction_name" Type="nvarchar" MaxLength="150" />
           <Property Name="adverse_reaction_free_text" Type="nvarchar" MaxLength="512" />
           <Property Name="adverse_reaction" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_diagnosis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'HISViews.dbo.webportal_patient_diagnosis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="webportal_patient_diagnosis">
           <Key>
             <PropertyRef Name="patient_id" />
@@ -29,7 +27,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_diagnosis' does n
             <PropertyRef Name="active_flag" />
           </Key>
           <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="coding_type_rcd" Type="varchar" MaxLength="40" />
           <Property Name="coding_type" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="coding_system_rcd" Type="varchar" MaxLength="40" />
           <Property Name="code" Type="varchar" MaxLength="40" />
@@ -38,36 +35,32 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_diagnosis' does n
           <Property Name="active_flag" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_medication' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'HISViews.dbo.webportal_patient_medication' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="webportal_patient_medication">
           <Key>
             <PropertyRef Name="patient_id" />
-            <PropertyRef Name="scope_type_rid" />
             <PropertyRef Name="note_date" />
           </Key>
           <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="scope_type_rid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="details" Type="nvarchar(max)" />
           <Property Name="note_date" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_hospitalization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'HISViews.dbo.webportal_patient_prev_hospitalization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="webportal_patient_prev_hospitalization">
           <Key>
             <PropertyRef Name="patient_id" />
             <PropertyRef Name="visit_type" />
-            <PropertyRef Name="charge_type" />
             <PropertyRef Name="primary_service" />
           </Key>
           <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="visit_start_date_time" Type="datetime" />
           <Property Name="visit_end_date_time" Type="datetime" />
           <Property Name="visit_type" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="charge_type" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="primary_service" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'HISViews.dbo.webportal_patient_prev_surgeries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="webportal_patient_prev_surgeries">
           <Key>
             <PropertyRef Name="patient_id" />
@@ -80,9 +73,7 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
             <DefiningQuery>SELECT 
     [webportal_patient_allergies].[patient_id] AS [patient_id], 
     [webportal_patient_allergies].[allergen] AS [allergen], 
-    [webportal_patient_allergies].[allergy_status_rcd] AS [allergy_status_rcd], 
     [webportal_patient_allergies].[allergy_status] AS [allergy_status], 
-    [webportal_patient_allergies].[adverse_reaction_rid] AS [adverse_reaction_rid], 
     [webportal_patient_allergies].[adverse_reaction_name] AS [adverse_reaction_name], 
     [webportal_patient_allergies].[adverse_reaction_free_text] AS [adverse_reaction_free_text], 
     [webportal_patient_allergies].[adverse_reaction] AS [adverse_reaction]
@@ -91,7 +82,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
           <EntitySet Name="webportal_patient_diagnosis" EntityType="Self.webportal_patient_diagnosis" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [webportal_patient_diagnosis].[patient_id] AS [patient_id], 
-    [webportal_patient_diagnosis].[coding_type_rcd] AS [coding_type_rcd], 
     [webportal_patient_diagnosis].[coding_type] AS [coding_type], 
     [webportal_patient_diagnosis].[coding_system_rcd] AS [coding_system_rcd], 
     [webportal_patient_diagnosis].[code] AS [code], 
@@ -103,7 +93,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
           <EntitySet Name="webportal_patient_medication" EntityType="Self.webportal_patient_medication" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [webportal_patient_medication].[patient_id] AS [patient_id], 
-    [webportal_patient_medication].[scope_type_rid] AS [scope_type_rid], 
     [webportal_patient_medication].[details] AS [details], 
     [webportal_patient_medication].[note_date] AS [note_date]
     FROM [dbo].[webportal_patient_medication] AS [webportal_patient_medication]</DefiningQuery>
@@ -114,7 +103,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
     [webportal_patient_prev_hospitalization].[visit_start_date_time] AS [visit_start_date_time], 
     [webportal_patient_prev_hospitalization].[visit_end_date_time] AS [visit_end_date_time], 
     [webportal_patient_prev_hospitalization].[visit_type] AS [visit_type], 
-    [webportal_patient_prev_hospitalization].[charge_type] AS [charge_type], 
     [webportal_patient_prev_hospitalization].[primary_service] AS [primary_service]
     FROM [dbo].[webportal_patient_prev_hospitalization] AS [webportal_patient_prev_hospitalization]</DefiningQuery>
           </EntitySet>
@@ -136,9 +124,7 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
           </Key>
           <Property Name="patient_id" Type="Guid" Nullable="false" />
           <Property Name="allergen" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="allergy_status_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="allergy_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="adverse_reaction_rid" Type="Guid" />
           <Property Name="adverse_reaction_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="adverse_reaction_free_text" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Name="adverse_reaction" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -150,7 +136,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
             <PropertyRef Name="active_flag" />
           </Key>
           <Property Name="patient_id" Type="Guid" Nullable="false" />
-          <Property Name="coding_type_rcd" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="coding_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="coding_system_rcd" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="code" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
@@ -161,11 +146,9 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
         <EntityType Name="webportal_patient_medication">
           <Key>
             <PropertyRef Name="patient_id" />
-            <PropertyRef Name="scope_type_rid" />
             <PropertyRef Name="note_date" />
           </Key>
           <Property Name="patient_id" Type="Guid" Nullable="false" />
-          <Property Name="scope_type_rid" Type="Guid" Nullable="false" />
           <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="note_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
@@ -173,14 +156,12 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
           <Key>
             <PropertyRef Name="patient_id" />
             <PropertyRef Name="visit_type" />
-            <PropertyRef Name="charge_type" />
             <PropertyRef Name="primary_service" />
           </Key>
           <Property Name="patient_id" Type="Guid" Nullable="false" />
           <Property Name="visit_start_date_time" Type="DateTime" Precision="3" />
           <Property Name="visit_end_date_time" Type="DateTime" Precision="3" />
           <Property Name="visit_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="charge_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="primary_service" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="webportal_patient_prev_surgeries">
@@ -190,7 +171,7 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
           <Property Name="patient_id" Type="Guid" Nullable="false" />
           <Property Name="previous_surgeries" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="OPSModelEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OPSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="webportal_patient_allergies" EntityType="Self.webportal_patient_allergies" />
           <EntitySet Name="webportal_patient_diagnosis" EntityType="Self.webportal_patient_diagnosis" />
           <EntitySet Name="webportal_patient_medication" EntityType="Self.webportal_patient_medication" />
@@ -202,15 +183,13 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OPSModelStoreContainer" CdmEntityContainer="OPSModelEntities">
+        <EntityContainerMapping StorageEntityContainer="OPSModelStoreContainer" CdmEntityContainer="OPSEntities">
           <EntitySetMapping Name="webportal_patient_allergies">
             <EntityTypeMapping TypeName="OPSModel.webportal_patient_allergies">
               <MappingFragment StoreEntitySet="webportal_patient_allergies">
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="allergen" ColumnName="allergen" />
-                <ScalarProperty Name="allergy_status_rcd" ColumnName="allergy_status_rcd" />
                 <ScalarProperty Name="allergy_status" ColumnName="allergy_status" />
-                <ScalarProperty Name="adverse_reaction_rid" ColumnName="adverse_reaction_rid" />
                 <ScalarProperty Name="adverse_reaction_name" ColumnName="adverse_reaction_name" />
                 <ScalarProperty Name="adverse_reaction_free_text" ColumnName="adverse_reaction_free_text" />
                 <ScalarProperty Name="adverse_reaction" ColumnName="adverse_reaction" />
@@ -221,7 +200,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
             <EntityTypeMapping TypeName="OPSModel.webportal_patient_diagnosis">
               <MappingFragment StoreEntitySet="webportal_patient_diagnosis">
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-                <ScalarProperty Name="coding_type_rcd" ColumnName="coding_type_rcd" />
                 <ScalarProperty Name="coding_type" ColumnName="coding_type" />
                 <ScalarProperty Name="coding_system_rcd" ColumnName="coding_system_rcd" />
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -235,7 +213,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
             <EntityTypeMapping TypeName="OPSModel.webportal_patient_medication">
               <MappingFragment StoreEntitySet="webportal_patient_medication">
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-                <ScalarProperty Name="scope_type_rid" ColumnName="scope_type_rid" />
                 <ScalarProperty Name="details" ColumnName="details" />
                 <ScalarProperty Name="note_date" ColumnName="note_date" />
               </MappingFragment>
@@ -248,7 +225,6 @@ warning 6002: The table/view 'ITWorksDEV.dbo.webportal_patient_prev_surgeries' d
                 <ScalarProperty Name="visit_start_date_time" ColumnName="visit_start_date_time" />
                 <ScalarProperty Name="visit_end_date_time" ColumnName="visit_end_date_time" />
                 <ScalarProperty Name="visit_type" ColumnName="visit_type" />
-                <ScalarProperty Name="charge_type" ColumnName="charge_type" />
                 <ScalarProperty Name="primary_service" ColumnName="primary_service" />
               </MappingFragment>
             </EntityTypeMapping>

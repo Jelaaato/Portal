@@ -15,7 +15,6 @@ namespace WebPortal.Models
     public partial class webportal_patient_diagnosis
     {
         public System.Guid patient_id { get; set; }
-        public string coding_type_rcd { get; set; }
         public string coding_type { get; set; }
         public string coding_system_rcd { get; set; }
         public string code { get; set; }

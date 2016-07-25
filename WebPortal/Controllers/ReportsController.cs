@@ -11,9 +11,9 @@ namespace WebPortal.Controllers
 {
     public class ReportsController : Controller
     {
-        private OPSModelEntities db = new OPSModelEntities();
+        private OPSEntities db = new OPSEntities();
         private PatientUserEntities patdb = new PatientUserEntities();
-
+        
         // GET: Reports
 
         [Authorize]
@@ -53,16 +53,16 @@ namespace WebPortal.Controllers
 
                     ViewBag.CurrentFilter = search;
 
-                    int pageSize = 5;
-                    int pageNumber = (page ?? 1);
+                    //int pageSize = 5;
+                    //int pageNumber = (page ?? 1);
 
                     OPSViewModel opsmodel = new OPSViewModel()
                     {
-                        patient_allergies = db.webportal_patient_allergies.Where(a => a.patient_id == query).OrderBy(a => a.allergen).ToPagedList(pageNumber, pageSize),
-                        patient_diagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == query).OrderBy(a => a.recorded_at_date_time).ToPagedList(pageNumber, pageSize),
-                        patient_medication = db.webportal_patient_medication.Where(a => a.patient_id == query).OrderBy(a => a.note_date).ToPagedList(pageNumber, pageSize),
-                        patient_prev_hosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == query).OrderBy(a => a.visit_start_date_time).ToPagedList(pageNumber, pageSize),
-                        patient_prev_surgeries = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == query).OrderBy(a => a.previous_surgeries).ToPagedList(pageNumber, pageSize)
+                        patient_allergies = db.webportal_patient_allergies.Where(a => a.patient_id == query).OrderBy(a => a.allergen).ToList(),
+                        patient_diagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == query).OrderBy(a => a.recorded_at_date_time).ToList(),
+                        patient_medication = db.webportal_patient_medication.Where(a => a.patient_id == query).OrderBy(a => a.note_date).ToList(),
+                        patient_prev_hosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == query).OrderBy(a => a.visit_start_date_time).ToList(),
+                        patient_prev_surgeries = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == query).OrderBy(a => a.previous_surgeries).ToList()
                     };
 
                     if (opsmodel != null)

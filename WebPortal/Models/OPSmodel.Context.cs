@@ -13,10 +13,10 @@ namespace WebPortal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OPSModelEntities : DbContext
+    public partial class OPSEntities : DbContext
     {
-        public OPSModelEntities()
-            : base("name=OPSModelEntities")
+        public OPSEntities()
+            : base("name=OPSEntities")
         {
         }
     
