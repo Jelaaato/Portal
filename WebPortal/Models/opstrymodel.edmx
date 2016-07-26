@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="opstryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="patient_allergy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_adverse_reaction_cause_id" Type="uniqueidentifier" />
+          <Property Name="patient_id" Type="uniqueidentifier" />
+          <Property Name="adverse_reaction_cause_type_code" Type="varchar" MaxLength="5" />
+          <Property Name="adverse_reaction_cause_type" Type="nvarchar" MaxLength="150" />
+          <Property Name="adverse_reaction_cause_rid" Type="uniqueidentifier" />
+          <Property Name="adverse_reaction_cause" Type="nvarchar" MaxLength="150" />
+          <Property Name="patient_adverse_reaction_cause_status_code" Type="varchar" MaxLength="5" />
+          <Property Name="patient_adverse_reaction_cause_status" Type="nvarchar" MaxLength="150" />
+          <Property Name="allergen" Type="nvarchar" MaxLength="60" />
+          <Property Name="allergy_status_code" Type="varchar" MaxLength="5" />
+          <Property Name="allergy_status" Type="nvarchar" MaxLength="150" />
+          <Property Name="adverse_reaction" Type="nvarchar" MaxLength="512" />
+          <Property Name="life_threathening_status_code" Type="varchar" MaxLength="10" />
+          <Property Name="life_threathening_status" Type="nvarchar" MaxLength="60" />
+          <Property Name="dose_related_status_code" Type="varchar" MaxLength="10" />
+          <Property Name="dose_related_status" Type="nvarchar" MaxLength="60" />
+          <Property Name="avoid_in_future_flag" Type="bit" />
+          <Property Name="patient_adverse_reaction_status_code" Type="varchar" MaxLength="5" />
+          <Property Name="patient_adverse_reaction_status" Type="nvarchar" MaxLength="150" />
+          <Property Name="active_flag" Type="bit" />
+          <Property Name="allergic_reaction_flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="patient_medication">
+          <Key>
+            <PropertyRef Name="note_id" />
+          </Key>
+          <Property Name="note_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_id" Type="uniqueidentifier" />
+          <Property Name="scope_type_rid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="details" Type="nvarchar(max)" />
+          <Property Name="note_date" Type="datetime" />
+          <Property Name="active_flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="patient_previous_surgery">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="previous_surgeries" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="patient_visit">
+          <Key>
+            <PropertyRef Name="patient_visit_id" />
+          </Key>
+          <Property Name="patient_visit_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="visit_start_date_time" Type="date" />
+          <Property Name="visit_end_date_time" Type="date" />
+          <Property Name="charge_type_code" Type="varchar" MaxLength="5" />
+          <Property Name="charge_type" Type="nvarchar" MaxLength="150" />
+          <Property Name="visit_type_code" Type="char" MaxLength="6" />
+          <Property Name="visit_type" Type="nvarchar" MaxLength="150" />
+          <Property Name="cancelled_date_time" Type="datetime" />
+          <Property Name="primary_service" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="patient_visit_diagnosis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_medical_coding_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_visit_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_id" Type="uniqueidentifier" />
+          <Property Name="diagnosis_type_rcd" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="diagnosis_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="coding_system_type_rcd" Type="varchar" MaxLength="5" />
+          <Property Name="coding_system_type" Type="nvarchar" MaxLength="150" />
+          <Property Name="coding_type_rcd" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="coding_type" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="coding_system_rcd" Type="varchar" MaxLength="40" />
+          <Property Name="code" Type="varchar" MaxLength="40" />
+          <Property Name="diagnosis" Type="nvarchar(max)" />
+          <Property Name="diagnosis_comment" Type="nvarchar(max)" />
+          <Property Name="recorded_at_date_time" Type="datetime" Nullable="false" />
+          <Property Name="inactive_date_time" Type="datetime" />
+          <Property Name="active_flag" Type="bit" Nullable="false" />
+          <Property Name="coding_system" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="opstryModelStoreContainer">
+          <EntitySet Name="patient_allergy" EntityType="Self.patient_allergy" Schema="ops" store:Type="Tables" />
+          <EntitySet Name="patient_medication" EntityType="Self.patient_medication" Schema="ops" store:Type="Tables" />
+          <EntitySet Name="patient_previous_surgery" EntityType="Self.patient_previous_surgery" Schema="ops" store:Type="Tables" />
+          <EntitySet Name="patient_visit" EntityType="Self.patient_visit" Schema="ops" store:Type="Tables" />
+          <EntitySet Name="patient_visit_diagnosis" EntityType="Self.patient_visit_diagnosis" Schema="ops" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="opstryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="patient_allergy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_adverse_reaction_cause_id" Type="Guid" />
+          <Property Name="patient_id" Type="Guid" />
+          <Property Name="adverse_reaction_cause_type_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="adverse_reaction_cause_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction_cause_rid" Type="Guid" />
+          <Property Name="adverse_reaction_cause" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="patient_adverse_reaction_cause_status_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="patient_adverse_reaction_cause_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="allergen" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="allergy_status_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="allergy_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="adverse_reaction" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="life_threathening_status_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="life_threathening_status" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="dose_related_status_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dose_related_status" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="avoid_in_future_flag" Type="Boolean" />
+          <Property Name="patient_adverse_reaction_status_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="patient_adverse_reaction_status" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="active_flag" Type="Boolean" />
+          <Property Name="allergic_reaction_flag" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="patient_medication">
+          <Key>
+            <PropertyRef Name="note_id" />
+          </Key>
+          <Property Name="note_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_id" Type="Guid" />
+          <Property Name="scope_type_rid" Type="Guid" Nullable="false" />
+          <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="note_date" Type="DateTime" Precision="3" />
+          <Property Name="active_flag" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="patient_previous_surgery">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="previous_surgeries" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="patient_visit">
+          <Key>
+            <PropertyRef Name="patient_visit_id" />
+          </Key>
+          <Property Name="patient_visit_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="visit_start_date_time" Type="DateTime" Precision="0" />
+          <Property Name="visit_end_date_time" Type="DateTime" Precision="0" />
+          <Property Name="charge_type_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="charge_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="visit_type_code" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="visit_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="cancelled_date_time" Type="DateTime" Precision="3" />
+          <Property Name="primary_service" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="patient_visit_diagnosis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="patient_medical_coding_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_visit_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_id" Type="Guid" />
+          <Property Name="diagnosis_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="diagnosis_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coding_system_type_rcd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="coding_system_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="coding_type_rcd" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="coding_type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coding_system_rcd" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="diagnosis_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="recorded_at_date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="inactive_date_time" Type="DateTime" Precision="3" />
+          <Property Name="active_flag" Type="Boolean" Nullable="false" />
+          <Property Name="coding_system" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="opstryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="patient_allergy" EntityType="Self.patient_allergy" />
+          <EntitySet Name="patient_medication" EntityType="Self.patient_medication" />
+          <EntitySet Name="patient_previous_surgery" EntityType="Self.patient_previous_surgery" />
+          <EntitySet Name="patient_visit" EntityType="Self.patient_visit" />
+          <EntitySet Name="patient_visit_diagnosis" EntityType="Self.patient_visit_diagnosis" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="opstryModelStoreContainer" CdmEntityContainer="opstryEntities">
+          <EntitySetMapping Name="patient_allergy">
+            <EntityTypeMapping TypeName="opstryModel.patient_allergy">
+              <MappingFragment StoreEntitySet="patient_allergy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="patient_adverse_reaction_cause_id" ColumnName="patient_adverse_reaction_cause_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="adverse_reaction_cause_type_code" ColumnName="adverse_reaction_cause_type_code" />
+                <ScalarProperty Name="adverse_reaction_cause_type" ColumnName="adverse_reaction_cause_type" />
+                <ScalarProperty Name="adverse_reaction_cause_rid" ColumnName="adverse_reaction_cause_rid" />
+                <ScalarProperty Name="adverse_reaction_cause" ColumnName="adverse_reaction_cause" />
+                <ScalarProperty Name="patient_adverse_reaction_cause_status_code" ColumnName="patient_adverse_reaction_cause_status_code" />
+                <ScalarProperty Name="patient_adverse_reaction_cause_status" ColumnName="patient_adverse_reaction_cause_status" />
+                <ScalarProperty Name="allergen" ColumnName="allergen" />
+                <ScalarProperty Name="allergy_status_code" ColumnName="allergy_status_code" />
+                <ScalarProperty Name="allergy_status" ColumnName="allergy_status" />
+                <ScalarProperty Name="adverse_reaction" ColumnName="adverse_reaction" />
+                <ScalarProperty Name="life_threathening_status_code" ColumnName="life_threathening_status_code" />
+                <ScalarProperty Name="life_threathening_status" ColumnName="life_threathening_status" />
+                <ScalarProperty Name="dose_related_status_code" ColumnName="dose_related_status_code" />
+                <ScalarProperty Name="dose_related_status" ColumnName="dose_related_status" />
+                <ScalarProperty Name="avoid_in_future_flag" ColumnName="avoid_in_future_flag" />
+                <ScalarProperty Name="patient_adverse_reaction_status_code" ColumnName="patient_adverse_reaction_status_code" />
+                <ScalarProperty Name="patient_adverse_reaction_status" ColumnName="patient_adverse_reaction_status" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="allergic_reaction_flag" ColumnName="allergic_reaction_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient_medication">
+            <EntityTypeMapping TypeName="opstryModel.patient_medication">
+              <MappingFragment StoreEntitySet="patient_medication">
+                <ScalarProperty Name="note_id" ColumnName="note_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="scope_type_rid" ColumnName="scope_type_rid" />
+                <ScalarProperty Name="details" ColumnName="details" />
+                <ScalarProperty Name="note_date" ColumnName="note_date" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient_previous_surgery">
+            <EntityTypeMapping TypeName="opstryModel.patient_previous_surgery">
+              <MappingFragment StoreEntitySet="patient_previous_surgery">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="previous_surgeries" ColumnName="previous_surgeries" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient_visit">
+            <EntityTypeMapping TypeName="opstryModel.patient_visit">
+              <MappingFragment StoreEntitySet="patient_visit">
+                <ScalarProperty Name="patient_visit_id" ColumnName="patient_visit_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="visit_start_date_time" ColumnName="visit_start_date_time" />
+                <ScalarProperty Name="visit_end_date_time" ColumnName="visit_end_date_time" />
+                <ScalarProperty Name="charge_type_code" ColumnName="charge_type_code" />
+                <ScalarProperty Name="charge_type" ColumnName="charge_type" />
+                <ScalarProperty Name="visit_type_code" ColumnName="visit_type_code" />
+                <ScalarProperty Name="visit_type" ColumnName="visit_type" />
+                <ScalarProperty Name="cancelled_date_time" ColumnName="cancelled_date_time" />
+                <ScalarProperty Name="primary_service" ColumnName="primary_service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient_visit_diagnosis">
+            <EntityTypeMapping TypeName="opstryModel.patient_visit_diagnosis">
+              <MappingFragment StoreEntitySet="patient_visit_diagnosis">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="patient_medical_coding_id" ColumnName="patient_medical_coding_id" />
+                <ScalarProperty Name="patient_visit_id" ColumnName="patient_visit_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="diagnosis_type_rcd" ColumnName="diagnosis_type_rcd" />
+                <ScalarProperty Name="diagnosis_type" ColumnName="diagnosis_type" />
+                <ScalarProperty Name="coding_system_type_rcd" ColumnName="coding_system_type_rcd" />
+                <ScalarProperty Name="coding_system_type" ColumnName="coding_system_type" />
+                <ScalarProperty Name="coding_type_rcd" ColumnName="coding_type_rcd" />
+                <ScalarProperty Name="coding_type" ColumnName="coding_type" />
+                <ScalarProperty Name="coding_system_rcd" ColumnName="coding_system_rcd" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="diagnosis" ColumnName="diagnosis" />
+                <ScalarProperty Name="diagnosis_comment" ColumnName="diagnosis_comment" />
+                <ScalarProperty Name="recorded_at_date_time" ColumnName="recorded_at_date_time" />
+                <ScalarProperty Name="inactive_date_time" ColumnName="inactive_date_time" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="coding_system" ColumnName="coding_system" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

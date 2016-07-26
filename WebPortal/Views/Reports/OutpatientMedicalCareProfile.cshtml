@@ -50,7 +50,7 @@
         <div class="tab-pane fade in active" id="allergy">
             @if (ViewBag.Successful == "true")
             {
-                @Html.Partial("_patallergy", Model)
+                @Html.Partial("_patallergy", Model.patient_allergies)
             }
             else
             {
@@ -60,7 +60,7 @@
         <div class="tab-pane fade in" id="medic">
             @if (ViewBag.Successful == "true")
             {
-                @Html.Partial("_patmedic", Model)
+                @Html.Partial("_patmedic", Model.patient_medication)
             }
             else
             {
@@ -70,7 +70,7 @@
         <div class="tab-pane fade" id="diag">
             @if (ViewBag.Successful == "true")
             {
-                @Html.Partial("_patdiag", Model)
+                @Html.Partial("_patdiag", Model.patient_diagnosis)
             }
             else
             {
@@ -81,7 +81,7 @@
         <div class="tab-pane fade" id="surg">
             @if (ViewBag.Successful == "true")
             {
-                @Html.Partial("_prevsurg", Model)
+                @Html.Partial("_prevsurg", Model.patient_prev_surgeries)
             }
             else
             {
@@ -91,7 +91,7 @@
         <div class="tab-pane fade" id="hosp">
             @if (ViewBag.Successful == "true")
             {
-                @Html.Partial("_prevhosp", Model)
+                @Html.Partial("_prevhosp", Model.patient_prev_hosp)
             }
             else
             {

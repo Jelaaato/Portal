@@ -25,7 +25,7 @@ namespace WebPortal.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<webportal_patient_allergies> webportal_patient_allergies { get; set; }
+        public virtual DbSet<webportal_patient_allergies_new> webportal_patient_allergies_new { get; set; }
         public virtual DbSet<webportal_patient_diagnosis> webportal_patient_diagnosis { get; set; }
         public virtual DbSet<webportal_patient_medication> webportal_patient_medication { get; set; }
         public virtual DbSet<webportal_patient_prev_hospitalization> webportal_patient_prev_hospitalization { get; set; }

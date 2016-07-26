@@ -1,4 +1,7 @@
-﻿@model WebPortal.Models.OPSViewModel
+﻿@*@model WebPortal.Models.OPSViewModel*@
+@model PagedList.IPagedList<WebPortal.Models.webportal_patient_diagnosis>
+@using PagedList.Mvc;
+@using PagedList;
 
 <ul class="list-group row">
 
@@ -10,7 +13,7 @@
     <li class="list-group-item col-xs-2"><h5>Coding Type</h5></li>
 
 
-    @foreach(var item in Model.patient_diagnosis)
+    @foreach (var item in Model)
     {
 
         <li class="list-group-item col-xs-5">
@@ -32,6 +35,8 @@
         <li class="list-group-item col-xs-2">
             <h6> @Html.DisplayFor(model => item.coding_type)</h6>
         </li>
-
+    
     }
 </ul>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))

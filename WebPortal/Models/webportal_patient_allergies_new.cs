@@ -12,15 +12,12 @@ namespace WebPortal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class webportal_patient_diagnosis
+    public partial class webportal_patient_allergies_new
     {
+        public System.Guid patient_adverse_reaction_cause_id { get; set; }
         public System.Guid patient_id { get; set; }
-        public System.Guid patient_medical_coding_id { get; set; }
-        public string coding_type { get; set; }
-        public string coding_system_rcd { get; set; }
-        public string code { get; set; }
-        public string diagnosis { get; set; }
-        public Nullable<System.DateTime> recorded_at_date_time { get; set; }
-        public bool active_flag { get; set; }
+        public string cause { get; set; }
+        public string reaction { get; set; }
+        public string reaction_cause_status { get; set; }
     }
 }

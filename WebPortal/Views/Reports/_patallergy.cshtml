@@ -1,5 +1,5 @@
-﻿@model WebPortal.Models.OPSViewModel
-@*@model PagedList.IPagedList<WebPortal.Models.OPSViewModel>*@
+﻿@*@model WebPortal.Models.OPSViewModel*@
+@model PagedList.IPagedList<WebPortal.Models.webportal_patient_allergies_new>
 @using PagedList.Mvc;
 @using PagedList;
 
@@ -9,16 +9,18 @@
     <li class="list-group-item col-xs-4"><h5>Adverse Reaction</h5></li>
 
 
-    @foreach (var item in Model.patient_allergies)
+    @foreach (var item in Model)
     {
 
-        <li class="list-group-item col-xs-4 col-lg-4"><h6>@Html.DisplayFor(modelItem => item.allergen)</h6></li>
+        <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.cause</h6></li>
 
-        <li class="list-group-item col-xs-4 col-lg-4"><h6>@Html.DisplayFor(modelItem => item.allergy_status)</h6></li>
+        <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction_cause_status</h6></li>
 
-        <li class="list-group-item col-xs-4 col-lg-4"><h6>@Html.DisplayFor(modelItem => item.adverse_reaction)</h6></li>
+        <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction</h6></li>
 
     }
-    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, filter = ViewBag.Filter }))*@
+    
 </ul>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))

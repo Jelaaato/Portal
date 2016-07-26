@@ -304,6 +304,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OPSModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\opstrymodel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>opstrymodel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\opstrymodel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>opstrymodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\opstrymodel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>opstrymodel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\OPSViewModel.cs" />
     <Compile Include="Models\PatientUserModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -320,8 +335,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PatientUserModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\patient_allergy.cs">
+      <DependentUpon>opstrymodel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\patient_hospital_usage.cs">
       <DependentUpon>PatientUserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patient_medication.cs">
+      <DependentUpon>opstrymodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patient_previous_surgery.cs">
+      <DependentUpon>opstrymodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patient_visit.cs">
+      <DependentUpon>opstrymodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patient_visit_diagnosis.cs">
+      <DependentUpon>opstrymodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\person.cs">
       <DependentUpon>PatientUserModel.tt</DependentUpon>
@@ -365,7 +395,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetentionModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\webportal_patient_allergies.cs">
+    <Compile Include="Models\webportal_patient_allergies_new.cs">
       <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webportal_patient_diagnosis.cs">
@@ -734,6 +764,23 @@
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Content\datepicker.less" />
+    <EntityDeploy Include="Models\opstrymodel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>opstrymodel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\opstrymodel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>opstrymodel.edmx</DependentUpon>
+      <LastGenOutput>opstrymodel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\opstrymodel.edmx.diagram">
+      <DependentUpon>opstrymodel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\opstrymodel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>opstrymodel.edmx</DependentUpon>
+      <LastGenOutput>opstrymodel.cs</LastGenOutput>
+    </Content>
     <EntityDeploy Include="Models\OPSModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OPSModel.Designer.cs</LastGenOutput>

@@ -15,6 +15,7 @@ namespace WebPortal.Models
     public partial class webportal_patient_prev_hospitalization
     {
         public System.Guid patient_id { get; set; }
+        public System.Guid patient_visit_id { get; set; }
         public Nullable<System.DateTime> visit_start_date_time { get; set; }
         public Nullable<System.DateTime> visit_end_date_time { get; set; }
         public string visit_type { get; set; }

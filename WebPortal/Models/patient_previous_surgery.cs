@@ -11,17 +11,10 @@ namespace WebPortal.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class webportal_patient_allergies
+    public partial class patient_previous_surgery
     {
         public System.Guid patient_id { get; set; }
-        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "No Details found")]
-        public string allergen { get; set; }
-        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "No Details found")]
-        public string allergy_status { get; set; }
-        public string adverse_reaction_name { get; set; }
-        public string adverse_reaction_free_text { get; set; }
-        public string adverse_reaction { get; set; }
+        public string previous_surgeries { get; set; }
     }
 }
