@@ -28,10 +28,10 @@
 
 <div id="pager">
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))
+    @Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, currentfilter = ViewBag.CurrentFilter }))
 </div>
 
-<script>
+@*<script>
     $(function () {
         $('#pager').on('click', 'a', function () {
             $.ajax({
@@ -45,5 +45,5 @@
             return false;
         });
     });
-</script>
+</script>*@
 

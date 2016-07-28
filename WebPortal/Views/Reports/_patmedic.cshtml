@@ -20,6 +20,6 @@
     }
 </ul>
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))
+@Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, currentfilter = ViewBag.CurrentFilter }))
 <br />
 <br />

@@ -41,15 +41,17 @@ namespace WebPortal.Controllers
                 {
                     Guid query = new Guid();
 
-                    query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
+                    //query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
 
                     if (search != null)
                     {
+                        query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
                         page = 1;
                     }
                     else
                     {
                         search = currentfilter;
+                        query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
                     }
 
                     ViewBag.CurrentFilter = search;
