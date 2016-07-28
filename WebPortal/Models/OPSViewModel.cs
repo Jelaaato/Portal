@@ -8,6 +8,7 @@ namespace WebPortal.Models
 {
     public class OPSViewModel
     {
+        public IEnumerable<webportal_patient_info> patient_info { get; set; }
         public PagedList.IPagedList<webportal_patient_allergies_new> patient_allergies { get; set; }
         public PagedList.IPagedList<webportal_patient_diagnosis> patient_diagnosis { get; set; }
         public PagedList.IPagedList<webportal_patient_medication> patient_medication { get; set; }

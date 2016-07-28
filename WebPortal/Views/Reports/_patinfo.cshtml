@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebPortal.Models.webportal_patient_info>
+
+@foreach (var item in Model)
+{ 
+    <h5>@item.last_name_l,&nbsp;@item.first_name_l&nbsp;@item.middle_name_l</h5>
+    <h5>@item.hospital_nr</h5>
+    <h5>@item.date_of_birth</h5>
+    <h5>@item.age</h5>
+    <h5>@item.gender</h5>
+}

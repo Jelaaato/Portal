@@ -2,31 +2,55 @@
 @model PagedList.IPagedList<WebPortal.Models.webportal_patient_prev_hospitalization>
 @using PagedList.Mvc;
 @using PagedList;
-<ul class="list-group row">
+
+<div id="tbl-wrapper">
+    <ul class="list-group row">
 
 
-    <li class="list-group-item col-xs-4"><h5>Visit Date</h5></li>
-    <li class="list-group-item col-xs-4"><h5>Visit Type</h5></li>
-    <li class="list-group-item col-xs-4"><h5>Primary Service</h5></li>
+        <li class="list-group-item col-xs-4"><h5>Visit Date</h5></li>
+        <li class="list-group-item col-xs-4"><h5>Visit Type</h5></li>
+        <li class="list-group-item col-xs-4"><h5>Primary Service</h5></li>
 
-    @foreach (var item in Model)
-    {
+        @foreach (var item in Model)
+        {
 
-        <li class="list-group-item col-xs-4">
-            <h6>@Html.DisplayFor(model => item.visit_start_date_time)</h6>
-        </li>
+            <li class="list-group-item col-xs-4">
+                <h6>@Html.DisplayFor(model => item.visit_start_date_time)</h6>
+            </li>
 
-        <li class="list-group-item col-xs-4">
-            <h6> @Html.DisplayFor(model => item.visit_type)</h6>
-        </li>
+            <li class="list-group-item col-xs-4">
+                <h6> @Html.DisplayFor(model => item.visit_type)</h6>
+            </li>
 
-        <li class="list-group-item col-xs-4">
-            <h6>@Html.DisplayFor(model => item.primary_service)</h6>
-        </li>
+            <li class="list-group-item col-xs-4">
+                <h6>@Html.DisplayFor(model => item.primary_service)</h6>
+            </li>
 
-    }
-</ul>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))
-<br />
-<br />
+        }
+    </ul>
+</div>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, currentfilter = ViewBag.CurrentFilter }))
+    @*<br />
+        <br />*@
+    @*<div id="pager">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))
+    </div>*@
+
+    @*<script>
+        $(function () {
+            $('#pager').on('click', 'a', function () {
+                $.ajax({
+                    url: this.href,
+                    type: POST,
+                    cache: false,
+                    success: function (result) {
+                        $('#tbl-wrapper').html(result);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>*@

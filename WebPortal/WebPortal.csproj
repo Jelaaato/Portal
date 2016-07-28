@@ -401,6 +401,9 @@
     <Compile Include="Models\webportal_patient_diagnosis.cs">
       <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\webportal_patient_info.cs">
+      <DependentUpon>OPSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\webportal_patient_medication.cs">
       <DependentUpon>OPSModel.tt</DependentUpon>
     </Compile>
@@ -427,10 +430,11 @@
     <Content Include="Adminlte\AdminLTE_V2\dist\js\app.min.js" />
     <Content Include="Adminlte\AdminLTE_V2\dist\js\demo.js" />
     <Content Include="Content\datepicker.css" />
-    <Content Include="Images\Admin_icons\Admins_add_users_nobox.png" />
     <Content Include="Images\Admin_icons\Admins_audit_trail_nobox.png" />
-    <Content Include="Images\Admin_icons\Admins_delete_users_nobox.png" />
-    <Content Include="Images\Admin_icons\Admins_settings_nobox.png" />
+    <Content Include="Images\Admin_icons\Admin_settings_nobox.png" />
+    <Content Include="Images\Reports_icons\omcp_icon.png" />
+    <Content Include="Images\Reports_icons\omcp.png" />
+    <Content Include="Images\Reports_icons\omcp_text.png" />
     <Content Include="Images\Reports_icons\reports_nobox.png" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
@@ -1613,6 +1617,7 @@
     <Content Include="Views\Reports\OutpatientMedicalCareProfile.cshtml" />
     <Content Include="Views\Shared\_PatientLayout.cshtml" />
     <Content Include="Views\Results\Index.cshtml" />
+    <Content Include="Views\Reports\_patinfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
