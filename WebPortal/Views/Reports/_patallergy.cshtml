@@ -3,47 +3,38 @@
 @using PagedList.Mvc;
 @using PagedList;
 
-<div id="tbl-wrapper">
-    <ul class="list-group row">
-        <li class="list-group-item col-xs-4"><h5>Allergen</h5></li>
-        <li class="list-group-item col-xs-4"><h5>Allergy Status</h5></li>
-        <li class="list-group-item col-xs-4"><h5>Adverse Reaction</h5></li>
+<div id="tbl-wrapper1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Patient's Allergies</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group row">
+                <li class="list-group-item col-xs-4"><h5>Allergen</h5></li>
+                <li class="list-group-item col-xs-4"><h5>Allergy Status</h5></li>
+                <li class="list-group-item col-xs-4"><h5>Adverse Reaction</h5></li>
 
 
-        @foreach (var item in Model)
-        {
+                @foreach (var item in Model)
+                {
 
-            <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.cause</h6></li>
+                    <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.cause</h6></li>
 
-            <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction_cause_status</h6></li>
+                    <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction_cause_status</h6></li>
 
-            <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction</h6></li>
+                    <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction</h6></li>
 
-        }
-
-    </ul>
-</div>
-@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, filter = ViewBag.Filter }))*@
-
-<div id="pager">
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("OutpatientMedicalCareProfile", new { page, currentfilter = ViewBag.CurrentFilter }))
-</div>
-
-@*<script>
-    $(function () {
-        $('#pager').on('click', 'a', function () {
-            $.ajax({
-                url: this.href,
-                type: POST,
-                cache: false,
-                success: function (result) {
-                    $('#tbl-wrapper').html(result);
                 }
-            });
-            return false;
-        });
-    });
-</script>*@
 
+            </ul>
+        </div>
+    </div>
+</div>
+    
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("OMCPpatientAllergy", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "tbl-wrapper1"
+        }))

@@ -436,6 +436,7 @@
     <Content Include="Images\Reports_icons\omcp.png" />
     <Content Include="Images\Reports_icons\omcp_text.png" />
     <Content Include="Images\Reports_icons\reports_nobox.png" />
+    <Content Include="Images\Reports_icons\user-icon.png" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\bootstrap3-wysihtml5.css" />
