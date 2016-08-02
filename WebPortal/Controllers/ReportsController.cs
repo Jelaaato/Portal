@@ -28,7 +28,7 @@ namespace WebPortal.Controllers
         {
             bool successful = false;
             int retry = 0;
-            while (!successful && retry < 3)
+            while (!successful && retry < 4)
             {
                 try
                 {
@@ -46,6 +46,7 @@ namespace WebPortal.Controllers
                         Session["searchstring"] = search;
                         Session["pid"] = query;
                         ViewBag.Successful = "true";
+                        ModelState.Clear();
                         return View(patientinfo) ;
                     }
 
@@ -81,7 +82,7 @@ namespace WebPortal.Controllers
            
             ViewBag.CurrentFilter = searchstring;
 
-            int pageSize = 2;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
                var patientallergy = db.webportal_patient_allergies_new.Where(a => a.patient_id == pid).OrderBy(a => a.cause).ToPagedList(pageNumber, pageSize);
@@ -107,7 +108,7 @@ namespace WebPortal.Controllers
 
                 ViewBag.CurrentFilter = searchstring;
 
-                int pageSize = 2;
+                int pageSize = 10;
                 int pageNumber = (page ?? 1);
 
                 var prevhosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).OrderByDescending(a => a.visit_start_date_time).ToPagedList(pageNumber, pageSize);
@@ -137,7 +138,7 @@ namespace WebPortal.Controllers
 
             ViewBag.CurrentFilter = searchstring;
 
-            int pageSize = 2;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var patientdiagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == pid).OrderByDescending(a => a.recorded_at_date_time).ToPagedList(pageNumber, pageSize);
@@ -163,7 +164,7 @@ namespace WebPortal.Controllers
 
             ViewBag.CurrentFilter = searchstring;
 
-            int pageSize = 2;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var patientmedication = db.webportal_patient_medication.Where(a => a.patient_id == pid).OrderByDescending(a => a.note_date).ToPagedList(pageNumber, pageSize);
@@ -189,7 +190,7 @@ namespace WebPortal.Controllers
 
             ViewBag.CurrentFilter = searchstring;
 
-            int pageSize = 2;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var prevsurg = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == pid).OrderBy(a => a.previous_surgeries).ToPagedList(pageNumber, pageSize);

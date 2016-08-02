@@ -17,90 +17,96 @@
     </section>
 }
 
-<div class="panel-group">
-    <img src="~/Images/Reports_icons/omcp_text.png" style="width:100%;height:25%;" />
-    <div>
-        <br />
-        @using (Html.BeginForm("OutpatientMedicalCareProfile", "Reports", FormMethod.Get))
-        {
-            <div class="form-inline">
-                <div class=" form-group">
-                    @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Enter Hospital Number", @class = "form-control" })
+
+    @*<div class="jumbotron" style="background:url('../Images/Reports_icons/ocmp_small.png') no-repeat fixed;">*@
+<div class="row">
+    <img src="~/Images/Reports_icons/omcp_small.png" style="width:70%; position:absolute;" />
+</div>
+    <div class="row" style="position:absolute; left:70%;top:200px;">
+        <div style="position:relative; left:-70%">
+            @using (Html.BeginForm("OutpatientMedicalCareProfile", "Reports", FormMethod.Get))
+            {
+                <div class="form-inline">
+                    <div class="form-group">
+                        @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Enter Hospital Number", @class="form-control"})
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input class="btn btn-success" type="submit" value="Search" />
-                </div>
-            </div>
-        }
+            }
+        </div>
     </div>
+
+       
+    @*</div>*@
+<div class="panel-group" style="margin-top:200px;">
     <div class="panel-heading">
         @if (ViewBag.Successful == "true")
         {
             @Html.Partial("_patinfo", Model.patient_info)
         }
     </div>
-        <div class="row panel-body">
-            <ul class="nav nav-tabs" id="tabs">
-                <li class="active"><a class="bold" href="#allergy" data-toggle="tab">Patient's Allergy</a></li>
-                <li><a class="bold" href="#medic" data-toggle="tab">Patient's Medication</a></li>
-                <li><a class="bold" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>
-                <li><a class="bold" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
-                <li><a class="bold" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
-            </ul>
-            <div class="tab-content col-xs-12">
+    <div class="row panel-body">
+        <ul class="nav nav-tabs" id="tabs">
+            <li class="active"><a class="bold" href="#allergy" data-toggle="tab">Patient's Allergy</a></li>
+            <li><a class="bold" href="#medic" data-toggle="tab">Patient's Medication</a></li>
+            <li><a class="bold" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>
+            <li><a class="bold" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
+            <li><a class="bold" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
+        </ul>
+        <div class="tab-content col-xs-12">
 
-                <div class="tab-pane fade in active" id="allergy">
-                    @if (ViewBag.Successful == "true")
-                    {
-                        @Html.Action("OMCPpatientAllergy", "Reports")
-                    }
-                    else
-                    {
-                        <h4 style="padding:5px;">No records found.</h4>
-                    }
-                </div>
-                <div class="tab-pane fade in" id="medic">
-                    @if (ViewBag.Successful == "true")
-                    {
-                        @Html.Action("OMCPpatientMedication", "Reports")
-                    }
-                    else
-                    {
-                        <h4 style="padding:5px;">No records found.</h4>
-                    }
-                </div>
-                <div class="tab-pane fade" id="diag">
-                    @if (ViewBag.Successful == "true")
-                    {
-                        @Html.Action("OMCPpatientDiagnosis", "Reports")
-                    }
-                    else
-                    {
-                        <h4 style="padding:5px;">No records found.</h4>
-                    }
-                </div>
+            <div class="tab-pane fade in active" id="allergy">
+                @if (ViewBag.Successful == "true")
+                {
+                    @Html.Action("OMCPpatientAllergy", "Reports")
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
+            <div class="tab-pane fade in" id="medic">
+                @if (ViewBag.Successful == "true")
+                {
+                    @Html.Action("OMCPpatientMedication", "Reports")
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
+            <div class="tab-pane fade" id="diag">
+                @if (ViewBag.Successful == "true")
+                {
+                    @Html.Action("OMCPpatientDiagnosis", "Reports")
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
 
-                <div class="tab-pane fade" id="surg">
-                    @if (ViewBag.Successful == "true")
-                    {
-                        @Html.Action("OMCPpatientPrevSurg", "Reports")
-                    }
-                    else
-                    {
-                        <h4 style="padding:5px;">No records found.</h4>
-                    }
-                </div>
-                <div class="tab-pane fade" id="hosp">
-                    @if (ViewBag.Successful == "true")
-                    {
-                        @Html.Action("OMCPpatientPrevHosp", "Reports")
-                    }
-                    else
-                    {
-                        <h4 style="padding:5px;">No records found.</h4>
-                    }
+            <div class="tab-pane fade" id="surg">
+                @if (ViewBag.Successful == "true")
+                {
+                    @Html.Action("OMCPpatientPrevSurg", "Reports")
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
+            </div>
+            <div class="tab-pane fade" id="hosp">
+                @if (ViewBag.Successful == "true")
+                {
+                    @Html.Action("OMCPpatientPrevHosp", "Reports")
+                }
+                else
+                {
+                    <h4 style="padding:5px;">No records found.</h4>
+                }
 
-                </div>
             </div>
         </div>
+    </div>
 </div>

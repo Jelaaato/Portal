@@ -27,7 +27,7 @@ namespace WebPortal.Controllers
 
             int retry = 0;
 
-            while (!successful && retry < 3)
+            while (!successful && retry < 4)
             {
                 try
                 {

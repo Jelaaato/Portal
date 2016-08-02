@@ -432,6 +432,7 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Images\Admin_icons\Admins_audit_trail_nobox.png" />
     <Content Include="Images\Admin_icons\Admin_settings_nobox.png" />
+    <Content Include="Images\Reports_icons\omcp_small.png" />
     <Content Include="Images\Reports_icons\omcp_icon.png" />
     <Content Include="Images\Reports_icons\omcp.png" />
     <Content Include="Images\Reports_icons\omcp_text.png" />

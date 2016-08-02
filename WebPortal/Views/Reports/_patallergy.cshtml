@@ -4,11 +4,6 @@
 @using PagedList;
 
 <div id="tbl-wrapper1">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>Patient's Allergies</h3>
-        </div>
-        <div class="panel-body">
             <ul class="list-group row">
                 <li class="list-group-item col-xs-4"><h5>Allergen</h5></li>
                 <li class="list-group-item col-xs-4"><h5>Allergy Status</h5></li>
@@ -27,14 +22,13 @@
                 }
 
             </ul>
-        </div>
-    </div>
-</div>
-    
- Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("OMCPpatientAllergy", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("OMCPpatientAllergy", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
         new AjaxOptions()
         {
             HttpMethod = "GET",
             UpdateTargetId = "tbl-wrapper1"
         }))
+        </div>
+    
+ 
