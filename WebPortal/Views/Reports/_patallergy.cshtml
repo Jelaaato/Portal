@@ -4,31 +4,37 @@
 @using PagedList;
 
 <div id="tbl-wrapper1">
-            <ul class="list-group row">
-                <li class="list-group-item col-xs-4"><h5>Allergen</h5></li>
-                <li class="list-group-item col-xs-4"><h5>Allergy Status</h5></li>
-                <li class="list-group-item col-xs-4"><h5>Adverse Reaction</h5></li>
 
-
-                @foreach (var item in Model)
-                {
-
-                    <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.cause</h6></li>
-
-                    <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction_cause_status</h6></li>
-
-                    <li class="list-group-item col-xs-4 col-lg-4"><h6>@item.reaction</h6></li>
-
-                }
-
-            </ul>
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("OMCPpatientAllergy", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+            <tr style="background-color:rgba(98,151,239,0.8);color:white;">
+                <th style="text-align:center;">Allergen</th>
+                <th style="text-align:center;">Allergy Status</th>
+                <th style="text-align:center;">Adverse Reaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><h5>@Html.DisplayFor(model => item.cause)</h5></td>
+                    <td><h5> @Html.DisplayFor(model => item.reaction_cause_status)</h5></td>
+                    <td><h5>@Html.DisplayFor(model => item.reaction)</h5></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+            
+    <center>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("OMCPpatientAllergy", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
         new AjaxOptions()
         {
             HttpMethod = "GET",
             UpdateTargetId = "tbl-wrapper1"
         }))
-        </div>
+    </center>
+
+</div>
     
  

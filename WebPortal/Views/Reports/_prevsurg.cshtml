@@ -4,24 +4,33 @@
 @using PagedList;
 
 <div id="tbl-wrapper5">
-            <ul class="list-group row">
-                @*<li class="list-group-item col-xs-12"><h5>Allergen</h5></li>*@
 
-                @foreach (var item in Model)
-                {
-                    <li class="list-group-item col-xs-12">
-                        <h6>@Html.DisplayFor(model => item.previous_surgeries)</h6>
-                    </li>
-                }
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+            <tr style="background-color:rgba(98,151,239,0.8);color:white;">
+                <th style="text-align:center;">Procedure</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><h5>@Html.DisplayFor(model => item.previous_surgeries)</h5></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-            </ul>
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("OMCPpatientPrevSurg", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+    <center>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("OMCPpatientPrevSurg", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
         new AjaxOptions()
         {
             HttpMethod = "GET",
             UpdateTargetId = "tbl-wrapper5"
         }))
+    </center>
+
 </div>
 
       
