@@ -7,7 +7,7 @@
 @section reports{
     <section>
         <center>
-            <div class="jumbotron jumbotron-margin-top" style="background-color:#F9FAFC">
+            <div class="jumbotron jumbotron-margin-top" style="background-color:#F9FAFC;">
                 <img src="~/Images/Reports_icons/reports_nobox.png" width="197" height="259" class="sidebar-results-img"/>
                 <div class="sidebar-main-text">Reports</div>
                 <br />
@@ -17,8 +17,18 @@
     </section>
 }
 
-
-    @*<div class="jumbotron" style="background:url('../Images/Reports_icons/ocmp_small.png') no-repeat fixed;">*@
+<div class="modal fade" id="alert" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h5>Hospital Number not Found.</h5>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <img src="~/Images/Reports_icons/omcp_small.png" style="width:70%; position:absolute;" />
 </div>
@@ -45,13 +55,13 @@
             @Html.Partial("_patinfo", Model.patient_info)
         }
     </div>
-    <div class="row panel-body">
+    <div class="row panel-body" style="margin-top:20px;">
         <ul class="nav nav-tabs" id="tabs">
-            <li class="active"><a class="bold" href="#allergy" data-toggle="tab">Patient's Allergy</a></li>
-            <li><a class="bold" href="#medic" data-toggle="tab">Patient's Medication</a></li>
-            <li><a class="bold" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>
-            <li><a class="bold" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
-            <li><a class="bold" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
+            <li class="active"><a class="tab-text" href="#allergy" data-toggle="tab">Patient's Allergy</a></li>
+            <li><a class="tab-text" href="#medic" data-toggle="tab">Patient's Medication</a></li>
+            <li><a class="tab-text" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>
+            <li><a class="tab-text" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
+            <li><a class="tab-text" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
         </ul>
         <div class="tab-content col-xs-12">
 
@@ -105,8 +115,14 @@
                 {
                     <h4 style="padding:5px;">No records found.</h4>
                 }
-
             </div>
         </div>
     </div>
 </div>
+
+<script>
+         @if (ViewBag.ShowModal == "true")
+         {
+           @:$(document).ready(function () { $('#alert').modal('show'); })
+         }
+</script>

@@ -61,6 +61,12 @@ color:white;
 margin-top:110px;
 }
 
+.tab-text {
+font-family: 'Roboto', sans-serif !important;
+font-size:15px;
+font-weight:500;
+}
+
 .sidebar-main-text {
 font-size: 63px;
 }

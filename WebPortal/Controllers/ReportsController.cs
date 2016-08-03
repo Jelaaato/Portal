@@ -32,27 +32,32 @@ namespace WebPortal.Controllers
             {
                 try
                 {
-                    Guid query = new Guid();
-
-                    query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
-
-                    if (query != new Guid("00000000-0000-0000-0000-000000000000"))
+                    if (search != null)
                     {
-                        OPSViewModel patientinfo = new OPSViewModel()
+                        if (patdb.patient_hospital_usage.Any(a => a.visible_patient_id == search))
                         {
-                            patient_info = db.webportal_patient_info.Where(a => a.person_id == query).ToList()
-                        };
+                            Guid query = new Guid();
+                            query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
+                            OPSViewModel patientinfo = new OPSViewModel()
+                            {
+                                patient_info = db.webportal_patient_info.Where(a => a.person_id == query).ToList()
+                            };
 
-                        Session["searchstring"] = search;
-                        Session["pid"] = query;
-                        ViewBag.Successful = "true";
-                        ModelState.Clear();
-                        return View(patientinfo) ;
+                            Session["searchstring"] = search;
+                            Session["pid"] = query;
+                            ViewBag.Successful = "true";
+                            ModelState.Clear();
+                            return View(patientinfo);
+                        }
+                        else
+                        {
+                            ViewBag.ShowModal = "true";
+                            ModelState.Clear();
+                            return View();
+                        }
                     }
-
                     else
                     {
-                        ViewBag.Message = "Hospital Number not found.";
                         return View();
                     }
                 }
@@ -70,56 +75,79 @@ namespace WebPortal.Controllers
             var pid = new Guid(Session["pid"].ToString());
             var searchstring = Session["searchstring"].ToString();
 
+            bool successful = false;
+            int retry = 0;
 
-            if (searchstring != null && page < 1)
+            while (!successful && retry < 4)
             {
-                page = 1;
-            }
-            else
-            {
-                searchstring = currentfilter;
-            }
-           
-            ViewBag.CurrentFilter = searchstring;
+                try
+                {
+                    if (searchstring != null && page < 1)
+                    {
+                        page = 1;
+                    }
+                    else
+                    {
+                        searchstring = currentfilter;
+                    }
 
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
+                    ViewBag.CurrentFilter = searchstring;
 
-               var patientallergy = db.webportal_patient_allergies_new.Where(a => a.patient_id == pid).OrderBy(a => a.cause).ToPagedList(pageNumber, pageSize);
-                
-                return PartialView("_patallergy", patientallergy);
+                    int pageSize = 10;
+                    int pageNumber = (page ?? 1);
+
+                    var patientallergy = db.webportal_patient_allergies_new.Where(a => a.patient_id == pid).OrderBy(a => a.cause).ToPagedList(pageNumber, pageSize);
+
+                    return PartialView("_patallergy", patientallergy);
+                }
+                catch (Exception)
+                {
+                    retry++;
+                }
             }
+            return PartialView("_patallergy");
+        }
 
-        public ActionResult OMCPpatientPrevHosp(int? page, string currentfilter)
+        public ActionResult OMCPpatientPrevHosp(int? page, string currentfilter, string sortorder)
         {
             var pid = new Guid(Session["pid"].ToString());
             var searchstring = Session["searchstring"].ToString();
+            ViewBag.DateSort = sortorder == "Date" ? "Date_desc" : "Date";
 
-            //if (Request.IsAjaxRequest())
-            //{
-                if (searchstring != null && page < 1)
+            bool successful = false;
+            int retry = 0;
+
+            while (!successful && retry < 4)
+            {
+                try
                 {
-                    page = 1;
+                    if (searchstring != null && page < 1)
+                    {
+                        page = 1;
+                    }
+                    else
+                    {
+                        searchstring = currentfilter;
+                    }
+
+                    ViewBag.CurrentFilter = searchstring;
+
+                    int pageSize = 10;
+                    int pageNumber = (page ?? 1);
+
+                    var prevhosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).OrderByDescending(a => a.visit_start_date_time).ToPagedList(pageNumber, pageSize);
+
+                    return PartialView("_prevhosp", prevhosp);
                 }
-                else
+                catch (Exception)
                 {
-                    searchstring = currentfilter;
+                    retry++;
                 }
 
-                ViewBag.CurrentFilter = searchstring;
-
-                int pageSize = 10;
-                int pageNumber = (page ?? 1);
-
-                var prevhosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).OrderByDescending(a => a.visit_start_date_time).ToPagedList(pageNumber, pageSize);
-
-                return PartialView("_prevhosp", prevhosp);
             }
-            //else
-            //{
-            //    return PartialView("_prevhosp");
-            //}
-
+            return PartialView("_prevhosp");
+        }
+           
         public ActionResult OMCPpatientDiagnosis(int? page, string currentfilter)
         {
             var pid = new Guid(Session["pid"].ToString());
@@ -127,23 +155,37 @@ namespace WebPortal.Controllers
 
             //if (Request.IsAjaxRequest())
             //{
-            if (searchstring != null && page < 1)
+            bool successful = false;
+            int retry = 0;
+
+            while (!successful && retry < 4)
             {
-                page = 1;
+                try
+                {
+                     if (searchstring != null && page < 1)
+                     {
+                        page = 1;
+                     }
+                    else
+                    {
+                        searchstring = currentfilter;
+                    }
+
+                    ViewBag.CurrentFilter = searchstring;
+
+                    int pageSize = 10;
+                    int pageNumber = (page ?? 1);
+
+                    var patientdiagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == pid).OrderByDescending(a => a.recorded_at_date_time).ToPagedList(pageNumber, pageSize);
+
+                    return PartialView("_patdiag", patientdiagnosis);
+                }
+                catch (Exception)
+                {
+                    retry++;
+                }
             }
-            else
-            {
-                searchstring = currentfilter;
-            }
-
-            ViewBag.CurrentFilter = searchstring;
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-
-            var patientdiagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == pid).OrderByDescending(a => a.recorded_at_date_time).ToPagedList(pageNumber, pageSize);
-
-            return PartialView("_patdiag", patientdiagnosis);
+            return PartialView("_patdiag");
         }
 
         public ActionResult OMCPpatientMedication(int? page, string currentfilter)
@@ -151,25 +193,37 @@ namespace WebPortal.Controllers
             var pid = new Guid(Session["pid"].ToString());
             var searchstring = Session["searchstring"].ToString();
 
-            //if (Request.IsAjaxRequest())
-            //{
-            if (searchstring != null && page < 1)
+            bool successful = false;
+            int retry = 0;
+
+            while (!successful && retry < 4)
             {
-                page = 1;
+                try
+                {
+                    if (searchstring != null && page < 1)
+                    {
+                        page = 1;
+                    }
+                    else
+                    {
+                        searchstring = currentfilter;
+                    }
+
+                    ViewBag.CurrentFilter = searchstring;
+
+                    int pageSize = 10;
+                    int pageNumber = (page ?? 1);
+
+                    var patientmedication = db.webportal_patient_medication.Where(a => a.patient_id == pid).OrderByDescending(a => a.note_date).ToPagedList(pageNumber, pageSize);
+
+                    return PartialView("_patmedic", patientmedication);
+                }
+                catch (Exception)
+                {
+                    retry++;
+                }
             }
-            else
-            {
-                searchstring = currentfilter;
-            }
-
-            ViewBag.CurrentFilter = searchstring;
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-
-            var patientmedication = db.webportal_patient_medication.Where(a => a.patient_id == pid).OrderByDescending(a => a.note_date).ToPagedList(pageNumber, pageSize);
-
-            return PartialView("_patmedic", patientmedication);
+            return PartialView("_patmedic");
         }
 
         public ActionResult OMCPpatientPrevSurg(int? page, string currentfilter)
@@ -177,25 +231,37 @@ namespace WebPortal.Controllers
             var pid = new Guid(Session["pid"].ToString());
             var searchstring = Session["searchstring"].ToString();
 
-            //if (Request.IsAjaxRequest())
-            //{
-            if (searchstring != null && page < 1)
+            bool successful = false;
+            int retry = 0;
+
+            while (!successful && retry < 4)
             {
-                page = 1;
+                try
+                {
+                    if (searchstring != null && page < 1)
+                    {
+                        page = 1;
+                    }
+                    else
+                    {
+                        searchstring = currentfilter;
+                    }
+
+                    ViewBag.CurrentFilter = searchstring;
+
+                    int pageSize = 10;
+                    int pageNumber = (page ?? 1);
+
+                    var prevsurg = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == pid).OrderBy(a => a.previous_surgeries).ToPagedList(pageNumber, pageSize);
+
+                    return PartialView("_prevsurg", prevsurg);
+                }
+                catch (Exception)
+                {
+                    retry++;
+                }
             }
-            else
-            {
-                searchstring = currentfilter;
-            }
-
-            ViewBag.CurrentFilter = searchstring;
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-
-            var prevsurg = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == pid).OrderBy(a => a.previous_surgeries).ToPagedList(pageNumber, pageSize);
-
-            return PartialView("_prevsurg", prevsurg);
+            return PartialView("_prevsurg");
         }
     }
 }
