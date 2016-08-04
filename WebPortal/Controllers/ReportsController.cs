@@ -12,7 +12,6 @@ namespace WebPortal.Controllers
     public class ReportsController : Controller
     {
         private OPSEntities db = new OPSEntities();
-        //private opstryEntities db = new opstryEntities();
         private PatientUserEntities patdb = new PatientUserEntities();
         
         // GET: Reports

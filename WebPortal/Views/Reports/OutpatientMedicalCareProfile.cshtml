@@ -24,13 +24,14 @@
                 <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close">&times;</button>
             </div>
             <div class="modal-body">
-                <h5>Hospital Number not Found.</h5>
+                <center><h5>Hospital Number not Found.</h5></center>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row">
-    <img src="~/Images/Reports_icons/omcp_small.png" style="width:70%; position:absolute;" />
+    <img src="~/Images/Reports_icons/omcp_small.png" class="omcp_banner"/>
 </div>
     <div class="row" style="position:absolute; left:70%;top:200px;">
         <div style="position:relative; left:-70%">
@@ -46,9 +47,7 @@
         </div>
     </div>
 
-       
-    @*</div>*@
-<div class="panel-group" style="margin-top:200px;">
+<div class="panel-group" style="margin-top:220px;">
     <div class="panel-heading">
         @if (ViewBag.Successful == "true")
         {

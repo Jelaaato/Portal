@@ -41,10 +41,15 @@ min-width : 100%;
 }
 
 .omcp {
-    background: url('../Images/Reports_icons/omcp.png') no-repeat fixed;
+    background: url('../Images/Reports_icons/omcp.png') no-repeat center center fixed;
     background-size: cover;
     width:100%;
     height:300px;
+}
+
+.omcp_banner {
+  width:70%; 
+  position:absolute;
 }
 
 .results_icons {
@@ -228,10 +233,9 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
         height: 220px;
     }
 
-    .omcp {
-        background: url('../Images/Reports_icons/omcp.png') no-repeat center center fixed;
-        background-size: cover;
-        height: 220px;
+    .omcp_banner {
+        width:100%; 
+        position:absolute;
     }
 
     .results_icons {
@@ -285,11 +289,11 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
         height: 220px;
     }
 
-    .omcp{
-        background: url('../Images/Reports_icons/omcp.png') no-repeat center center fixed;
-        background-size: cover;
-        height: 220px;
+    .omcp_banner {
+        width:100%; 
+        position:absolute;
     }
+
     .results_icons {
         width: 90px;
         height: 90px;
@@ -320,10 +324,9 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
         height: 220px;
     }
 
-    .omcp {
-        background: url('../Images/Reports_icons/omcp.png') no-repeat center center fixed;
-        background-size: cover;
-        height: 220px;
+    .omcp_banner {
+        width:100%; 
+        position:absolute;
     }
 
     .results_icons {
