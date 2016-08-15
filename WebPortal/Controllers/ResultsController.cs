@@ -18,13 +18,13 @@ namespace WebPortal.Controllers
     {
         private RetentionEntities db = new RetentionEntities();
 
-        [Authorize]
+        [Authorize(Roles = "Doctor, Patient")]
         public ActionResult Index()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Doctor, Patient")]
         public ActionResult Laboratory(string fileid, bool? isvalidated)
         {
             ResultModel rmodel = new ResultModel();
@@ -43,13 +43,13 @@ namespace WebPortal.Controllers
             return View(rmodel);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Doctor, Patient")]
         public ActionResult Radiology()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Doctor, Patient")]
         public ActionResult Diagnosis()
         {
             return View();
