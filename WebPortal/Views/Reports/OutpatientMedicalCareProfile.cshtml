@@ -22,6 +22,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close">&times;</button>
+                <h3 class="text-center">Sorry...</h3>
             </div>
             <div class="modal-body">
                 <center><h5>Hospital Number not Found.</h5></center>
@@ -39,7 +40,7 @@
             {
                 <div class="form-inline">
                     <div class="form-group">
-                        @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Enter Hospital Number", @class="form-control"})
+                        @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Hospital Number", @class="form-control"})
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
