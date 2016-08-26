@@ -13,7 +13,7 @@ namespace WebPortal.Controllers
     {
         private OPSEntities db = new OPSEntities();
         private PatientUserEntities patdb = new PatientUserEntities();
-        
+
         // GET: Reports
 
         [Authorize]
@@ -146,7 +146,7 @@ namespace WebPortal.Controllers
             }
             return PartialView("_prevhosp");
         }
-           
+
         public ActionResult OMCPpatientDiagnosis(int? page, string currentfilter)
         {
             var pid = new Guid(Session["pid"].ToString());
@@ -161,10 +161,10 @@ namespace WebPortal.Controllers
             {
                 try
                 {
-                     if (searchstring != null && page < 1)
-                     {
+                    if (searchstring != null && page < 1)
+                    {
                         page = 1;
-                     }
+                    }
                     else
                     {
                         searchstring = currentfilter;
@@ -261,6 +261,11 @@ namespace WebPortal.Controllers
                 }
             }
             return PartialView("_prevsurg");
+        }
+
+        public ActionResult GenerateOMCPPDF()
+        {
+            return new Rotativa.ActionAsPdf("OMCPpatientAllergy");
         }
     }
 }

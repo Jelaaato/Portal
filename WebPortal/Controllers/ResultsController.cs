@@ -28,14 +28,14 @@ namespace WebPortal.Controllers
         public ActionResult Laboratory(string fileid, bool? isvalidated)
         {
             ResultModel rmodel = new ResultModel();
-            var currentuser = User.Identity.GetUserName().ToString();
+            string currentuser = User.Identity.GetUserName().ToString();
 
-            string samplecurrentuser = User.Identity.GetUserName().ToString();
             string path = Server.MapPath("~/PDFResults/");
+
             DirectoryInfo dir = new DirectoryInfo(path);
             int period = db.PortalRetention.Where(a => a.Module == "Results").Select(a => a.Retention_Period).First();
             DateTime minDate = DateTime.Today.AddDays(period);
-            rmodel.PDFFile = dir.GetFiles("*.pdf*").Where(a => a.Name.Contains(samplecurrentuser) && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
+            rmodel.PDFFile = dir.GetFiles("*.pdf*").Where(a => a.Name.Contains(currentuser) && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
             rmodel.retentionperiod = period * -1;
             rmodel.fileid = fileid;
             rmodel.IsValidated = isvalidated;

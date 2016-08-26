@@ -32,23 +32,24 @@
 </div>
 
 <div class="row">
-    <img src="~/Images/Reports_icons/omcp_small.png" class="omcp_banner"/>
-</div>
-    <div class="row" style="position:absolute; left:70%;top:200px;">
-        <div style="position:relative; left:-70%">
+    <div>
+        <img src="~/Images/Reports_icons/omcp_small.png" class="omcp_banner">
+    </div>
+    <div class="row searchboxwrapper">
+        <div class="searchbox">
             @using (Html.BeginForm("OutpatientMedicalCareProfile", "Reports", FormMethod.Get))
             {
                 <div class="form-inline">
                     <div class="form-group">
-                        @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Hospital Number", @class="form-control"})
+                        @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Hospital Number", @class = "form-control" })
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
             }
         </div>
     </div>
-
-<div class="panel-group" style="margin-top:220px;">
+</div>
+<div class="panel-group topmargin">
     <div class="panel-heading">
         @if (ViewBag.Successful == "true")
         {
@@ -117,6 +118,8 @@
                 }
             </div>
         </div>
+
+        <a href="@Url.Action("GenerateOMCPPDF", "Reports")">Generate</a>
     </div>
 </div>
 

@@ -47,9 +47,20 @@ min-width : 100%;
     height:300px;
 }
 
+.searchboxwrapper {
+    position:absolute; 
+    left:70%;
+    top:190px;
+}
+
+.searchbox {
+    position:relative; 
+    left:-70%
+}
+
 .omcp_banner {
-  width:70%; 
-  position:absolute;
+  width:100%; 
+  /*position:absolute;*/
 }
 
 .results_icons {
@@ -198,6 +209,19 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
 	line-height: 20px;
 }
 
+@media (min-width: 1680px) {
+    .searchboxwrapper {
+     position:absolute; 
+     left:67%;
+     top:200px;
+    }
+
+    .searchbox {
+    position:relative; 
+    left:-67%
+}
+}
+
 @media (min-width: 992px) and (max-width: 1199px) {
     .main-sidebar {
         width: 400px !important;
@@ -235,7 +259,7 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
 
     .omcp_banner {
         width:100%; 
-        position:absolute;
+        /*position:absolute;*/
     }
 
     .results_icons {
@@ -251,6 +275,21 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
     }
     .jumbotron-margin-top {
         margin-top: 100px;
+    }
+
+    .searchboxwrapper {
+    position:absolute; 
+    left:90%;
+    top:200px;
+}
+
+    .searchbox {
+    position:relative; 
+    left:-90%
+}
+
+    .topmargin {
+    margin-top:200px;
     }
 }
 
@@ -291,7 +330,7 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
 
     .omcp_banner {
         width:100%; 
-        position:absolute;
+        /*position:absolute;*/
     }
 
     .results_icons {
@@ -308,6 +347,16 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
      .jumbotron-margin-top {
         margin-top: 100px;
     }
+     .searchboxwrapper {
+    position:absolute; 
+    left:50%;
+    top:200px;
+}
+
+.searchbox {
+    position:relative; 
+    left:-50%
+}
 }
 
 @media (max-width: 767px) {
@@ -340,4 +389,14 @@ button.btn-login:active:focus, button.btn-login.active:focus { outline: 0; opaci
         font-weight: 100;
         margin-top: 80px;
     }
+    .searchboxwrapper {
+    position:absolute; 
+    left:50%;
+    top:200px;
+}
+
+.searchbox {
+    position:relative; 
+    left:-50%
+}
 }
