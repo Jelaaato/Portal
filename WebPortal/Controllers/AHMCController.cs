@@ -27,7 +27,7 @@ namespace WebPortal.Controllers
 
             int retry = 0;
 
-            while (!successful && retry < 4)
+            while (!successful && retry < 6)
             {
                 try
                 {
@@ -48,6 +48,7 @@ namespace WebPortal.Controllers
                                 returnvalue = true;
                                 Session["displaycurrentuser"] = displaycurrentuser.Name;
                                 successful = true;
+                                return View();
                             }
                             else
                             {
@@ -69,10 +70,12 @@ namespace WebPortal.Controllers
                                 returnvalue = true;
                                 Session["displaycurrentuser"] = displaycurrentuser.Name;
                                 successful = true;
+                                return View();
                             }
                             else
                             {
                                 returnvalue = false;
+                                return View("~/Views/Shared/Errors.cshtml");
                             }
                         }
                     }

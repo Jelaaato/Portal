@@ -18,15 +18,8 @@ namespace WebPortal.Models
         public OPSEntities()
             : base("name=OPSEntities")
         {
-            this.SetCommandTimeout(300);
         }
-
-        public void SetCommandTimeout(int timeout)
-        {
-            var objContext = (this as IObjectContextAdapter).ObjectContext;
-            objContext.CommandTimeout = timeout;
-        }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

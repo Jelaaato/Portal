@@ -1,4 +1,5 @@
 ﻿@model WebPortal.Models.OPSViewModel
+@*@model IEnumerable<WebPortal.Models.webportal_patient_info>*@
 @{
     ViewBag.Title = "OutpatientMedicalCareProfile";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
@@ -53,7 +54,7 @@
     <div class="panel-heading">
         @if (ViewBag.Successful == "true")
         {
-            @Html.Partial("_patinfo", Model.patient_info)
+            @Html.Partial("_patinfo",Model.patient_info)
         }
     </div>
     <div class="row panel-body" style="margin-top:20px;">

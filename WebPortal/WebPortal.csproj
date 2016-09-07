@@ -46,6 +46,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -98,9 +101,6 @@
     </Reference>
     <Reference Include="PagedList.Mvc">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Rotativa">
-      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
     </Reference>
     <Reference Include="SendGrid">
       <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGrid.dll</HintPath>
@@ -240,6 +240,7 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
+    <Compile Include="Helpers\OPSMethods.cs" />
     <Compile Include="Migrations\201606070816369_SampleIdentityDb.cs" />
     <Compile Include="Migrations\201606070816369_SampleIdentityDb.Designer.cs">
       <DependentUpon>201606070816369_SampleIdentityDb.cs</DependentUpon>
@@ -441,7 +442,6 @@
     <Content Include="Images\Reports_icons\omcp_text.png" />
     <Content Include="Images\Reports_icons\reports_nobox.png" />
     <Content Include="Images\Reports_icons\user-icon.png" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\bootstrap3-wysihtml5.css" />
@@ -808,7 +808,6 @@
       <DependentUpon>OPSModel.edmx</DependentUpon>
       <LastGenOutput>OPSModel.cs</LastGenOutput>
     </Content>
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="Properties\PublishProfiles\PortalPublish1.pubxml" />
     <None Include="Properties\PublishProfiles\PublishWebPortal.pubxml" />
     <None Include="Properties\PublishProfiles\WebPortal.pubxml" />

@@ -27,4 +27,6 @@
         </div>
         </center>
         }
+    @*<a href="@Url.Action("GenerateOMCPPDF", "Reports", new { target = "_blank"})">Generate PDF</a>*@
+    @Html.ActionLink("Generate PDF", "GenerateOMCPPDF", "Reports", new { target = "_blank"})
 </div>

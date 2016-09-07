@@ -6,6 +6,11 @@ using System.Web.Mvc;
 using WebPortal.Models;
 using PagedList.Mvc;
 using PagedList;
+using WebPortal.Helpers;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
 
 namespace WebPortal.Controllers
 {
@@ -37,10 +42,14 @@ namespace WebPortal.Controllers
                         {
                             Guid query = new Guid();
                             query = (from b in patdb.patient_hospital_usage where b.visible_patient_id == search select b.patient_id).FirstOrDefault();
+
                             OPSViewModel patientinfo = new OPSViewModel()
                             {
                                 patient_info = db.webportal_patient_info.Where(a => a.person_id == query).ToList()
                             };
+
+                            //OPSMethods ops = new OPSMethods();
+                            //var patientinfo = ops.GetInfo(query);
 
                             Session["searchstring"] = search;
                             Session["pid"] = query;
@@ -107,11 +116,10 @@ namespace WebPortal.Controllers
             return PartialView("_patallergy");
         }
 
-        public ActionResult OMCPpatientPrevHosp(int? page, string currentfilter, string sortorder)
+        public ActionResult OMCPpatientPrevHosp(int? page, string currentfilter)
         {
             var pid = new Guid(Session["pid"].ToString());
             var searchstring = Session["searchstring"].ToString();
-            ViewBag.DateSort = sortorder == "Date" ? "Date_desc" : "Date";
 
             bool successful = false;
             int retry = 0;
@@ -265,7 +273,121 @@ namespace WebPortal.Controllers
 
         public ActionResult GenerateOMCPPDF()
         {
-            return new Rotativa.ActionAsPdf("OMCPpatientAllergy");
+            var pid = new Guid(Session["pid"].ToString());
+            var searchstring = Session["searchstring"].ToString();
+
+            var patInfo = db.webportal_patient_info.Where(i => i.person_id == pid).AsEnumerable();
+            var patAllergy = db.webportal_patient_allergies_new.Where(a => a.patient_id == pid).AsEnumerable();
+            var patMedication = db.webportal_patient_medication.Where(a => a.patient_id == pid).AsEnumerable();
+            var patDiagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == pid).AsEnumerable();
+            var patPrevSurg = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == pid).AsEnumerable();
+            var patPrevHosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).Take(10).AsEnumerable();
+
+            Chunk hr = new Chunk(new LineSeparator());
+
+            Document doc = new Document();
+            MemoryStream mst = new MemoryStream();
+
+            PdfWriter pdfwriter = PdfWriter.GetInstance(doc, mst);
+            pdfwriter.CloseStream = false;
+
+            //string images = Server.MapPath("~/Images");
+            //Image header = Image.GetInstance(images + "/ahmc_logo.png");
+            //header.ScalePercent(6f);
+            //header.Alignment = Image.ALIGN_CENTER;
+
+
+            doc.Open();
+            doc.Add(new Phrase("Out Patient Summary"));
+            doc.Add(new Paragraph("\n"));
+
+            foreach (var item in patInfo)
+            {
+                doc.Add(new Paragraph(item.last_name_l + "," + " " + item.first_name_l + " " + item.middle_name_l));
+                doc.Add(new Paragraph(item.hospital_nr));
+                doc.Add(new Paragraph(item.date_of_birth.Value.ToString("dd MMMM yyyy")));
+                doc.Add(new Paragraph(item.age.ToString() + " y.o"));
+                doc.Add(new Paragraph(item.gender));
+            }
+
+
+            doc.Add(hr);
+            doc.Add(new Paragraph("\n"));
+
+            doc.Add(new Phrase("Allergies"));
+            PdfPTable tblAllergy = new PdfPTable(3);
+            tblAllergy.WidthPercentage = 100;
+            foreach (var item in patAllergy)
+            {
+                tblAllergy.AddCell(item.cause);
+                tblAllergy.AddCell(item.reaction);
+                tblAllergy.AddCell(item.reaction_cause_status);
+            }
+            doc.Add(tblAllergy);
+
+            doc.Add(new Paragraph("\n"));
+
+            doc.Add(new Phrase("Medication"));
+            PdfPTable tblMedic = new PdfPTable(2);
+            tblMedic.WidthPercentage = 100;
+            foreach (var item in patMedication)
+            {
+                tblMedic.AddCell(item.note_date.ToString());
+                tblMedic.AddCell(item.details);
+            }
+            doc.Add(tblMedic);
+
+            doc.Add(new Paragraph("\n"));
+
+            doc.Add(new Phrase("Diagnosis"));
+            PdfPTable tblDiag = new PdfPTable(5);
+            tblDiag.WidthPercentage = 100;
+            foreach (var item in patDiagnosis)
+            {
+                tblDiag.AddCell(item.recorded_at_date_time.ToString());
+                tblDiag.AddCell(item.diagnosis);
+                tblDiag.AddCell(item.code);
+                tblDiag.AddCell(item.coding_system_rcd);
+                tblDiag.AddCell(item.coding_type);
+            }
+            doc.Add(tblDiag);
+
+            doc.Add(new Paragraph("\n"));
+
+            doc.Add(new Phrase("Previous Surgeries"));
+            PdfPTable tblPrevSurg = new PdfPTable(1);
+            tblPrevSurg.WidthPercentage = 100;
+            foreach (var item in patPrevSurg)
+            {
+                tblPrevSurg.AddCell(item.previous_surgeries);
+            }
+            doc.Add(tblPrevSurg);
+
+            doc.Add(new Paragraph("\n"));
+
+            doc.Add(new Phrase("Previous Hospitalizations"));
+            PdfPTable tblPrevHosp = new PdfPTable(3);
+            tblPrevHosp.WidthPercentage = 100;
+            foreach (var item in patPrevHosp)
+            {
+                tblPrevHosp.AddCell(item.visit_start_date_time.ToString());
+                tblPrevHosp.AddCell(item.visit_type);
+                tblPrevHosp.AddCell(item.primary_service);
+            }
+            doc.Add(tblPrevHosp);
+
+            doc.Add(new Paragraph("\n"));
+            doc.Add(hr);
+
+            doc.Add(new Paragraph(doc.BottomMargin, DateTime.Now.ToString()));
+            doc.Add(new Paragraph(doc.BottomMargin, doc.PageNumber.ToString()));
+            doc.Close();
+
+            mst.Flush();
+            mst.Position = 0;
+
+            Response.AddHeader("content-disposition", "inline; filename=Sample.pdf");
+            return File(mst, "application/pdf");
         }
     }
 }
