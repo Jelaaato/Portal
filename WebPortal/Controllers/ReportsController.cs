@@ -281,7 +281,7 @@ namespace WebPortal.Controllers
             var patMedication = db.webportal_patient_medication.Where(a => a.patient_id == pid).AsEnumerable();
             var patDiagnosis = db.webportal_patient_diagnosis.Where(a => a.patient_id == pid).AsEnumerable();
             var patPrevSurg = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == pid).AsEnumerable();
-            var patPrevHosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).Take(10).AsEnumerable();
+            var patPrevHosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).OrderByDescending(a => a.visit_start_date_time).AsEnumerable();
 
             Chunk hr = new Chunk(new LineSeparator());
 
@@ -290,11 +290,6 @@ namespace WebPortal.Controllers
 
             PdfWriter pdfwriter = PdfWriter.GetInstance(doc, mst);
             pdfwriter.CloseStream = false;
-
-            //string images = Server.MapPath("~/Images");
-            //Image header = Image.GetInstance(images + "/ahmc_logo.png");
-            //header.ScalePercent(6f);
-            //header.Alignment = Image.ALIGN_CENTER;
 
 
             doc.Open();
@@ -317,76 +312,137 @@ namespace WebPortal.Controllers
             doc.Add(new Phrase("Allergies"));
             PdfPTable tblAllergy = new PdfPTable(3);
             tblAllergy.WidthPercentage = 100;
-            foreach (var item in patAllergy)
-            {
-                tblAllergy.AddCell(item.cause);
-                tblAllergy.AddCell(item.reaction);
-                tblAllergy.AddCell(item.reaction_cause_status);
-            }
-            doc.Add(tblAllergy);
 
+            if (patAllergy.Count() != 0)
+            {
+                tblAllergy.AddCell(new Phrase("Allergen"));
+                tblAllergy.AddCell(new Phrase("Allergic Reaction"));
+                tblAllergy.AddCell(new Phrase("Allergy Status"));
+
+                foreach (var item in patAllergy)
+                {
+                    tblAllergy.AddCell(item.cause);
+                    tblAllergy.AddCell(item.reaction);
+                    tblAllergy.AddCell(item.reaction_cause_status);
+                }
+            }
+            else 
+            {
+                doc.Add(new Paragraph("No records found."));  
+            }
+
+            doc.Add(tblAllergy);
             doc.Add(new Paragraph("\n"));
 
             doc.Add(new Phrase("Medication"));
             PdfPTable tblMedic = new PdfPTable(2);
             tblMedic.WidthPercentage = 100;
-            foreach (var item in patMedication)
-            {
-                tblMedic.AddCell(item.note_date.ToString());
-                tblMedic.AddCell(item.details);
-            }
-            doc.Add(tblMedic);
 
+            if (patMedication.Count() != 0)
+            {
+                tblMedic.AddCell(new Phrase("Date and Time Recorded"));
+                tblMedic.AddCell(new Phrase("Medicine"));
+
+                foreach (var item in patMedication)
+                {
+                    tblMedic.AddCell(item.note_date.ToString());
+                    tblMedic.AddCell(item.details);
+                }
+            }
+            else 
+            {
+                doc.Add(new Paragraph("No records found.")); 
+            }
+
+            doc.Add(tblMedic);
             doc.Add(new Paragraph("\n"));
 
             doc.Add(new Phrase("Diagnosis"));
             PdfPTable tblDiag = new PdfPTable(5);
             tblDiag.WidthPercentage = 100;
-            foreach (var item in patDiagnosis)
-            {
-                tblDiag.AddCell(item.recorded_at_date_time.ToString());
-                tblDiag.AddCell(item.diagnosis);
-                tblDiag.AddCell(item.code);
-                tblDiag.AddCell(item.coding_system_rcd);
-                tblDiag.AddCell(item.coding_type);
-            }
-            doc.Add(tblDiag);
 
+            if (patDiagnosis.Count() != 0)
+            {
+                tblDiag.AddCell(new Phrase("Date and Time"));
+                tblDiag.AddCell(new Phrase("Diagnosis"));
+                tblDiag.AddCell(new Phrase("Code"));
+                tblDiag.AddCell(new Phrase("Coding System"));
+                tblDiag.AddCell(new Phrase("Coding Type"));
+
+                foreach (var item in patDiagnosis)
+                {
+                    tblDiag.AddCell(item.recorded_at_date_time.ToString());
+                    tblDiag.AddCell(item.diagnosis);
+                    tblDiag.AddCell(item.code);
+                    tblDiag.AddCell(item.coding_system_rcd);
+                    tblDiag.AddCell(item.coding_type);
+                }
+            }
+            else
+            {
+                doc.Add(new Paragraph("No records found."));
+            }
+
+            doc.Add(tblDiag);
             doc.Add(new Paragraph("\n"));
 
             doc.Add(new Phrase("Previous Surgeries"));
             PdfPTable tblPrevSurg = new PdfPTable(1);
             tblPrevSurg.WidthPercentage = 100;
-            foreach (var item in patPrevSurg)
-            {
-                tblPrevSurg.AddCell(item.previous_surgeries);
-            }
-            doc.Add(tblPrevSurg);
 
+            if (patPrevSurg.Count() != 0)
+            {
+                tblPrevSurg.AddCell(new Phrase("Procedure"));
+
+                foreach (var item in patPrevSurg)
+                {
+                    tblPrevSurg.AddCell(item.previous_surgeries);
+                }
+            }
+            else
+            {
+                doc.Add(new Paragraph("No records found."));
+            }
+
+            doc.Add(tblPrevSurg);
             doc.Add(new Paragraph("\n"));
 
             doc.Add(new Phrase("Previous Hospitalizations"));
             PdfPTable tblPrevHosp = new PdfPTable(3);
             tblPrevHosp.WidthPercentage = 100;
-            foreach (var item in patPrevHosp)
+
+            if (patPrevHosp.Count() != 0)
             {
-                tblPrevHosp.AddCell(item.visit_start_date_time.ToString());
-                tblPrevHosp.AddCell(item.visit_type);
-                tblPrevHosp.AddCell(item.primary_service);
+
+                tblPrevHosp.AddCell(new Phrase("Visit Date"));
+                tblPrevHosp.AddCell(new Phrase("Visit Type"));
+                tblPrevHosp.AddCell(new Phrase("Primary Service"));
+
+                foreach (var item in patPrevHosp)
+                {
+                    tblPrevHosp.AddCell(item.visit_start_date_time.ToString());
+                    tblPrevHosp.AddCell(item.visit_type);
+                    tblPrevHosp.AddCell(item.primary_service);
+                }
             }
+            else
+            {
+                doc.Add(new Paragraph("No records found."));
+            }
+
             doc.Add(tblPrevHosp);
+            
 
             doc.Add(new Paragraph("\n"));
             doc.Add(hr);
 
             doc.Add(new Paragraph(doc.BottomMargin, DateTime.Now.ToString()));
-            doc.Add(new Paragraph(doc.BottomMargin, doc.PageNumber.ToString()));
             doc.Close();
 
             mst.Flush();
             mst.Position = 0;
 
-            Response.AddHeader("content-disposition", "inline; filename=Sample.pdf");
+            Response.AddHeader("content-disposition", "inline; filename=OMCP.pdf");
             return File(mst, "application/pdf");
         }
     }
