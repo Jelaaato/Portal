@@ -27,6 +27,18 @@
         </div>
         </center>
         }
-    @*<a href="@Url.Action("GenerateOMCPPDF", "Reports", new { target = "_blank"})">Generate PDF</a>*@
-    @Html.ActionLink("Generate PDF", "GenerateOMCPPDF", "Reports", new { target = "_blank"})
+        <a href="#pdf" data-toggle="modal">Generate PDF</a>
+        <div class="modal fade" id="pdf" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <embed src ="@Url.Action("GenerateOMCPPDF")" width="870" height="1000" type="application/pdf"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @*@Html.ActionLink("Generate PDF", "GenerateOMCPPDF", "Reports", new { target = "_blank"})*@
 </div>

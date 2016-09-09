@@ -283,6 +283,7 @@ namespace WebPortal.Controllers
             var patPrevSurg = db.webportal_patient_prev_surgeries.Where(a => a.patient_id == pid).AsEnumerable();
             var patPrevHosp = db.webportal_patient_prev_hospitalization.Where(a => a.patient_id == pid).OrderByDescending(a => a.visit_start_date_time).AsEnumerable();
 
+            var fileName = "OutPatientSummary_" + searchstring;
             Chunk hr = new Chunk(new LineSeparator());
 
             Document doc = new Document();
@@ -442,7 +443,7 @@ namespace WebPortal.Controllers
             mst.Flush();
             mst.Position = 0;
 
-            Response.AddHeader("content-disposition", "inline; filename=OMCP.pdf");
+            Response.AddHeader("content-disposition", string.Format("inline; filename={0}", fileName));
             return File(mst, "application/pdf");
         }
     }
