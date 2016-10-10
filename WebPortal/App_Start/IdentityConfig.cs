@@ -23,7 +23,7 @@ namespace WebPortal
             app.CreatePerOwinContext<RolesManager>(RolesManager.Create);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                ExpireTimeSpan = TimeSpan.FromMinutes(10),
+                ExpireTimeSpan = TimeSpan.FromMinutes(60),
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Home/Index"),
             });

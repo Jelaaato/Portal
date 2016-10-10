@@ -1,13 +1,16 @@
-﻿html {
-font-family: 'Roboto', sans-serif !important;
+﻿@import '../CustomFonts/Open Sans/css/opensansfonts.css';
+@import '../CustomFonts/Roboto/css/robotofonts.css';
+
+html {
+font-family: 'Open Sans', sans-serif !important;
 }
 
 h1{
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 body {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 .full-cover {
@@ -103,7 +106,7 @@ body {
     vertical-align: middle;
     background: #f8f8f8;
     border: 3px solid #ddd;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -120,7 +123,7 @@ body {
     vertical-align: middle;
     background: #f8f8f8;
     border: 3px solid #ddd;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -188,7 +191,7 @@ button.btn-login {
     vertical-align: middle;
     background: #71B898;
     border: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -313,7 +316,7 @@ h3 {
 }
 
 h4, p {
-     font-family:'Roboto', sans-serif serif !important; 
+     font-family:'Open Sans', sans-serif serif !important; 
      color: white !important;
 }
 
@@ -328,7 +331,7 @@ padding: 400px 25px 25px 25px;
 text-align: center;
 color:white;
 font-size:45px;
-font-family: 'Roboto', sans-serif !important;
+font-family: 'Open Sans', sans-serif !important;
 }
 
 .padding-bottom {

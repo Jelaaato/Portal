@@ -64,6 +64,7 @@
             <li><a class="tab-text" href="#diag" data-toggle="tab">Patient's Diagnosis</a></li>
             <li><a class="tab-text" href="#surg" data-toggle="tab">Previous Surgeries</a></li>
             <li><a class="tab-text" href="#hosp" data-toggle="tab">Previous Hospitalization</a></li>
+            <li><a href="#pdf" class="tab-text" data-toggle="modal"><span class="glyphicon glyphicon-file"></span>View PDF</a></li>
         </ul>
         <div class="tab-content col-xs-12">
 
@@ -122,6 +123,21 @@
     </div>
 </div>
 
+<!-- modal -->
+<div class="modal fade" id="pdf" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <embed src="@Url.Action("GenerateOMCPPDF")" width="870" height="1000" type="application/pdf" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--alert-->
 <script>
          @if (ViewBag.ShowModal == "true")
          {

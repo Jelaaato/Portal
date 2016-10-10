@@ -434,6 +434,22 @@
     <Content Include="Adminlte\AdminLTE_V2\dist\js\app.min.js" />
     <Content Include="Adminlte\AdminLTE_V2\dist\js\demo.js" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="CustomFonts\Open Sans\css\opensansfonts.css" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-300\LICENSE.txt" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-300\Open-Sans-300.svg" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-600\LICENSE.txt" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-600\Open-Sans-600.svg" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-700\LICENSE.txt" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-700\Open-Sans-700.svg" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-regular\LICENSE.txt" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-regular\Open-Sans-regular.svg" />
+    <Content Include="CustomFonts\Roboto\css\robotofonts.css" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-300\LICENSE.txt" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-300\Roboto-300.svg" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-700\LICENSE.txt" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-700\Roboto-700.svg" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-regular\LICENSE.txt" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-regular\Roboto-regular.svg" />
     <Content Include="Images\Admin_icons\Admins_audit_trail_nobox.png" />
     <Content Include="Images\Admin_icons\Admin_settings_nobox.png" />
     <Content Include="Images\Reports_icons\omcp_small.png" />
@@ -808,6 +824,34 @@
       <DependentUpon>OPSModel.edmx</DependentUpon>
       <LastGenOutput>OPSModel.cs</LastGenOutput>
     </Content>
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-300\Open-Sans-300.eot" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-300\Open-Sans-300.ttf" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-300\Open-Sans-300.woff" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-300\Open-Sans-300.woff2" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-600\Open-Sans-600.eot" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-600\Open-Sans-600.ttf" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-600\Open-Sans-600.woff" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-600\Open-Sans-600.woff2" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-700\Open-Sans-700.eot" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-700\Open-Sans-700.ttf" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-700\Open-Sans-700.woff" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-700\Open-Sans-700.woff2" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-regular\Open-Sans-regular.eot" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-regular\Open-Sans-regular.ttf" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-regular\Open-Sans-regular.woff" />
+    <Content Include="CustomFonts\Open Sans\fonts\Open-Sans-regular\Open-Sans-regular.woff2" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-300\Roboto-300.eot" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-300\Roboto-300.ttf" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-300\Roboto-300.woff" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-300\Roboto-300.woff2" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-700\Roboto-700.eot" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-700\Roboto-700.ttf" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-700\Roboto-700.woff" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-700\Roboto-700.woff2" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-regular\Roboto-regular.eot" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-regular\Roboto-regular.ttf" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-regular\Roboto-regular.woff" />
+    <Content Include="CustomFonts\Roboto\fonts\Roboto-regular\Roboto-regular.woff2" />
     <None Include="Properties\PublishProfiles\PortalPublish1.pubxml" />
     <None Include="Properties\PublishProfiles\PublishWebPortal.pubxml" />
     <None Include="Properties\PublishProfiles\WebPortal.pubxml" />

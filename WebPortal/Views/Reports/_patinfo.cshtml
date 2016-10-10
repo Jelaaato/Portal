@@ -1,13 +1,6 @@
 ﻿@model IEnumerable<WebPortal.Models.webportal_patient_info>
 @using WebPortal.Models;
-@*@foreach (var item in Model)
-{ 
-    <h5>@item.last_name_l,&nbsp;@item.first_name_l&nbsp;@item.middle_name_l</h5>
-    <h5>@item.hospital_nr</h5>
-    <h5>@item.date_of_birth</h5>
-    <h5>@item.age</h5>
-    <h5>@item.gender</h5>
-}*@
+
 <div class="row">
         @foreach (var item in Model)
         {
@@ -22,23 +15,12 @@
             <h4>Birthday :&nbsp;&nbsp;&nbsp;@item.date_of_birth.Value.ToString("dd MMMM yyyy")</h4>
         </div>
         <div class="col-lg-2">
-            <h4>Age :&nbsp;&nbsp;&nbsp;@item.age y.o</h4>
+            <h4>Age :&nbsp;&nbsp;&nbsp;@item.age years old</h4>
             <h4>Gender :&nbsp;&nbsp;&nbsp;@item.gender</h4>
         </div>
         </center>
         }
-        <a href="#pdf" data-toggle="modal">Generate PDF</a>
-        <div class="modal fade" id="pdf" role="dialog" tabindex="-1">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <embed src ="@Url.Action("GenerateOMCPPDF")" width="870" height="1000" type="application/pdf"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @*@Html.ActionLink("Generate PDF", "GenerateOMCPPDF", "Reports", new { target = "_blank"})*@
+</div>
+<div class="row">
+    
 </div>
